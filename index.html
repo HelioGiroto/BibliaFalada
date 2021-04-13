@@ -62,10 +62,10 @@
     <script>
         
         let Livros=["", "Gn", "Ex", "Lv", "Nm", "Dt", "Js", "Jz", "Rt", "1Sm", "2Sm", "1Rs", "2Rs", "1Cr", "2Cr", "Ed", "Ne", "Et", "Jó", "Sl", "Pv", "Ec", "Ct", "Is", "Jr", "Lm", "Ez", "Dn", "Os", "Jl", "Am", "Ob", "Jn", "Mq", "Na", "Hc", "Sf", "Ag", "Zc", "Ml", "Mt", "Mc", "Lc", "Jo", "At", "Rm", "1Co", "2Co", "Gl", "Ef", "Fp", "Cl", "1Ts", "2Ts", "1Tm", "2Tm", "Tt", "Fm", "Hb", "Tg", "1Pe", "2Pe", "1Jo", "2Jo", "3Jo", "Jd", "Ap"];        
-        let CapitulosFinais = ['', 50, 40, 27, 36, 34, 24, 21, 4, 31, 24, 22, 25, 29, 36, 10, 13, 10, 42, 150, 31, 12, 8, 66, 52, 5, 48, 12, 14, 3, 9, 1, 4, 7, 3, 3, 3, 2, 14, 4, 28, 16, 24, 28, 28, 16, 16, 13, 6, 6, 4, 4, 5, 3, 6, 4, 3, 1, 13, 5, 5, 3, 5, 1, 1, 1, 22]
+        let CapitulosFinais = ['', 50, 40, 27, 36, 34, 24, 21, 4, 31, 24, 22, 25, 29, 36, 10, 13, 10, 42, 150, 31, 12, 8, 66, 52, 5, 48, 12, 14, 3, 9, 1, 4, 7, 3, 3, 3, 2, 14, 4, 28, 16, 24, 21, 28, 16, 16, 13, 6, 6, 4, 4, 5, 3, 6, 4, 3, 1, 13, 5, 5, 3, 5, 1, 1, 1, 22]
 
 
-        let testamento, livro, capitulo, intemNro
+        let livro, capitulo, intemNro
 
         let imgPlayer = document.querySelector('#imgPlayer')
         let player = document.querySelector('#player')
@@ -73,8 +73,7 @@
         // Abaixo, estas variáveis podem ser mudadas conforme localStorage de onde o usuário parou de ouvir:
         // ponteiro no item 1 dos arrays:
         // Romanos cap 10
-        intemNro = 45
-        testamento = 'NT'
+        intemNro = 10
         capitulo = 10
         
         // obtem nome do livro e qtde de capítulos que o mesmo possui:
@@ -84,12 +83,13 @@
             
         console.log(`${livro} ${capitulo}`)
 
-        // Engatilha o audio e mostra a imagem correspondente:
-        imgPlayer.src = `${livro} ${capitulo}.jpg`
-        player.src = `${testamento}/${livro} ${capitulo}.m4a`
+        // Engatilha o audio inicial e mostra a imagem correspondente:
+        imgPlayer.src = `capas/${livro} ${capitulo}.png`
+        player.src = `audios/mp3/${livro} ${capitulo}.mp3`
         
         player.addEventListener('ended', () => {
-            // grava em localStorage itemNro, testamento, capítulo:
+            // grava em localStorage itemNro, capítulo para último lido.
+            // grava array de objetos de capítulos lidos.
 
             // ao terminar a faixa, avança um capítulo
             capitulo++
@@ -99,8 +99,8 @@
                 // avança para o próximo livro (item) do array Livros:
                 intemNro++
                 // verifica se é momento de mudar de testamento - para navegar à pasta correta:
-                if(intemNro > 39){testamento = 'NT'}
-                if(intemNro > 66){testamento = 'AT'; intemNro = 1}
+                // if(intemNro > 39){testamento = 'NT'}
+                if(intemNro > 66){intemNro = 1}
                 // muda o livro atual:
                 livro = Livros[intemNro]
                 // define qual o capítulo final deste livro:
@@ -110,9 +110,9 @@
             }
             console.log(`${livro} ${capitulo}`)
             // altera a imagem de capa:
-            imgPlayer.src = `${livro} ${capitulo}.jpg`
+            imgPlayer.src = `capas/${livro} ${capitulo}.png`
             // altera a faixa que será engatilhada:
-            player.src = `${testamento}/${livro} ${capitulo}.m4a`
+            player.src = `audios/mp3/${livro} ${capitulo}.mp3`
             // toca a faixa escolhida:
             player.play()
         })

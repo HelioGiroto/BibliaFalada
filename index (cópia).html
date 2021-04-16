@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Bíblia Falada</title>
+
+    <style>
+        .divPlayer {
+            display: flex;
+            flex-flow: column;
+            padding-top: 50px;
+            align-items: center;
+        }
+
+        .capa {
+            display: flex;
+            justify-content: center;
+        }
+
+        #imgPlayer {
+            width: 90%;
+        }
+
+        #player {
+            filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%);
+            width: 90%;
+        }
+
+        /*      
+        audio::-webkit-media-controls-panel
+        audio::-webkit-media-controls-mute-button   
+        audio::-webkit-media-controls-play-button
+        audio::-webkit-media-controls-timeline-container
+        audio::-webkit-media-controls-current-time-display
+        audio::-webkit-media-controls-time-remaining-display
+        audio::-webkit-media-controls-timeline
+        audio::-webkit-media-controls-volume-slider-container
+        audio::-webkit-media-controls-volume-slider
+        audio::-webkit-media-controls-seek-back-button
+        audio::-webkit-media-controls-seek-forward-button
+        audio::-webkit-media-controls-fullscreen-button
+        audio::-webkit-media-controls-rewind-button
+        audio::-webkit-media-controls-return-to-realtime-button
+        audio::-webkit-media-controls-toggle-closed-captions-button
+
+        FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51def8133b336a6f6588f/Source/core/css/mediaControls.css?autodive=0%2F%2F%2F
+        */
+    </style>
+</head>
+
+<body>
+
+    <div class="divPlayer">
+        <div class="capa"><img id="imgPlayer"></div>
+        <audio controls id='player'></audio>
+    </div>
+
+
+    <script>
+        
+        let NomesLivros = ["", "Gênesis", "Êxodo", "Levítico", "Números", "Deuteronômio", "Josué", "Juízes", "Rute", "1 Samuel", "2 Samuel", "1 Reis", "2 Reis", "1 Crônicas", "2 Crônicas", "Esdras", "Neemias", "Ester", "Jó", "Salmos", "Provérbios", "Eclesiastes", "Cânticos", "Isaías", "Jeremias", "Lamentações", "Ezequiel", "Daniel", "Oséias", "Joel", "Amós", "Obadias", "Jonas", "Miquéias", "Naum", "Habacuque", "Sofonias", "Ageu", "Zacarias", "Malaquias", "Mateus", "Marcos", "Lucas", "João", "Atos", "Romanos", "1 Coríntios", "2 Coríntios", "Gálatas", "Efésios", "Filipenses", "Colossenses", "1 Tessalonicenses", "2 Tessalonicenses", "1 Timóteo", "2 Timóteo", "Tito", "Filemom", "Hebreus", "Tiago", "1 Pedro", "2 Pedro", "1 João", "2 João", "3 João", "Judas", "Apocalipse"]
+        let Livros = ["", "Gn", "Ex", "Lv", "Nm", "Dt", "Js", "Jz", "Rt", "1Sm", "2Sm", "1Rs", "2Rs", "1Cr", "2Cr", "Ed", "Ne", "Et", "Jó", "Sl", "Pv", "Ec", "Ct", "Is", "Jr", "Lm", "Ez", "Dn", "Os", "Jl", "Am", "Ob", "Jn", "Mq", "Na", "Hc", "Sf", "Ag", "Zc", "Ml", "Mt", "Mc", "Lc", "Jo", "At", "Rm", "1Co", "2Co", "Gl", "Ef", "Fp", "Cl", "1Ts", "2Ts", "1Tm", "2Tm", "Tt", "Fm", "Hb", "Tg", "1Pe", "2Pe", "1Jo", "2Jo", "3Jo", "Jd", "Ap"];        
+        let CapitulosFinais = ['', 50, 40, 27, 36, 34, 24, 21, 4, 31, 24, 22, 25, 29, 36, 10, 13, 10, 42, 150, 31, 12, 8, 66, 52, 5, 48, 12, 14, 3, 9, 1, 4, 7, 3, 3, 3, 2, 14, 4, 28, 16, 24, 21, 28, 16, 16, 13, 6, 6, 4, 4, 5, 3, 6, 4, 3, 1, 13, 5, 5, 3, 5, 1, 1, 1, 22]
+        
+        let LivrosAT = ["", "Gn", "Ex", "Lv", "Nm", "Dt", "Js", "Jz", "Rt", "1Sm", "2Sm", "1Rs", "2Rs", "1Cr", "2Cr", "Ed", "Ne", "Et", "Jó", "Sl", "Pv", "Ec", "Ct", "Is", "Jr", "Lm", "Ez", "Dn", "Os", "Jl", "Am", "Ob", "Jn", "Mq", "Na", "Hc", "Sf", "Ag", "Zc", "Ml"]
+        let CapitulosFinaisAT = ['', 50, 40, 27, 36, 34, 24, 21, 4, 31, 24, 22, 25, 29, 36, 10, 13, 10, 42, 150, 31, 12, 8, 66, 52, 5, 48, 12, 14, 3, 9, 1, 4, 7, 3, 3, 3, 2, 14, 4]
+        
+        let LivrosNT = ["", "Mt", "Mc", "Lc", "Jo", "At", "Rm", "1Co", "2Co", "Gl", "Ef", "Fp", "Cl", "1Ts", "2Ts", "1Tm", "2Tm", "Tt", "Fm", "Hb", "Tg", "1Pe", "2Pe", "1Jo", "2Jo", "3Jo", "Jd", "Ap"]
+        let CapitulosFinaisNT = ['', 28, 16, 24, 21, 28, 16, 16, 13, 6, 6, 4, 4, 5, 3, 6, 4, 3, 1, 13, 5, 5, 3, 5, 1, 1, 1, 22]
+
+
+        let livro, capitulo, intemNro
+
+        let imgPlayer = document.querySelector('#imgPlayer')
+        let player = document.querySelector('#player')
+
+        // Abaixo, estas variáveis podem ser mudadas conforme localStorage de onde o usuário parou de ouvir:
+        // ponteiro no item 1 dos arrays:
+        // Romanos cap 10
+        intemNro = 10
+        capitulo = 10
+        
+        // obtem nome do livro e qtde de capítulos que o mesmo possui:
+        livro = Livros[intemNro]
+        capituloFinal = CapitulosFinais[intemNro]
+        
+            
+        console.log(`${livro} ${capitulo}`)
+
+        // Engatilha o audio inicial e mostra a imagem correspondente:
+        imgPlayer.src = `capas/${livro} ${capitulo}.png`
+        player.src = `audios/mp3/${livro} ${capitulo}.mp3`
+        
+        player.addEventListener('ended', () => {
+            // grava em localStorage itemNro, capítulo para último lido.
+            // grava array de objetos de capítulos lidos.
+
+            // ao terminar a faixa, avança um capítulo
+            capitulo++
+            // verifica se já não chegou ao fim do livro:
+            if(capitulo > capituloFinal){
+                // se o capítulo atual é maior que o capítulo Final do livro atual...
+                // avança para o próximo livro (item) do array Livros:
+                intemNro++
+                // verifica se é momento de mudar de testamento - para navegar à pasta correta:
+                // if(intemNro > 39){testamento = 'NT'}
+                if(intemNro > 66){intemNro = 1}
+                // muda o livro atual:
+                livro = Livros[intemNro]
+                // define qual o capítulo final deste livro:
+                capituloFinal = CapitulosFinais[intemNro]
+                // começa do primeiro capítulo do livro:
+                capitulo = 1
+            }
+            console.log(`${livro} ${capitulo}`)
+            // altera a imagem de capa:
+            imgPlayer.src = `capas/${livro} ${capitulo}.png`
+            // altera a faixa que será engatilhada:
+            player.src = `audios/mp3/${livro} ${capitulo}.mp3`
+            // toca a faixa escolhida:
+            player.play()
+        })
+
+
+        // https://www.skypack.dev/ // pacotes npm sem instalar !!!
+
+    </script>
+
+</body>
+
+</html>

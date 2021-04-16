@@ -5,28 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+
+
     <title>A Bíblia Falada</title>
 
     <style>
-        .divPlayer {
-            display: flex;
-            flex-flow: column;
-            padding-top: 50px;
-            align-items: center;
-        }
-
-        .capa {
-            display: flex;
-            justify-content: center;
-        }
-
-        #imgPlayer {
-            width: 90%;
-        }
-
-        #player {
-            filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%);
-            width: 90%;
+        * {
+            margin: 0;
+            padding: 0;
         }
 
         /*      
@@ -48,59 +37,369 @@
 
         FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51def8133b336a6f6588f/Source/core/css/mediaControls.css?autodive=0%2F%2F%2F
         */
+
+        .divPlayer {
+            display: flex;
+            flex-flow: column;
+            padding-top: 50px;
+            align-items: center;
+        }
+
+        .capa {
+            display: flex;
+            justify-content: center;
+        }
+
+        .infoLivro {
+            position: absolute;
+            z-index: 100;
+            margin-top: 8%;
+        }
+
+        #nomeLivro {
+            font-size: 2.5em;
+            text-align: center;
+            font-weight: 800;
+            margin: 0 auto;
+        }
+
+        #nroCapitulo {
+            font-size: 5em;
+            text-align: center;
+            font-weight: 800;
+            margin: -5px auto;
+        }
+
+        .areaImg {
+            position: relative;
+        }
+
+        .btsMuda {
+            position: absolute;
+            width: 10%;
+            z-index: 120;
+        }
+
+        #btRetrocede {
+            position: absolute;
+            left: 5%;
+            top: 40%;
+        }
+
+        #btAvanca {
+            position: absolute;
+            right: 5%;
+            top: 40%;
+        }
+
+        #imgPlayer {
+            width: 90%;
+        }
+
+        #player {
+            margin-top: 10px;
+            filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%);
+            width: 90%;
+        }
+
+        #btEscolher {
+            margin-top: 30px;
+            padding: 10px 0;
+            width: 70%;
+            font-weight: bold;
+            background-color: rgb(255, 207, 149);
+        }
+
+        .cabecalho,
+        .cabecalhoCapitulos {
+            margin-bottom: 7px;
+            font-size: 1.3em;
+        }
+
+        .grades {
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        .gradeLivros,
+        .gradeCapitulos {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+            width: 92%;
+            border: 2px solid black;
+            background-color: yellowgreen;
+        }
+
+        .gradeCapitulos {
+            background-color: antiquewhite;
+        }
+
+        .gradeLivros {
+            margin-bottom: 20px;
+        }
+
+        .quadriculaLivro,
+        .quadriculaCapitulo {
+            text-align: center;
+            /* largura de cada quadricula = (100% / 7) - 2px (bordas) */
+            width: calc((100% / 7) - 2px);
+            /* padding abaixo é para dar altura ao botão: */
+            padding: 15px 0;
+            cursor: pointer;
+            border: 1px dotted black;
+        }
+
+        .lato {
+            font-family: 'Lato', sans-serif;
+        }
+
+        .amarelo-sombra {
+            color: gold;
+            text-shadow: 1px 1px 5px black;
+        }
+
+        .oculta {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="divPlayer">
-        <div class="capa"><img id="imgPlayer"></div>
+
+        <div class="areaImg">
+            <img class='btsMuda' src="retrocede.svg" id="btRetrocede">
+            <div class="capa">
+                <div class="infoLivro">
+                    <p class="lato amarelo-sombra" id="nomeLivro"></p>
+                    <p class="lato amarelo-sombra" id="nroCapitulo"></p>
+                </div>
+                <img id="imgPlayer" src="capaBiblia.jpg">
+            </div>
+            <img class="btsMuda" src="avanca.svg" id="btAvanca">
+        </div>
+
+
         <audio controls id='player'></audio>
+        <button id="btEscolher">ESCOLHER LIVRO / CAPÍTULO</button>
+    </div>
+
+
+    <div class="grades" id="grades">
+        <div class="cabecalho lato oculta"><strong>ANTIGO TESTAMENTO</strong></div>
+        <div class="gradeLivros gradeAT oculta">
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+            <div class="quadriculaLivro">AT</div>
+        </div>
+
+        <div class="cabecalho lato oculta"><strong>NOVO TESTAMENTO</strong></div>
+        <div class="gradeLivros gradeNT oculta">
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+            <div class="quadriculaLivro">NT</div>
+        </div>
+
+        <div class="cabecalhoCapitulos lato oculta"><strong>CAPÍTULO</strong></div>
+        <div class="gradeCapitulos oculta" id="gradeCapitulos">
+            <div class="quadriculaCapitulo">1</div>
+            <div class="quadriculaCapitulo">2</div>
+            <div class="quadriculaCapitulo">3</div>
+            <div class="quadriculaCapitulo">4</div>
+            <div class="quadriculaCapitulo">5</div>
+            <div class="quadriculaCapitulo">6</div>
+            <div class="quadriculaCapitulo">7</div>
+            <div class="quadriculaCapitulo">8</div>
+            <div class="quadriculaCapitulo">9</div>
+            <div class="quadriculaCapitulo">10</div>
+            <div class="quadriculaCapitulo">11</div>
+            <div class="quadriculaCapitulo">12</div>
+            <div class="quadriculaCapitulo">13</div>
+            <div class="quadriculaCapitulo">14</div>
+            <div class="quadriculaCapitulo">15</div>
+            <div class="quadriculaCapitulo">16</div>
+            <div class="quadriculaCapitulo">17</div>
+            <div class="quadriculaCapitulo">18</div>
+            <div class="quadriculaCapitulo">19</div>
+            <div class="quadriculaCapitulo">20</div>
+            <div class="quadriculaCapitulo">21</div>
+            <div class="quadriculaCapitulo">22</div>
+        </div>
     </div>
 
 
     <script>
-        
-        let Livros=["", "Gn", "Ex", "Lv", "Nm", "Dt", "Js", "Jz", "Rt", "1Sm", "2Sm", "1Rs", "2Rs", "1Cr", "2Cr", "Ed", "Ne", "Et", "Jó", "Sl", "Pv", "Ec", "Ct", "Is", "Jr", "Lm", "Ez", "Dn", "Os", "Jl", "Am", "Ob", "Jn", "Mq", "Na", "Hc", "Sf", "Ag", "Zc", "Ml", "Mt", "Mc", "Lc", "Jo", "At", "Rm", "1Co", "2Co", "Gl", "Ef", "Fp", "Cl", "1Ts", "2Ts", "1Tm", "2Tm", "Tt", "Fm", "Hb", "Tg", "1Pe", "2Pe", "1Jo", "2Jo", "3Jo", "Jd", "Ap"];        
-        let CapitulosFinais = ['', 50, 40, 27, 36, 34, 24, 21, 4, 31, 24, 22, 25, 29, 36, 10, 13, 10, 42, 150, 31, 12, 8, 66, 52, 5, 48, 12, 14, 3, 9, 1, 4, 7, 3, 3, 3, 2, 14, 4, 28, 16, 24, 21, 28, 16, 16, 13, 6, 6, 4, 4, 5, 3, 6, 4, 3, 1, 13, 5, 5, 3, 5, 1, 1, 1, 22]
+        // TO DO: 
+            // [Na] Função que coloca nome dos livros e tb nro dos capítulos na grade.
+            // LocalStorages
+            // Melhorar CSS do player ??
 
+        let NomesLivros = ["", "Gênesis", "Êxodo", "Levítico", "Números", "Deuteronômio", "Josué", "Juízes", "Rute",
+            "1 Samuel", "2 Samuel", "1 Reis", "2 Reis", "1 Crônicas", "2 Crônicas", "Esdras", "Neemias", "Ester",
+            "Jó", "Salmos", "Provérbios", "Eclesiastes", "Cânticos", "Isaías", "Jeremias", "Lamentações",
+            "Ezequiel", "Daniel", "Oséias", "Joel", "Amós", "Obadias", "Jonas", "Miquéias", "Naum", "Habacuque",
+            "Sofonias", "Ageu", "Zacarias", "Malaquias", "Mateus", "Marcos", "Lucas", "João", "Atos", "Romanos",
+            "1 Coríntios", "2 Coríntios", "Gálatas", "Efésios", "Filipenses", "Colossenses", "1 Tessalonicenses",
+            "2 Tessalonicenses", "1 Timóteo", "2 Timóteo", "Tito", "Filemom", "Hebreus", "Tiago", "1 Pedro",
+            "2 Pedro", "1 João", "2 João", "3 João", "Judas", "Apocalipse"
+        ]
+
+        let Livros = ["", "Gn", "Ex", "Lv", "Nm", "Dt", "Js", "Jz", "Rt", "1Sm", "2Sm", "1Rs", "2Rs", "1Cr", "2Cr",
+            "Ed", "Ne", "Et", "Jó", "Sl", "Pv", "Ec", "Ct", "Is", "Jr", "Lm", "Ez", "Dn", "Os", "Jl", "Am", "Ob",
+            "Jn", "Mq", "Na", "Hc", "Sf", "Ag", "Zc", "Ml", "Mt", "Mc", "Lc", "Jo", "At", "Rm", "1Co", "2Co", "Gl",
+            "Ef", "Fp", "Cl", "1Ts", "2Ts", "1Tm", "2Tm", "Tt", "Fm", "Hb", "Tg", "1Pe", "2Pe", "1Jo", "2Jo", "3Jo",
+            "Jd", "Ap"
+        ]
+
+        let CapitulosFinais = ['', 50, 40, 27, 36, 34, 24, 21, 4, 31, 24, 22, 25, 29, 36, 10, 13, 10, 42, 150, 31, 12,
+            8, 66, 52, 5, 48, 12, 14, 3, 9, 1, 4, 7, 3, 3, 3, 2, 14, 4, 28, 16, 24, 21, 28, 16, 16, 13, 6, 6, 4, 4,
+            5, 3, 6, 4, 3, 1, 13, 5, 5, 3, 5, 1, 1, 1, 22
+        ]
+
+        let LivrosAT = ["", "Gn", "Ex", "Lv", "Nm", "Dt", "Js", "Jz", "Rt", "1Sm", "2Sm", "1Rs", "2Rs", "1Cr", "2Cr",
+            "Ed", "Ne", "Et", "Jó", "Sl", "Pv", "Ec", "Ct", "Is", "Jr", "Lm", "Ez", "Dn", "Os", "Jl", "Am", "Ob",
+            "Jn", "Mq", "Na", "Hc", "Sf", "Ag", "Zc", "Ml"
+        ]
+
+        let CapitulosFinaisAT = ['', 50, 40, 27, 36, 34, 24, 21, 4, 31, 24, 22, 25, 29, 36, 10, 13, 10, 42, 150, 31, 12,
+            8, 66, 52, 5, 48, 12, 14, 3, 9, 1, 4, 7, 3, 3, 3, 2, 14, 4
+        ]
+
+        let LivrosNT = ["", "Mt", "Mc", "Lc", "Jo", "At", "Rm", "1Co", "2Co", "Gl", "Ef", "Fp", "Cl", "1Ts", "2Ts",
+            "1Tm", "2Tm", "Tt", "Fm", "Hb", "Tg", "1Pe", "2Pe", "1Jo", "2Jo", "3Jo", "Jd", "Ap"
+        ]
+
+        let CapitulosFinaisNT = ['', 28, 16, 24, 21, 28, 16, 16, 13, 6, 6, 4, 4, 5, 3, 6, 4, 3, 1, 13, 5, 5, 3, 5, 1, 1,
+            1, 22
+        ]
 
         let livro, capitulo, intemNro
 
+        let nomeLivro = document.querySelector('#nomeLivro')
+        let nroCapitulo = document.querySelector('#nroCapitulo')
         let imgPlayer = document.querySelector('#imgPlayer')
         let player = document.querySelector('#player')
+        let btAvanca = document.querySelector('#btAvanca')
+        let btRetrocede = document.querySelector('#btRetrocede')
+        let btEscolher = document.querySelector('#btEscolher')
+        let cabecalhos = document.querySelectorAll('.cabecalho')
+        let gradeLivros = document.querySelectorAll('.gradeLivros')
+        let quadriculaLivro = document.querySelectorAll('.quadriculaLivro')
+        let cabecalhoCapitulos = document.querySelector('.cabecalhoCapitulos')
+        let gradeCapitulos = document.querySelector('#gradeCapitulos')
 
         // Abaixo, estas variáveis podem ser mudadas conforme localStorage de onde o usuário parou de ouvir:
         // ponteiro no item 1 dos arrays:
-        // Romanos cap 10
-        intemNro = 10
-        capitulo = 10
-        
+        intemNro = 43
+        capitulo = 1
+
         // obtem nome do livro e qtde de capítulos que o mesmo possui:
         livro = Livros[intemNro]
         capituloFinal = CapitulosFinais[intemNro]
-        
-            
+
         console.log(`${livro} ${capitulo}`)
 
+        nomeLivro.innerHTML = `${NomesLivros[intemNro]}`
+        nroCapitulo.innerHTML = `${capitulo}`
+
         // Engatilha o audio inicial e mostra a imagem correspondente:
-        imgPlayer.src = `capas/${livro} ${capitulo}.png`
+        // imgPlayer.src = `capas/${livro} ${capitulo}.png`
         player.src = `audios/mp3/${livro} ${capitulo}.mp3`
-        
-        player.addEventListener('ended', () => {
+
+
+        function mudaCapitulo() {
+            console.log(`${livro} ${capitulo}`)
+            // altera a imagem de capa:
+            // imgPlayer.src = `capas/${livro} ${capitulo}.png`
+            nomeLivro.innerHTML = `${NomesLivros[intemNro]}`
+            nroCapitulo.innerHTML = `${capitulo}`
+            // altera a faixa que será engatilhada:
+            player.src = `audios/mp3/${livro} ${capitulo}.mp3`
+            // toca a faixa escolhida:
+            player.play()
+        }
+
+        function seguinteCapitulo() {
             // grava em localStorage itemNro, capítulo para último lido.
             // grava array de objetos de capítulos lidos.
 
             // ao terminar a faixa, avança um capítulo
             capitulo++
+
             // verifica se já não chegou ao fim do livro:
-            if(capitulo > capituloFinal){
+            if (capitulo > capituloFinal) {
                 // se o capítulo atual é maior que o capítulo Final do livro atual...
                 // avança para o próximo livro (item) do array Livros:
                 intemNro++
                 // verifica se é momento de mudar de testamento - para navegar à pasta correta:
                 // if(intemNro > 39){testamento = 'NT'}
-                if(intemNro > 66){intemNro = 1}
+                if (intemNro > 66) {
+                    intemNro = 1
+                }
                 // muda o livro atual:
                 livro = Livros[intemNro]
                 // define qual o capítulo final deste livro:
@@ -108,18 +407,58 @@
                 // começa do primeiro capítulo do livro:
                 capitulo = 1
             }
-            console.log(`${livro} ${capitulo}`)
-            // altera a imagem de capa:
-            imgPlayer.src = `capas/${livro} ${capitulo}.png`
-            // altera a faixa que será engatilhada:
-            player.src = `audios/mp3/${livro} ${capitulo}.mp3`
-            // toca a faixa escolhida:
-            player.play()
+            mudaCapitulo()
+        }
+
+        function anteriorCapitulo() {
+            // retrocede um capítulo
+            capitulo--
+            // verifica se já não chegou ao incio do livro:
+            if (capitulo < 1) {
+                // se o capítulo atual for menor que 1
+                // retrocede um livro anterior (item) do array Livros:
+                intemNro--
+                // verifica se está no livro de Gênesis:
+                if (intemNro < 1) {
+                    intemNro = 66
+                }
+                // muda o livro atual:
+                livro = Livros[intemNro]
+                // define qual o capítulo final deste livro:
+                capituloFinal = CapitulosFinais[intemNro]
+                // posiciona ao último capítulo do livro:
+                capitulo = capituloFinal
+            }
+            mudaCapitulo()
+        }
+
+        btRetrocede.addEventListener('click', anteriorCapitulo)
+        btAvanca.addEventListener('click', seguinteCapitulo)
+        // abaixo, é preciso computar que o usuário leu o livro (em localStorage) e depois mudar de capitulo:
+        player.addEventListener('ended', seguinteCapitulo)
+
+
+        // ao clicar no botao escolher livro, faz aparecer grade de livros...
+        btEscolher.addEventListener('click', () => {
+            // scroll para id grades
+            cabecalhos.forEach(a => a.classList.remove('oculta'))
+            gradeLivros.forEach(a => a.classList.remove('oculta'))
         })
+
+        // ao clicar em um botão de qualquer livro, abre a grade de capítulos...
+        quadriculaLivro.forEach(a => {
+            a.addEventListener('click', () => {
+                // scroll para id gradeCapitulos
+                cabecalhoCapitulos.classList.remove('oculta')
+                gradeCapitulos.classList.remove('oculta')
+            })
+        })
+
+        // function que escolhe o capítulo:
+        // ao clicar no nro da div#id ele define livro/cap, mudaCapitulo() e oculta novamente as grades
 
 
         // https://www.skypack.dev/ // pacotes npm sem instalar !!!
-
     </script>
 
 </body>

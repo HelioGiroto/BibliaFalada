@@ -20,6 +20,11 @@ done
 # (Em caso de erro: É preciso certificar-se que foram configurados nome e email de usuário do git).
 # Digite:
 
+# git config credential.helper 'cache --timeout=7200' 	# por 7200 segundos = 2 horas.
+
+
+
+
 #	$ git config --global user.name "John Doe"
 #	$ git config --global user.email johndoe@example.com
 
@@ -36,5 +41,12 @@ done
 #	 echo "" > ~/.git-credentials
 
 #	 sed 's/\[credential\]/#&/; s/        helper/#&/' ~/.gitconfig
+
+
+# ver:
+# https://www.google.com/search?q=github+como+desabilitar+solitacao+de+senha+no+terminal+comando+git&oq=github+como+desabilitar+solitacao+de+senha+no+terminal+comando+git&aqs=chrome..69i57j69i64.26451j0j7&sourceid=chrome&ie=UTF-8
+# https://pt.stackoverflow.com/questions/166248/executar-git-pull-sem-solicitar-senha
+# https://git-scm.com/docs/git-credential-store
+# https://git-scm.com/docs/git-credential-cache
 
 

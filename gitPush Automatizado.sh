@@ -3,18 +3,22 @@
 # Autor: Hélio Giroto
 
 ## Enquanto wc -l .gitignore > 0 realiza o bloco:
+while [[ $(wc -l .gitignore | cut -d' ' -f1) -gt 0 ]]
+do
 
+	## Apaga as 5 primeiras linhas:
+	# seq 10 | sed '1,5d'
+	# sed -i '1,5d' .gitignore
+	sed -i '1d' .gitignore
 
-## Apaga as 5 primeiras linhas:
-seq 10 | sed '1,5d'
+	## faz git completo *
+	git add .; git commit -m "Subindo automaticamente: $(date)"; git push
 
-## faz git completo *
-git add.; git commit -m "subindo automaticamente: ${date}"; git push
-
-
+done
 
 # *OBS.: impedir que o git (push) peça novamente a senha no momento de automatizar:
-# (Em caso de erro: É preciso certificar-se que foram configurados nome e email de usuário do git). Digite:
+# (Em caso de erro: É preciso certificar-se que foram configurados nome e email de usuário do git).
+# Digite:
 
 #	$ git config --global user.name "John Doe"
 #	$ git config --global user.email johndoe@example.com
@@ -23,7 +27,7 @@ git add.; git commit -m "subindo automaticamente: ${date}"; git push
 
 # O script install.sh fará que se faça 'git push' automaticamente sem operação manual. 
 
-# Mas para resetar isso é preciso deixar vazios os arquivos:
+# Mas para isso é preciso deixar vazios os arquivos:
 #	 ~/.git-credentials 
 #	 ~/.gitconfig 
 

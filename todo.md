@@ -43,3 +43,10 @@ FONTE: https://superuser.com/questions/704493/ffmpeg-convert-m4a-to-mp3-without-
 ~~~
 
 
+### Para obter informações do metadata e para limpar as mesmas:
+~~~bash
+	id3info audio.mp3 
+ 	id3convert -s *.mp3 
+~~~
+
+

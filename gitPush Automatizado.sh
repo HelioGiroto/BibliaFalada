@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script para automatizar uploads de diretório de audios
-# Autor: Hélio Giroto
+# Autor: Hélio Giroto 
 
 ## Enquanto wc -l .gitignore > 0 realiza o bloco:
 while [[ $(wc -l .gitignore | cut -d' ' -f1) -gt 0 ]]

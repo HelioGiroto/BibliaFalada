@@ -2,12 +2,6 @@
 // Autor: Hélio Giroto
 // Data: 16/04/2021
 
- 
-
-// TO DO: 
-// LocalStorages
-// Melhorar CSS do player ??
-
 // principais variáveis globais:
 let versao, livro, abrev, qtdeCap, testamento, capitulo, nroLivro, capituloFinal
 
@@ -26,15 +20,19 @@ let cabecalhoCapitulos = document.querySelector('.cabecalhoCapitulos')
 let gradeCapitulos = document.querySelector('#gradeCapitulos')
 
 
-// Abaixo, estas variáveis podem ser mudadas conforme localStorage de onde o usuário parou de ouvir:
-// ponteiro no item 43 dos arrays:
+// Abaixo, estas variáveis podem ser mudadas 
+// conforme localStorage de onde o usuário parou de ouvir:
 // João cap. 1:
-nroLivro = 1
+nroLivro = 43
 capitulo = 1
 
-// escolhe qual versão será ouvida:
-versao = "ACF"
+
+// pré-define versão conforme localStorage:
 // versao = "NVI" 
+versao = "ACF"
+document.querySelector('#imgPlayer').src = `capaBiblia${versao}.jpg`
+
+
 
 // obtem nome do livro e qtde de capítulos que o mesmo possui:
 livro = BibliaOBJ[nroLivro].livro
@@ -42,7 +40,7 @@ abrev = BibliaOBJ[nroLivro].abrev
 capituloFinal = Number(BibliaOBJ[nroLivro].qtdeCap)
 
 // msg de console:
-console.log(`${abrev} ${capitulo}`)
+// console.log(`${abrev} ${capitulo}`)
 
 nomeLivro.innerHTML = livro
 nroCapitulo.innerHTML = capitulo
@@ -78,7 +76,7 @@ function seguinteCapitulo() {
     // ao terminar a faixa, avança um capítulo
     capitulo++
 
-    // corrigido ERRO da linha 143:
+    // define o capítulo final
     capituloFinal = Number(BibliaOBJ[nroLivro].qtdeCap)
 
     // verifica se já não chegou ao fim do livro:
@@ -118,15 +116,15 @@ function anteriorCapitulo() {
 
         // muda nome do livro:
         livro = BibliaOBJ[nroLivro].livro
-        console.log(livro)
+        // console.log(livro)
 
         // muda abreviatura do livro:
         abrev = BibliaOBJ[nroLivro].abrev
-        console.log(abrev)
+        // console.log(abrev)
 
         // define qual o capítulo final deste livro:
         capituloFinal = Number(BibliaOBJ[nroLivro].qtdeCap)
-        console.log(capituloFinal)
+        // console.log(capituloFinal)
 
         // posiciona ao último capítulo do livro:
         capitulo = capituloFinal
@@ -140,11 +138,14 @@ btAvanca.addEventListener('click', seguinteCapitulo)
 player.addEventListener('ended', seguinteCapitulo)
 
 
-// ERRO      - corrigido na linha 81 e 82: 
-// 15/07/2021
-// quando:  somente quando seleciona um livro e último capítulo do mesmo livro:
-// o que:   Ao avançar Mt 28 para Mt 29. E Ap 22, aparece Ap 23.
-// pq:      qdo seleciona cap. não pega o capfinal do mesmo livro.
+function defineVersao(){
+        versao = this.value
+        // console.log(versao)
+        document.querySelector('#imgPlayer').src = `capaBiblia${versao}.jpg`
+        tocaCapitulo()        
+}
+
+document.querySelectorAll('input[type="radio"]').forEach(a => a.addEventListener('click', defineVersao ))
 
 
 function mostraGradeCapitulos() {
@@ -153,11 +154,11 @@ function mostraGradeCapitulos() {
 
     // A variável idElemento terá o nome do livro (id) do elemento clicado:
     let idElemento = this.id
-    console.log("idElemento: " + idElemento)
+    // console.log("idElemento: " + idElemento)
 
     // define qual será o nome da faixa (abrev) a ser tocada:
     abrev = idElemento
-    console.log(`abrev é : ${abrev}`)
+    // console.log(`abrev é : ${abrev}`)
 
     // define o livro, qtdeCaps, abrev do elemento clicado:
     let qtosCapitulos
@@ -172,7 +173,7 @@ function mostraGradeCapitulos() {
     })
 
     // msg de console:
-    console.log("Qtos cap.: " + qtosCapitulos)
+    // console.log("Qtos cap.: " + qtosCapitulos)
 
     // seleciona elemento(s) pai
     let gradeCapitulos = document.querySelector('.gradeCapitulos')
@@ -196,8 +197,8 @@ function mostraGradeCapitulos() {
     let quadriculasCapitulos = document.querySelectorAll('.quadriculaCapitulo')
     quadriculasCapitulos.forEach(cada => cada.addEventListener('click', () => {
         capitulo = cada.innerHTML
-        console.log(capitulo)
-        console.log(livro)
+        // console.log(capitulo)
+        // console.log(livro)
         tocaCapitulo()
     }))
 
@@ -271,9 +272,14 @@ function mostraGradeLivros() {
     let quadriculasLivros = document.querySelectorAll('.quadriculaLivro')
     quadriculasLivros.forEach(cada => cada.addEventListener('click', mostraGradeCapitulos))
 
-    // scroll para id grades
+    // faz aparecer as grades e cabeçalhos:
     cabecalhos.forEach(a => a.classList.remove('oculta'))
     gradeLivros.forEach(a => a.classList.remove('oculta'))
+
+    // scroll para id grades
+    document.querySelector('#grades').scrollIntoView({
+        behavior: 'smooth'
+    });
 }
 
 
@@ -281,12 +287,3 @@ function mostraGradeLivros() {
 btEscolher.addEventListener('click', () => {
     mostraGradeLivros()
 })
-
-
-
-// function que escolhe o capítulo:
-// ao clicar no nro da div#id ele define livro/cap, tocaCapitulo() 
-// e oculta novamente as grades
-
-
-// https://www.skypack.dev/ // pacotes npm sem instalar !!!

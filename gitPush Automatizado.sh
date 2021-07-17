@@ -14,6 +14,8 @@ do
 	## faz git completo *
 	git add .; git commit -m "Subindo automaticamente: $(date)"; git push
 
+	sleep 2m
+
 done
 
 # *OBS.: impedir que o git (push) peça novamente a senha no momento de automatizar:

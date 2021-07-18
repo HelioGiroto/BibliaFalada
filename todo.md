@@ -1,16 +1,26 @@
 # PARA FAZER
 
-- []  AUMENTAR O VOLUME DOS AUDIOS DE NVI
+## URL: https://heliogiroto.github.io/BibliaFalada/
+
+- [] Responsivo para PC.
+
+- [] AUMENTAR O VOLUME DOS AUDIOS DE NVI
 
 - [] LocalStorage onde parou e o que já leu
 
 - [] Gráfico e mudança de cor na grade conforme porcentagem de leitura.
 
+- [] Reportar erro
+
 - [] Melhorar CSS do player ??
 
-- [] div com o texto bíblico impresso tb
+- [] Div com o texto bíblico impresso tb
 
 - [] Funções de estatísticas de leitura
+
+- [] Icones das redes: Github tb (código fonte)
+
+- [] Apoie!
 
 
 
@@ -20,11 +30,16 @@
 ~~~
 
 ### converter m4a em acc em lote:
+FONTE: https://superuser.com/questions/704493/ffmpeg-convert-m4a-to-mp3-without-significant-loss :
 ~~~bash
  	for i in *.m4a; do ffmpeg -i "$i" -acodec copy "${i}".aac; done
 ~~~
 
-FONTE: https://superuser.com/questions/704493/ffmpeg-convert-m4a-to-mp3-without-significant-loss :
+### converter stereo em mono:
+FONTE: https://trac.ffmpeg.org/wiki/AudioChannelManipulation
+~~~bash
+	ffmpeg -i Tg1.mp3 -ac 1 mono_Tg1.mp3
+~~~
 
 ### renomear em lote:
 ~~~bash
@@ -48,5 +63,12 @@ FONTE: https://superuser.com/questions/704493/ffmpeg-convert-m4a-to-mp3-without-
 	id3info audio.mp3 
  	id3convert -s *.mp3 
 ~~~
+
+### Obter metadados de um arquivo mp3:
+~~~bash
+	ffprobe 2_5391040025066472033.mp3 2>&1 | grep 'title'
+	ffprobe 2_5391040025066472033.mp3 2>&1 | grep 'Duration'
+~~~
+
 
 

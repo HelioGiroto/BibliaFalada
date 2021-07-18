@@ -79,18 +79,6 @@ function tocaCapitulo() {
     faixaAtual = `${abrev} ${capitulo}`
     console.log(`Faixa Atual: ${faixaAtual}`)
 
-    // obtem lista do localStorage:
-    capitulosOuvidos = JSON.parse(localStorage.getItem('capitulosOuvidos'))
-    
-    // adiciona à esta lista a atual a faixa escutada, eliminando duplicadas:
-    capitulosOuvidos.push(faixaAtual)
-    capitulosOuvidos = Array.from(new Set(capitulosOuvidos)).sort((a, b) => a - b)
-
-    // salva lista atualizada no localStorage:
-    localStorage.capitulosOuvidos = JSON.stringify(capitulosOuvidos)
-    // localStorage.setItem("capitulosOuvidos", capitulosOuvidos)
-
-
     // altera a faixa que será engatilhada:
     player.src = `audios/${versao}/${abrev} ${capitulo}.mp3`
 
@@ -161,10 +149,29 @@ function anteriorCapitulo() {
     tocaCapitulo()
 }
 
+function terminaFaixa(){
+    // essa função é disparada apenas quando uma faixa é ouvida completamente.
+
+    // GRAVA NO LOCALSTORAGE MAIS UM NOVO CAPÍTULO OUVIDO NA LISTA:
+
+    // obtem lista do localStorage:
+    capitulosOuvidos = JSON.parse(localStorage.getItem('capitulosOuvidos'))
+    
+    // adiciona à esta lista a atual a faixa escutada, eliminando duplicadas:
+    capitulosOuvidos.push(faixaAtual)
+    capitulosOuvidos = Array.from(new Set(capitulosOuvidos)).sort((a, b) => a - b)
+
+    // salva lista atualizada no localStorage:
+    localStorage.capitulosOuvidos = JSON.stringify(capitulosOuvidos)
+    // localStorage.setItem("capitulosOuvidos", capitulosOuvidos)
+
+    seguinteCapitulo()
+}
+
 btRetrocede.addEventListener('click', anteriorCapitulo)
 btAvanca.addEventListener('click', seguinteCapitulo)
 // abaixo, é preciso computar que o usuário leu o livro (em localStorage) e depois mudar de capitulo:
-player.addEventListener('ended', seguinteCapitulo)
+player.addEventListener('ended', terminaFaixa)
 
 
 function defineVersao() {

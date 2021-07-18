@@ -2,11 +2,11 @@
 # Script para automatizar uploads de diretório de audios
 # Autor: Hélio Giroto  
 
-sleep 100m
+# sleep 100m
 
 git config credential.helper 'cache --timeout=9000'
 
-date > tempo
+# date > tempo
 
 ## Enquanto wc -l .gitignore > 0 realiza o bloco:
 while [[ $(wc -l .gitignore | cut -d' ' -f1) -gt 0 ]]
@@ -30,7 +30,7 @@ date >> tempo
 
 sleep 10
 
-poweroff
+# poweroff
 
 # *OBS.: impedir que o git (push) peça novamente a senha no momento de automatizar:
 # (Em caso de erro: É preciso certificar-se que foram configurados nome e email de usuário do git).

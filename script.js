@@ -3,7 +3,11 @@
 // Data: 16/04/2021
 
 // principais variáveis globais:
-let versao, livro, abrev, qtdeCap, testamento, capitulo, nroLivro, capituloFinal
+let versao, livro, abrev, capitulo, nroLivro, qtdeCap, capituloFinal, faixaAtual
+// let testamento   // útil ???
+
+// lista global de todos os capítulos lidos:
+let capitulosOuvidos = JSON.parse(localStorage.getItem('capitulosOuvidos'))
 
 // seletores:
 let nomeLivro = document.querySelector('#nomeLivro')
@@ -20,18 +24,17 @@ let cabecalhoCapitulos = document.querySelector('.cabecalhoCapitulos')
 let gradeCapitulos = document.querySelector('#gradeCapitulos')
 
 
+let ultimaVersao = localStorage.getItem('ultimaVersao')
+let ultimoLivro = localStorage.getItem('ultimoLivro')
+let ultimoCapitulo = localStorage.getItem('ultimoCapitulo')
+
+
 // Abaixo, estas variáveis podem ser mudadas 
 // conforme localStorage de onde o usuário parou de ouvir:
-// João cap. 1:
-nroLivro = 43
-capitulo = 1
-
-
-// pré-define versão conforme localStorage:
-// versao = "NVI" 
-versao = "ACF"
-document.querySelector('#imgPlayer').src = `capaBiblia${versao}.jpg`
-
+// nroLivro = 43    // se for João.
+versao = ultimaVersao
+nroLivro = ultimoLivro
+capitulo = ultimoCapitulo
 
 
 // obtem nome do livro e qtde de capítulos que o mesmo possui:
@@ -39,11 +42,16 @@ livro = BibliaOBJ[nroLivro].livro
 abrev = BibliaOBJ[nroLivro].abrev
 capituloFinal = Number(BibliaOBJ[nroLivro].qtdeCap)
 
-// msg de console:
-// console.log(`${abrev} ${capitulo}`)
 
+// define imagem e texto de background:
+document.querySelector('#imgPlayer').src = `capaBiblia${versao}.jpg`
 nomeLivro.innerHTML = livro
 nroCapitulo.innerHTML = capitulo
+
+
+// msg de console:
+console.log(`Faixa Abertura: ${abrev} ${capitulo}`)
+
 
 // Engatilha o audio inicial:
 player.src = `audios/${versao}/${abrev} ${capitulo}.mp3`
@@ -57,14 +65,35 @@ function tocaCapitulo() {
     cabecalhoCapitulos.classList.add('oculta')
     gradeCapitulos.classList.add('oculta')
 
-    console.log(`${livro} ${capitulo}`)
-
     // altera a imagem de capa:
     nomeLivro.innerHTML = livro
     nroCapitulo.innerHTML = capitulo
 
+    // grava no localStorage os últimos capítulo, livro e versão ouvida
+    // para abrir na mesma referência quando o usuário reinicia o aplicativo:
+    localStorage.ultimaVersao = versao
+    localStorage.ultimoLivro = nroLivro
+    localStorage.ultimoCapitulo = capitulo
+
+    // obtem o nome da faixa atual:
+    faixaAtual = `${abrev} ${capitulo}`
+    console.log(`Faixa Atual: ${faixaAtual}`)
+
+    // obtem lista do localStorage:
+    capitulosOuvidos = JSON.parse(localStorage.getItem('capitulosOuvidos'))
+    
+    // adiciona à esta lista a atual a faixa escutada, eliminando duplicadas:
+    capitulosOuvidos.push(faixaAtual)
+    capitulosOuvidos = Array.from(new Set(capitulosOuvidos)).sort((a, b) => a - b)
+
+    // salva lista atualizada no localStorage:
+    localStorage.capitulosOuvidos = JSON.stringify(capitulosOuvidos)
+    // localStorage.setItem("capitulosOuvidos", capitulosOuvidos)
+
+
     // altera a faixa que será engatilhada:
     player.src = `audios/${versao}/${abrev} ${capitulo}.mp3`
+
     // toca a faixa escolhida:
     player.play()
 }
@@ -138,14 +167,14 @@ btAvanca.addEventListener('click', seguinteCapitulo)
 player.addEventListener('ended', seguinteCapitulo)
 
 
-function defineVersao(){
-        versao = this.value
-        // console.log(versao)
-        document.querySelector('#imgPlayer').src = `capaBiblia${versao}.jpg`
-        tocaCapitulo()        
+function defineVersao() {
+    versao = this.value
+    // console.log(versao)
+    document.querySelector('#imgPlayer').src = `capaBiblia${versao}.jpg`
+    tocaCapitulo()
 }
 
-document.querySelectorAll('input[type="radio"]').forEach(a => a.addEventListener('click', defineVersao ))
+document.querySelectorAll('input[type="radio"]').forEach(a => a.addEventListener('click', defineVersao))
 
 
 function mostraGradeCapitulos() {

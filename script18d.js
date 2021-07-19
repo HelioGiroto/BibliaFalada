@@ -29,12 +29,17 @@ let ultimoLivro = localStorage.getItem('ultimoLivro')
 let ultimoCapitulo = localStorage.getItem('ultimoCapitulo')
 
 
-// Abaixo, estas variáveis podem ser mudadas 
-// conforme localStorage de onde o usuário parou de ouvir:
-// nroLivro = 43    // se for João.
+// Abaixo, estas variáveis recebem os valores conforme localStorage em que o usuário parou de ouvir:
 versao = ultimaVersao
 nroLivro = ultimoLivro
 capitulo = ultimoCapitulo
+
+// marcar o checkbox correspondente à última versão ouvida:
+if(versao === "NVI"){
+    document.querySelector('#nvi').checked = true
+} else {
+    document.querySelector('#acf').checked = true
+}
 
 
 // obtem nome do livro e qtde de capítulos que o mesmo possui:
@@ -162,18 +167,18 @@ function terminaFaixa(){
 
     // adiciona à esta lista a atual a faixa escutada, eliminando duplicadas:
     capitulosOuvidos.push(faixaAtual)
-    console.log("nao sorteados: " + capitulosOuvidos)
+    // console.log("nao sorteados: " + capitulosOuvidos)
 
     // Sorteia (ordena) a lista de capítulos ouvidos:
     // sort em alfabético: [...lista].sort((a, b) => a > b ? 1 : -1)
     // capitulosOuvidos = Array.from(new Set(capitulosOuvidos)).sort((a, b) => a - b)
     // Fonte: https://stackoverflow.com/questions/2466356/sorting-objects-by-property-values
     capitulosOuvidos.sort((a, b) => a > b ? 1 : -1)
-    console.log("sorted: " + capitulosOuvidos)
+    // console.log("sorted: " + capitulosOuvidos)
 
     // Faz um "uniq" na lista, removendo os duplicados:
     capitulosOuvidos = Array.from(new Set(capitulosOuvidos))
-    console.log('cap. uniq - ' + capitulosOuvidos)
+    // console.log('cap. uniq - ' + capitulosOuvidos)
 
     // salva lista atualizada no localStorage:
     localStorage.capitulosOuvidos = JSON.stringify(capitulosOuvidos)

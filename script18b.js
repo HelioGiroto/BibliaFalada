@@ -3,7 +3,7 @@
 // Data: 16/04/2021
 
 // principais variáveis globais:
-let versao, livro, abrev, capitulo, nroLivro, qtdeCap, capituloFinal, faixaAtual
+let versao, livro, abrev, capitulo, nroLivro, qtdeCap, capituloFinal, faixaAtual, tempoAudicao
 // let testamento   // útil ???
 
 // lista global de todos os capítulos lidos:
@@ -164,6 +164,19 @@ function terminaFaixa(){
     // salva lista atualizada no localStorage:
     localStorage.capitulosOuvidos = JSON.stringify(capitulosOuvidos)
     // localStorage.setItem("capitulosOuvidos", capitulosOuvidos)
+
+
+    // ATUALIZA O TEMPO TOTAL DE AUDIÇÃO:
+    // obtem localStorage:
+    tempoAudicao = Number(JSON.parse(localStorage.getItem('tempoAudicao')))
+    // obtem duração da faixa
+    let duracaoFaixaAtual = player.duration
+    // soma (acumulado de segundos):
+    tempoAudicao = tempoAudicao + duracaoFaixaAtual
+    //
+    console.log(tempoAudicao)
+    // grava no localStorage
+    localStorage.tempoAudicao = tempoAudicao
 
     seguinteCapitulo()
 }

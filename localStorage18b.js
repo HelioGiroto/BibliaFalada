@@ -22,6 +22,12 @@ if (localStorage.getItem("ultimoCapitulo") == null || !localStorage.ultimoCapitu
 }
 
 
+// cria se não exista uma lista no local Storage que acumula o tempo total que o usuário ouviu a Bíblia:
+if (localStorage.getItem("tempoAudicao") == null || !localStorage.tempoAudicao) {
+    localStorage.setItem("tempoAudicao", "0")
+}
+
+
 
 
 // Obtem todos os capítulos ouvidos do localStorage para a memória (se for uma lista de objetos):

@@ -157,13 +157,26 @@ function terminaFaixa(){
     // obtem lista do localStorage:
     capitulosOuvidos = JSON.parse(localStorage.getItem('capitulosOuvidos'))
     
+    // obtem nome da Faixa Atual:
+    faixaAtual = `${abrev} ${capitulo}`
+
     // adiciona à esta lista a atual a faixa escutada, eliminando duplicadas:
     capitulosOuvidos.push(faixaAtual)
-    capitulosOuvidos = Array.from(new Set(capitulosOuvidos)).sort((a, b) => a - b)
+    console.log("nao sorteados: " + capitulosOuvidos)
+
+    // Sorteia (ordena) a lista de capítulos ouvidos:
+    // sort em alfabético: [...lista].sort((a, b) => a > b ? 1 : -1)
+    // capitulosOuvidos = Array.from(new Set(capitulosOuvidos)).sort((a, b) => a - b)
+    // Fonte: https://stackoverflow.com/questions/2466356/sorting-objects-by-property-values
+    capitulosOuvidos.sort((a, b) => a > b ? 1 : -1)
+    console.log("sorted: " + capitulosOuvidos)
+
+    // Faz um "uniq" na lista, removendo os duplicados:
+    capitulosOuvidos = Array.from(new Set(capitulosOuvidos))
+    console.log('cap. uniq - ' + capitulosOuvidos)
 
     // salva lista atualizada no localStorage:
     localStorage.capitulosOuvidos = JSON.stringify(capitulosOuvidos)
-    // localStorage.setItem("capitulosOuvidos", capitulosOuvidos)
 
 
     // ATUALIZA O TEMPO TOTAL DE AUDIÇÃO:

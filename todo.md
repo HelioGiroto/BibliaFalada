@@ -2,25 +2,37 @@
 
 ## URL: https://heliogiroto.github.io/BibliaFalada/
 
-- [] Responsivo para PC.
+- ~LocalStorage onde parou e o que já leu~
 
-- [] AUMENTAR O VOLUME DOS AUDIOS DE NVI
+- Funções de estatísticas de leitura
 
-- [] LocalStorage onde parou e o que já leu
+- Responsivo para PC.
 
-- [] Gráfico e mudança de cor na grade conforme porcentagem de leitura.
+- AUMENTAR O VOLUME DOS AUDIOS DE NVI
 
-- [] Reportar erro
+- Velocidade de play
 
-- [] Melhorar CSS do player ??
+- Pausa em -- minutos.
 
-- [] Div com o texto bíblico impresso tb
+- Checkbox com capítulos que já leu
 
-- [] Funções de estatísticas de leitura
+- Função EXPORTAR localStorage de uma máquina para outra que abra o link personalizado (com/?...)
 
-- [] Icones das redes: Github tb (código fonte)
+- Atalho para RESETAR a lista de capítulosOuvidos do localStorage
 
-- [] Apoie!
+- Melhorar a grade de abreviaturas dos nomes dos livros: Tb nomes completos ou input para busca.
+
+- Gráfico e mudança de cor na grade conforme porcentagem de leitura: https://developers.google.com/chart/interactive/docs/gallery/piechart 	-	*loader.js*: CDN Google Charts baixado!
+
+- Reportar erro para o desenvolvedor
+
+- Melhorar CSS do player ??
+
+- Div com o texto bíblico impresso tb
+
+- Icones das redes: Github tb (código fonte)
+
+- Apoie!
 
 
 

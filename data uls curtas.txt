@@ -1,0 +1,23 @@
+## puro texto com acentuação:
+data:text/plain;charset=UTF-8,Olá%20mundo
+
+## Abre em outra aba mas é bloqueado por pop-up:
+data:text/html;charset=UTF-8,<script>window.open("https://www.w3schools.com")</script>
+
+## sem bloqueio de pop-up:
+data:text/html,<script>window.open("https://www.w3schools.com", "_self")</script>
+
+## mesmo efeito do de cima:
+data:text/html,<script>window.location.replace("http://www.w3schools.com")</script>
+
+## mesmo efeito, porém não sei se funciona:
+javascript:window.open("https://www.w3schools.com", "_self")
+
+FONTES:
+https://en.wikipedia.org/wiki/Data_URI_scheme
+https://en.wikipedia.org/wiki/Media_type
+https://stackoverflow.com/questions/8454510/open-url-in-same-window-and-in-same-tab
+
+
+data:text/html,<script>localStorage.ok = 'ok'</script>
+

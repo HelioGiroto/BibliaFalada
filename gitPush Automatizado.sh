@@ -6,7 +6,7 @@
 
 git config credential.helper 'cache --timeout=9000'
 
-# date > tempo
+date >> tempo
 
 ## Enquanto wc -l .gitignore > 0 realiza o bloco:
 while [[ $(wc -l .gitignore | cut -d' ' -f1) -gt 0 ]]
@@ -18,7 +18,7 @@ do
 	sed -i '1d' .gitignore
 
 	## faz git completo *
-	git add .; git commit -m "Subindo RV1909 automaticamente pelo script 'gitPush Automatizado.sh' - $(date)"; git push
+	git add .; git commit -m "Pasta RV1909 subida automaticam. em $(date)"; git push
 
 	sleep 1m
 
@@ -28,9 +28,9 @@ scrot
 
 date >> tempo
 
-sleep 10
+sleep 1m
 
-# poweroff
+poweroff
 
 # *OBS.: impedir que o git (push) peça novamente a senha no momento de automatizar:
 # (Em caso de erro: É preciso certificar-se que foram configurados nome e email de usuário do git).

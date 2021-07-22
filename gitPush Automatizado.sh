@@ -20,7 +20,7 @@ do
 	## faz git completo *
 	git add .; git commit -m "Pasta RV1909 subida automaticam. em $(date)"; git push
 
-	sleep 1m
+	sleep 15s
 
 done
 
@@ -28,7 +28,7 @@ scrot
 
 date >> tempo
 
-sleep 1m
+sleep 10s
 
 poweroff
 

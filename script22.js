@@ -3,7 +3,7 @@
 // Data: 16/04/2021
 
 // principais variáveis globais:
-let versao, livro, abrev, capitulo, nroLivro, qtdeCap, capituloFinal, faixaAtual, tempoAudicao, dataHoje, diaHoje, mesHoje, anoHoje
+let versao, livro, abrev, capitulo, nroLivro, qtdeCap, capituloFinal, faixaAtual, tempoFaixaAtual, duracaoFaixaAtual, tempoAudicao, dataHoje, diaHoje, mesHoje, anoHoje
 // let testamento   // útil ???
 
 // lista global de todos os capítulos lidos:
@@ -22,6 +22,8 @@ let gradeLivros = document.querySelectorAll('.gradeLivros')
 let quadriculaLivro = document.querySelectorAll('.quadriculaLivro')
 let cabecalhoCapitulos = document.querySelector('.cabecalhoCapitulos')
 let gradeCapitulos = document.querySelector('#gradeCapitulos')
+let btPlay = document.querySelector('#btPlay')
+let btPause = document.querySelector('#btPause')
 
 
 let ultimaVersao = localStorage.getItem('ultimaVersao')
@@ -37,8 +39,10 @@ capitulo = ultimoCapitulo
 // marcar o checkbox correspondente à última versão ouvida:
 if (versao === "NVI") {
     document.querySelector('#nvi').checked = true
-} else {
+} else if (versao === "ACF") {
     document.querySelector('#acf').checked = true
+} else {
+    document.querySelector('#rv').checked = true
 }
 
 
@@ -81,6 +85,64 @@ function obtemDataHoje() {
 
 obtemDataHoje()
 
+function gravaTempoTotal() {
+
+    // ATUALIZA O TEMPO TOTAL DE AUDIÇÃO DE LOCALSTORAGE:
+    // somente SE a faixaAtual NÃO está dentro da lista de capítulosOuvidos de LocalStorage:
+
+    // obtem duração da faixa
+    duracaoFaixaAtual = player.duration
+
+    // obtem lista do localStorage:
+    capitulosOuvidos = JSON.parse(localStorage.getItem('capitulosOuvidos'))
+
+    // obtem nome da Faixa Atual:
+    faixaAtual = `${abrev} ${capitulo}`
+
+    // Este bloco de função abaixo só pode acumular o tempo ouvido de faixas NÃO repetidas porque...
+    // ele será usado no gráfico para calcular quanto tempo falta para ouvir toda a Bíblia!
+
+    // console.log("cap Ouvidos lista " + capitulosOuvidos)
+    // console.log("fx Atual " + faixaAtual)
+
+    if (!capitulosOuvidos.includes(faixaAtual)) {
+        console.log("gravando tempo no TOTAL...")
+        // obtem localStorage:
+        tempoAudicao = Number(JSON.parse(localStorage.getItem('tempoAudicao')))
+        // soma (acumulado de segundos):
+        tempoAudicao = tempoAudicao + duracaoFaixaAtual
+        // msg de console - tempo acumulado de audição:
+        console.log(tempoAudicao)
+        // grava no localStorage
+        localStorage.tempoAudicao = tempoAudicao
+    }
+}
+
+function gravaTempoDiario() {
+    // ESTA FUNÇÃO É DISPARADA QUANDO TERMINA DE TOCAR TODA A FAIXA...
+    // E TB QDO O USUÁRIO MUDA DE FAIXA (AVANÇANDO OU RETROCEDENDO):
+
+    // obtem a tempo atual da faixa não é necessário o tempo total de duração da faixa:
+    tempoFaixaAtual = player.currentTime
+
+
+    // GRAVA O TEMPO DE AUDIÇÃO DO DIA DE HOJE (independente se está ouvindo faixa repetida ou não):
+    obtemDataHoje()
+
+    // carrega a lista de localStorage
+    let listaAudicaoMes = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))
+    // procura no array correspondente ao dia de hoje o tempo armazenado:
+    let tempoDiaHoje = Number(listaAudicaoMes[`${diaHoje}`])
+    // soma este tempo acima com o tempo de transmissäo da faixa recém-terminada:
+    // let tempoAudicaoHoje = duracaoFaixaAtual + tempoDiaHoje
+    let tempoAudicaoHoje = tempoFaixaAtual + tempoDiaHoje
+
+    // Salva na lista no nro de array (item) correspondente:
+    listaAudicaoMes[`${diaHoje}`] = tempoAudicaoHoje
+    // salva em localStorage:
+    localStorage.setItem(`biblia_mes_${mesHoje}`, JSON.stringify(listaAudicaoMes))
+
+}
 
 function tocaCapitulo() {
     // obtemDataHoje()
@@ -90,6 +152,10 @@ function tocaCapitulo() {
     gradeLivros.forEach(a => a.classList.add('oculta'))
     cabecalhoCapitulos.classList.add('oculta')
     gradeCapitulos.classList.add('oculta')
+
+    // oculta botão de pause:
+    btPlay.style.display = 'none'
+    btPause.style.display = 'block'
 
     // altera a imagem de capa:
     nomeLivro.innerHTML = livro
@@ -112,9 +178,18 @@ function tocaCapitulo() {
     player.play()
 }
 
+function pausaCapitulo(){
+    btPlay.style.display = 'block'
+    btPause.style.display = 'none'
+    player.pause()
+}
+
 function seguinteCapitulo() {
     // grava em localStorage itemNro, capítulo para último lido.
     // grava array de objetos de capítulos lidos.
+
+    // grava o tempo que o usuário ouviu a faixa no acumulador diário:
+    gravaTempoDiario()
 
     // ao terminar a faixa, avança um capítulo
     capitulo++
@@ -144,6 +219,9 @@ function seguinteCapitulo() {
 }
 
 function anteriorCapitulo() {
+    // grava o tempo que o usuário ouviu a faixa no acumulador diário:
+    gravaTempoDiario()
+
     // retrocede um capítulo
     capitulo--
     // verifica se já não chegou ao início do livro:
@@ -175,6 +253,9 @@ function anteriorCapitulo() {
     tocaCapitulo()
 }
 
+btRetrocede.addEventListener('click', anteriorCapitulo)
+btAvanca.addEventListener('click', seguinteCapitulo)
+
 
 function adicionaCapituloOuvido() {
     // GRAVA NO LOCALSTORAGE MAIS UM NOVO CAPÍTULO OUVIDO NA LISTA:
@@ -204,65 +285,15 @@ function adicionaCapituloOuvido() {
     localStorage.capitulosOuvidos = JSON.stringify(capitulosOuvidos)
 }
 
-
-function gravaTempo() {
-
-    // ATUALIZA O TEMPO TOTAL DE AUDIÇÃO DE LOCALSTORAGE:
-    // somente SE a faixaAtual NÃO está dentro da lista de capítulosOuvidos de LocalStorage:
-
-    // Este bloco de função abaixo só pode acumular o tempo ouvido de faixas NÃO repetidas porque...
-    // ele será usado no gráfico para calcular quanto tempo falta para ouvir toda a Bíblia!
-    
-    // obtem duração da faixa
-    let duracaoFaixaAtual = player.duration
-
-    // obtem lista do localStorage:
-    capitulosOuvidos = JSON.parse(localStorage.getItem('capitulosOuvidos'))
-
-    // obtem nome da Faixa Atual:
-    faixaAtual = `${abrev} ${capitulo}`
-
-    // console.log("cap Ouvidos lista " + capitulosOuvidos)
-    // console.log("fx Atual " + faixaAtual)
-
-    if (!capitulosOuvidos.includes(faixaAtual)) {
-        console.log("gravando tempo no TOTAL...")
-        // obtem localStorage:
-        tempoAudicao = Number(JSON.parse(localStorage.getItem('tempoAudicao')))
-        // soma (acumulado de segundos):
-        tempoAudicao = tempoAudicao + duracaoFaixaAtual
-        // msg de console - tempo acumulado de audição:
-        console.log(tempoAudicao)
-        // grava no localStorage
-        localStorage.tempoAudicao = tempoAudicao
-
-    }
-
-
-    // GRAVA O TEMPO DE AUDIÇÃO DO DIA DE HOJE (independente se está ouvindo faixa repetida ou não):
-    obtemDataHoje()
-
-    // carrega a lista de localStorage
-    let listaAudicaoMes = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))
-    // procura no array correspondente ao dia de hoje o tempo armazenado:
-    let tempoDiaHoje = Number(listaAudicaoMes[`${diaHoje}`])
-    // soma este tempo acima com o tempo de transmissäo da faixa recém-terminada:
-    let tempoAudicaoHoje = duracaoFaixaAtual + tempoDiaHoje
-    // Salva na lista no nro de array (item) correspondente:
-    listaAudicaoMes[`${diaHoje}`] = tempoAudicaoHoje
-    // salva em localStorage:
-    localStorage.setItem(`biblia_mes_${mesHoje}`, JSON.stringify(listaAudicaoMes))
-
-}
-
 function terminaFaixa() {
     // essa função é disparada apenas quando uma faixa é ouvida completamente.
 
     // OBS.: A ordem das funções abaixo que são chamadas NÃO pode mudar:
 
     // Grava acumulando o tempo de audição em localStorage:
-    gravaTempo()
-    
+    gravaTempoTotal()
+    gravaTempoDiario()
+
     // Adiciona na lista de localStorage mais um capítulo ouvido!
     adicionaCapituloOuvido()
 
@@ -270,8 +301,6 @@ function terminaFaixa() {
     seguinteCapitulo()
 }
 
-btRetrocede.addEventListener('click', anteriorCapitulo)
-btAvanca.addEventListener('click', seguinteCapitulo)
 // abaixo, é preciso computar que o usuário leu o livro (em localStorage) e depois mudar de capitulo:
 player.addEventListener('ended', terminaFaixa)
 
@@ -425,3 +454,8 @@ function mostraGradeLivros() {
 btEscolher.addEventListener('click', () => {
     mostraGradeLivros()
 })
+
+
+btPlay.addEventListener('click', tocaCapitulo)
+
+btPause.addEventListener('click', pausaCapitulo)

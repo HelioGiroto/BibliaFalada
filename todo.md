@@ -35,16 +35,28 @@
 - Apoie!
 
 
+## SOBRE OS ACUMULADORES DE TEMPO DE AUDIÇÃO - Métricas:
+	- O Tempo Total (localStorage.getItem('tempoAudicao'):
+		- Se refere ao total de tempo de faixas não repetidas ouvidas completamente.
+	- O Tempo Diário (JSON.parse(localStorage.getItem('biblia\_mes_07'))\[22]):
+		- Se refere ao total de tempo DIÁRIO de faixas repetidas ou não que o usuário ouviu, mesmo sem ser completas.
+		- Portanto, essa variável é computada mesmo se o usuário avance ou retroceda antes de ouvir completamente uma faixa.
 
-### converter m4a para acc. Teste de um só arq:
+
+### converter m4a para acc ou mp3. Teste de um só arq:
 ~~~bash
-	ffmpeg -i Fm\ 1.m4a -acodec copy Fm\ 1.m4a.aac
+	ffmpeg -i arq.m4a -acodec copy arq.aac
+	ffmpeg -i arq.m4a -acodec libmp3lame -ab 256k output.mp3
 ~~~
 
-### converter m4a em acc em lote:
+### converter m4a em acc e mp3 em lote:
 FONTE: https://superuser.com/questions/704493/ffmpeg-convert-m4a-to-mp3-without-significant-loss :
 ~~~bash
  	for i in *.m4a; do ffmpeg -i "$i" -acodec copy "${i}".aac; done
+
+	for i in *.m4a; do ffmpeg -i "$i" -codec:v copy -codec:a libmp3lame -q:a 2 ../mp3/"${i}.mp3"; done
+	for i in *.m4a; do ffmpeg -i "$i" -codec:v copy -codec:a libmp3lame -q:a 0 ../mp3/"$i".mp3; done    # usei esse!
+	for i in *.m4a; do ffmpeg -i "$i" -acodec libmp3lame -ab 256k ../mp3/"$i".mp3; done
 ~~~
 
 ### converter stereo em mono:

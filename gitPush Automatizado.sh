@@ -18,7 +18,7 @@ do
 	sed -i '1d' .gitignore
 
 	## faz git completo *
-	git add .; git commit -m "Subindo NVI automaticamente: $(date)"; git push
+	git add .; git commit -m "Subindo RV1909 automaticamente pelo script 'gitPush Automatizado.sh' - $(date)"; git push
 
 	sleep 1m
 

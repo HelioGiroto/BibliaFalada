@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: #f2f2f2;
+}
+
+/*      
+audio::-webkit-media-controls-panel
+audio::-webkit-media-controls-mute-button   
+audio::-webkit-media-controls-play-button
+audio::-webkit-media-controls-timeline-container
+audio::-webkit-media-controls-current-time-display
+audio::-webkit-media-controls-time-remaining-display
+audio::-webkit-media-controls-timeline
+audio::-webkit-media-controls-volume-slider-container
+audio::-webkit-media-controls-volume-slider
+audio::-webkit-media-controls-seek-back-button
+audio::-webkit-media-controls-seek-forward-button
+audio::-webkit-media-controls-fullscreen-button
+audio::-webkit-media-controls-rewind-button
+audio::-webkit-media-controls-return-to-realtime-button
+audio::-webkit-media-controls-toggle-closed-captions-button
+
+FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51def8133b336a6f6588f/Source/core/css/mediaControls.css?autodive=0%2F%2F%2F
+*/
+
+.divPlayer {
+    display: flex;
+    flex-flow: column;
+    padding-top: 20px;
+    align-items: center;
+}
+
+.capa {
+    display: flex;
+    justify-content: center;
+}
+
+.infoLivro {
+    position: absolute;
+    z-index: 100;
+    margin-top: 8%;
+}
+
+#nomeLivro {
+    font-size: 2.5em;
+    text-align: center;
+    font-weight: 800;
+    margin: 0 auto;
+}
+
+#nroCapitulo {
+    font-size: 5em;
+    text-align: center;
+    font-weight: 800;
+    margin: -5px auto;
+    margin-top: -10px;
+}
+
+.areaImg {
+    position: relative;
+}
+
+.btsMuda {
+    position: absolute;
+    width: 10%;
+    z-index: 120;
+}
+
+#btRetrocede {
+    position: absolute;
+    left: 5%;
+    top: 40%;
+}
+
+#btAvanca {
+    position: absolute;
+    right: 5%;
+    top: 40%;
+}
+
+#imgPlayer {
+    width: 90%;
+}
+
+#player {
+    display: none;
+    margin-top: 10px;
+    filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%);
+    width: 90%;
+}
+
+.versoes {
+    margin-top: 15px;
+    margin-bottom: -15px;
+}
+
+.versoes > input {
+    height: 15px;
+    width: 20px;
+}
+
+.versoes > span {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.nvi, .rv {
+    padding-left: 20px;
+}
+
+#btEscolher {
+    margin-top: 30px;
+    padding: 10px 0;
+    width: 70%;
+    font-weight: bold;
+    background-color: rgb(255, 207, 149);
+}
+
+.btPlayPause{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+#btPlay {
+    width: 40%;
+}
+
+#btPause {
+    width: 40%;
+    display: none;
+}
+
+.cabecalho,
+.cabecalhoCapitulos {
+    margin-bottom: 7px;
+    font-size: 1.3em;
+}
+
+.grades {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.gradeLivros,
+.gradeCapitulos {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    width: 92%;
+    border: 2px solid black;
+    background-color: #eeffcc;
+}
+
+.gradeCapitulos {
+    background-color: antiquewhite;
+}
+
+.gradeLivros {
+    margin-bottom: 20px;
+}
+
+.quadriculaLivro,
+.quadriculaCapitulo {
+    text-align: center;
+    /* largura de cada quadricula = (100% / 7) - 2px (bordas) */
+    width: calc((100% / 7) - 2px);
+    /* padding abaixo é para dar altura ao botão: */
+    padding: 15px 0;
+    cursor: pointer;
+    border: 1px dotted black;
+}
+
+.lato {
+    font-family: 'Lato', sans-serif;
+}
+
+.amarelo-sombra {
+    color: gold;
+    text-shadow: 1px 1px 5px black;
+}
+
+.oculta {
+    display: none;
+}

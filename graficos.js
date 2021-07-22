@@ -6,7 +6,7 @@
 // Autor: Hélio Giroto
 
 // obtem o tempo corrente em que o usuário está ouvindo a atual faixa:
-let tempoFaixaAtual = Math.trunc(player.currentTime)
+tempoFaixaAtual = Math.trunc(player.currentTime)
 
 // obtem tempo de audicao do localStorage:
 let tempoAudicao = Math.trunc(Number(localStorage.tempoAudicao))

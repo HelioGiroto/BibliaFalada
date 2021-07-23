@@ -11,33 +11,36 @@
 
 <body>
 
-    <audio id='player' src=""></audio>
+    <audio controls id='player' src="audios/RV/Rm 10.mp3"></audio>
 
 
     <script>
         let listaDuracao = []
         let player = document.querySelector('#player')
+        let duracao
 
         // laço para percorrer todos os arquivos da pasta:
         BibliaOBJ.map(a => {
             let livro = a.livro
             let abrev = a.abrev
             let qtdeCap = a.qtdeCap
-            
-            for (capitulo=1; capitulo<=qtdeCap; capitulo++) {
 
-                console.log(abrev, capitulo)
+            for (capitulo = 1; capitulo <= qtdeCap; capitulo++) {
+                setTimeout(() => {
 
-                player.src = `audios/ACF/${abrev} ${capitulo}.mp3`
+                    console.log(abrev, capitulo)
 
-                let duracao = player.duration
-                
-                let DuracaoCap = {
-                    "abrev": abrev,
-                    "capitulo": capitulo,
-                    "duracao": duracao
-                }
-                listaDuracao.push(DuracaoCap)
+                    player.src = `audios/ACF/${abrev} ${capitulo}.mp3`
+                    duracao = player.duration
+                    console.log(duracao)
+
+                    let DuracaoCap = {
+                        "abrev": abrev,
+                        "capitulo": capitulo,
+                        "duracao": duracao
+                    }
+                    listaDuracao.push(DuracaoCap)
+                }, 2000)
             }
         })
     </script>

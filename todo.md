@@ -10,7 +10,7 @@
 
 - AUMENTAR O VOLUME DOS AUDIOS DE NVI
 
-- Velocidade de play
+- ~Velocidade de play~
 
 - Pausa em -- minutos.
 
@@ -41,6 +41,11 @@
 	- O Tempo Diário (JSON.parse(localStorage.getItem('biblia\_mes_07'))\[22]):
 		- Se refere ao total de tempo DIÁRIO de faixas repetidas ou não que o usuário ouviu, mesmo sem ser completas.
 		- Portanto, essa variável é computada mesmo se o usuário avance ou retroceda antes de ouvir completamente uma faixa.
+
+
+### link para ouvir a faixa no github:
+	- https://heliogiroto.github.io/BibliaFalada/audios/RV/Mt%204.mp3
+
 
 
 ### converter m4a para acc ou mp3. Teste de um só arq:

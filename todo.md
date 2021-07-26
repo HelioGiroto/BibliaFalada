@@ -4,13 +4,15 @@
 
 - ~LocalStorage onde parou e o que já leu~
 
+- ~Velocidade de play~
+
+- Tradução para espanhol - Menú e nome dos livros.
+
 - Funções de estatísticas de leitura
 
 - Responsivo para PC.
 
 - AUMENTAR O VOLUME DOS AUDIOS DE NVI
-
-- ~Velocidade de play~
 
 - Pausa em -- minutos.
 

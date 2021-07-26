@@ -3,7 +3,7 @@
 // Data: 16/04/2021
 
 // principais variáveis globais:
-let versao, livro, abrev, capitulo, nroLivro, qtdeCap, capituloFinal, faixaAtual, tempoFaixaAtual, duracaoFaixaAtual, tempoAudicao, dataHoje, diaHoje, mesHoje, anoHoje
+let versao, livro, abrev, nombreLibro, capitulo, nroLivro, qtdeCap, capituloFinal, faixaAtual, tempoFaixaAtual, duracaoFaixaAtual, tempoAudicao, dataHoje, diaHoje, mesHoje, anoHoje
 // let testamento   // útil ???
 
 // lista global de todos os capítulos lidos:
@@ -49,12 +49,15 @@ if (versao === "NVI") {
 // obtem nome do livro e qtde de capítulos que o mesmo possui:
 livro = BibliaOBJ[nroLivro].livro
 abrev = BibliaOBJ[nroLivro].abrev
+nombreLibro = BibliaOBJ[nroLivro].nombreLibro
 capituloFinal = Number(BibliaOBJ[nroLivro].qtdeCap)
 
 
 // define imagem e texto de background:
 document.querySelector('#imgPlayer').src = `capaBiblia${versao}.jpg`
 nomeLivro.innerHTML = livro
+// se a versão esteja em espanhol:
+if(versao === "RV"){nomeLivro.innerHTML = nombreLibro}
 nroCapitulo.innerHTML = capitulo
 
 
@@ -159,6 +162,12 @@ function tocaCapitulo() {
 
     // altera a imagem de capa:
     nomeLivro.innerHTML = livro
+    // altera o nome do livro em caso que esteja na versão em espanhol:
+    if(versao === "RV"){
+        nombreLibro = BibliaOBJ[nroLivro].nombreLibro
+        nomeLivro.innerHTML = nombreLibro
+    }
+
     nroCapitulo.innerHTML = capitulo
 
     // grava no localStorage os últimos capítulo, livro e versão ouvida
@@ -178,7 +187,7 @@ function tocaCapitulo() {
     player.play()
 }
 
-function pausaCapitulo(){
+function pausaCapitulo() {
     btPlay.style.display = 'block'
     btPause.style.display = 'none'
     player.pause()
@@ -212,6 +221,8 @@ function seguinteCapitulo() {
         livro = BibliaOBJ[nroLivro].livro
         // muda abreviatura do livro:
         abrev = BibliaOBJ[nroLivro].abrev
+        // muda nombre de libro se seja em espanhol:
+        nombreLibro = BibliaOBJ[nroLivro].nombreLibro
         // define qual o capítulo final deste livro:
         capituloFinal = Number(BibliaOBJ[nroLivro].qtdeCap)
     }
@@ -242,6 +253,9 @@ function anteriorCapitulo() {
         // muda abreviatura do livro:
         abrev = BibliaOBJ[nroLivro].abrev
         // console.log(abrev)
+
+        // muda nombre del libro caso seja em espanhol:
+        nombreLibro = BibliaOBJ[nroLivro].nombreLibro
 
         // define qual o capítulo final deste livro:
         capituloFinal = Number(BibliaOBJ[nroLivro].qtdeCap)
@@ -308,6 +322,7 @@ player.addEventListener('ended', terminaFaixa)
 function defineVersao() {
     versao = this.value
     // console.log(versao)
+    traduz()
     document.querySelector('#imgPlayer').src = `capaBiblia${versao}.jpg`
     tocaCapitulo()
 }
@@ -408,6 +423,10 @@ function mostraGradeLivros() {
         let novaDivAT = document.createElement('div')
         // texto dentro da div...
         let textoGradeAT = document.createTextNode(cadaNome.abrev)
+        // mas, caso seja a versão em espanhol:
+        if (versao === 'RV') {
+            textoGradeAT = document.createTextNode(cadaNome.abreviacion)
+        }
         // insere uma classe a cada elemento novo:
         novaDivAT.classList.add('quadriculaLivro')
         // insere uma id correspondente à cada elemento
@@ -424,6 +443,10 @@ function mostraGradeLivros() {
         let novaDivNT = document.createElement('div')
         // texto dentro da div...
         let textoGradeNT = document.createTextNode(cadaNome.abrev)
+        // mas, caso seja a versão em espanhol:
+        if (versao === 'RV') {
+            textoGradeNT = document.createTextNode(cadaNome.abreviacion)
+        }
         // insere o nome da classe:
         novaDivNT.classList.add('quadriculaLivro')
         // insere uma id correspondente à cada elemento
@@ -449,6 +472,22 @@ function mostraGradeLivros() {
     });
 }
 
+function traduz() {
+    // traduz botão de escolher livro e cabeçalhos para espanhol:
+    let cabecalhoAT = document.querySelector('#cabecalhoAT')
+    let cabecalhoNT = document.querySelector('#cabecalhoNT')
+    if (versao === "RV") {
+        btEscolher.innerHTML = "ELEGIR LIBRO / CAPÍTULO"
+        cabecalhoAT.innerHTML = "ANTIGUO TESTAMENTO"
+        cabecalhoNT.innerHTML = "NUEVO TESTAMENTO"
+    } else {
+        btEscolher.innerHTML = "ESCOLHER LIVRO / CAPÍTULO"
+        cabecalhoAT.innerHTML = "ANTIGO TESTAMENTO"
+        cabecalhoNT.innerHTML = "NOVO TESTAMENTO"
+    }
+}
+
+traduz()
 
 // ao clicar no botao escolher livro, faz aparecer grade de livros...
 btEscolher.addEventListener('click', () => {

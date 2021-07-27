@@ -2,39 +2,55 @@
 
 ## URL: https://heliogiroto.github.io/BibliaFalada/
 
-- ~LocalStorage onde parou e o que já leu~
+- Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos ou input para busca.
 
-- ~Velocidade de play~
-
-- Tradução para espanhol - Menú e nome dos livros.
-
-- Funções de estatísticas de leitura
-
-- Responsivo para PC.
-
-- AUMENTAR O VOLUME DOS AUDIOS DE NVI
-
-- Pausa em -- minutos.
+- **Pausa**  em -- minutos.
 
 - Checkbox com capítulos que já leu
 
-- Função EXPORTAR localStorage de uma máquina para outra que abra o link personalizado (com/?...)
+- Div com o texto bíblico impresso tb (?)
 
-- Atalho para RESETAR a lista de capítulosOuvidos do localStorage
+- Função **EXPORTAR** localStorage de uma máquina para outra que abra o link personalizado (.com/?...&...)
 
-- Melhorar a grade de abreviaturas dos nomes dos livros: Tb nomes completos ou input para busca.
+- Atalho para **RESETAR** a lista de capítulosOuvidos do localStorage
 
-- Gráfico e mudança de cor na grade conforme porcentagem de leitura: https://developers.google.com/chart/interactive/docs/gallery/piechart 	-	*loader.js*: CDN Google Charts baixado!
+- Melhorar **CSS** e visual completo
+
+- Responsivo para **PC**.
+
+---
+
+- Funções de **estatísticas** de leitura
+	- Vc já ouviu X caps.
+	- Faltam Y caps.	**- Pizza**.
+	- Faltam Z Horas: Minutos para terminar...
+	- Gráfico do mês atual
+	- Gráfico do mês passado... antepassado...
+	- Gráfico dos últimos 10 dias.
+
+- Gráfico e mudança de cor NA GRADE DE CAÍTULOS conforme porcentagem de leitura: https://developers.google.com/chart/interactive/docs/gallery/piechart 	
+	- CDN Google Charts baixado: *loader.js*
+
+---
 
 - Reportar erro para o desenvolvedor
-
-- Melhorar CSS do player ??
-
-- Div com o texto bíblico impresso tb
 
 - Icones das redes: Github tb (código fonte)
 
 - Apoie!
+
+- Ouça a Rádio J24h
+
+
+- BASH: AUMENTAR O VOLUME DOS AUDIOS DE NVI
+
+- ~LocalStorage onde parou e o que já leu~
+
+- ~Velocidade de play~
+
+- ~Tradução para espanhol - Menú e nome dos livros.~
+
+
 
 
 ## SOBRE OS ACUMULADORES DE TEMPO DE AUDIÇÃO - Métricas:
@@ -81,6 +97,8 @@ FONTE: https://trac.ffmpeg.org/wiki/AudioChannelManipulation
 ~~~bash
 	ffprobe 2_5391040025066472033.mp3 2>&1 | grep 'title'
  	ffprobe 2_5391040025066472033.mp3 2>&1 | grep 'Duration'
+	ffmpeg -i audio.mp3 2>&1 | grep Duration
+
 ~~~
 
 ### Descobrir quais arquivos faltam ao comparar duas versões da Bíblia:
@@ -93,12 +111,6 @@ FONTE: https://trac.ffmpeg.org/wiki/AudioChannelManipulation
 ~~~bash
 	id3info audio.mp3 
  	id3convert -s *.mp3 
-~~~
-
-### Obter metadados de um arquivo mp3:
-~~~bash
-	ffprobe 2_5391040025066472033.mp3 2>&1 | grep 'title'
-	ffprobe 2_5391040025066472033.mp3 2>&1 | grep 'Duration'
 ~~~
 
 

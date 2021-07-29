@@ -3,60 +3,67 @@ CSS para estilizar no caso de desktops ou tablets:
 */
 @media only screen and (min-width:500px) {
 
-.imgLogo{
-    width: 10%;
-}
+    #logo, #infolivro, #nomeVersao, .btPlayPause, .btsMuda {
+        cursor: pointer;
+    }
 
+    .imgLogo {
+        width: 10%;
+    }
 
-#btPlay, #btPause{
-    width: 30%;
-}
+    #btPlay,
+    #btPause {
+        width: 30%;
+    }
 
-.btsMuda{
-    width: 5%;
-}
+    .btsMuda {
+        width: 5%;
+    }
 
-.infoLivro{
-    top: 19%;
-}
+    .infoLivro {
+        top: 19%;
+    }
 
-.versoes > span {
-    font-size: 2em;
-    padding-right: 5px;
-}
+    .versoes>span {
+        font-size: 2em;
+        padding-right: 5px;
+    }
 
-.versoes > input {
-    width: 20px;
-    height: 25px;
-}
+    .versoes>input {
+        width: 20px;
+        height: 25px;
+    }
 
-.nvi, .rv {
-    padding-left: 70px;
-}
+    .nvi,
+    .rv {
+        padding-left: 70px;
+    }
 
-#nomeLivro{
-    font-size: 7em;
-}
+    #nomeLivro {
+        font-size: 7em;
+    }
 
-.quadriculaLivro, .quadriculaCapitulo{
-    font-size: 1.7em;
-}
+    .quadriculaLivro,
+    .quadriculaCapitulo {
+        font-size: 1.7em;
+    }
 
-#nroCapitulo{
-    font-size: 8em;
-}
+    #nroCapitulo {
+        font-size: 8em;
+    }
 
-.nomeVersao{
-    font-size: 2.5em;
-}
+    .nomeVersao {
+        font-size: 2.5em;
+    }
 
-.h4{
-    font-size: 2em;
-    margin-top: 20px;
-}
+    .h4 {
+        font-size: 2em;
+        margin-top: 20px;
+    }
 
-.cabecalho, .cabecalhoCapitulos{
-    font-size: 1.5em;
-}
+    .cabecalho,
+    .cabecalhoCapitulos {
+        font-size: 1.5em;
+    }
 
 }

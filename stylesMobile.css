@@ -68,7 +68,7 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
 }
 
 #nomeLivro {
-    font-size: 2.5em;
+    font-size: 2.6em;
     text-align: center;
     font-weight: 800;
     margin: 0 auto;
@@ -79,7 +79,6 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     text-align: center;
     font-weight: 800;
     margin: -5px auto;
-    margin-top: -10px;
 }
 
 
@@ -121,11 +120,11 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
 }
 
 #btPlay {
-    width: 40%;
+    width: 35%;
 }
 
 #btPause {
-    width: 40%;
+    width: 35%;
     display: none;
 }
 
@@ -135,9 +134,10 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     bottom: 7%;
     background: darkred;
     width: 70%;
-    padding: 5px 5px;
+    padding: 5px 15px;
     text-align: center;
     color: aliceblue;
+    font-size: 1.1em;
     text-shadow: 1px 1px 5px black;
 }
 

@@ -27,6 +27,14 @@ audio::-webkit-media-controls-toggle-closed-captions-button
 FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51def8133b336a6f6588f/Source/core/css/mediaControls.css?autodive=0%2F%2F%2F
 */
 
+#imgDesktop{
+    display: none;
+}
+
+#imgMobile{
+    display: block;
+}
+
 .divPlayer {
     display: flex;
     flex-flow: column;
@@ -100,7 +108,7 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     top: 35%;
 }
 
-#imgPlayer {
+.imgPlayer {
     width: 100vw;
     height: 100vh;
 }

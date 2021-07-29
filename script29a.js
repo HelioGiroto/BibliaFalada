@@ -16,7 +16,7 @@ let infolivro = document.querySelector('#infolivro')
 let nomeLivro = document.querySelector('#nomeLivro')
 let h4Capitulo = document.querySelector('.h4Capitulo')
 let nroCapitulo = document.querySelector('#nroCapitulo')
-let imgPlayer = document.querySelector('#imgPlayer')
+let imgPlayer = document.querySelector('.imgPlayer')
 let player = document.querySelector('#player')
 let btAvanca = document.querySelector('#btAvanca')
 let btRetrocede = document.querySelector('#btRetrocede')
@@ -523,6 +523,11 @@ function rolaPagina(){
         behavior: 'smooth'
     });
 }
+
+
+/*
+    filter: blur(5px);  // ?? - na imagem de fundo do celular. 
+*/
 
 logo.addEventListener('click', rolaPagina)
 infolivro.addEventListener('click', rolaPagina)

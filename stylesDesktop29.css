@@ -3,6 +3,14 @@ CSS para estilizar no caso de desktops ou tablets:
 */
 @media only screen and (min-width:500px) {
 
+    #imgDesktop{
+        display: block;
+    }
+        
+    #imgMobile{
+        display: none;
+    }
+    
     #logo, #infolivro, #nomeVersao, .btPlayPause, .btsMuda {
         cursor: pointer;
     }

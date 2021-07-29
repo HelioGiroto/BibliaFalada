@@ -2,7 +2,7 @@
 
 ## URL: https://heliogiroto.github.io/BibliaFalada/
 
-- Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos ou input para busca.
+- Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos ou input para busca - ???
 
 - **Pausa**  em -- minutos.
 
@@ -14,7 +14,6 @@
 
 - Atalho para **RESETAR** a lista de capítulosOuvidos do localStorage
 
-- Melhorar **CSS** e visual completo
 
 - Responsivo para **PC**.
 
@@ -50,6 +49,7 @@
 
 - ~Tradução para espanhol - Menú e nome dos livros.~
 
+- ~Melhorar CSS e visual novo~
 
 
 
@@ -113,5 +113,10 @@ FONTE: https://trac.ffmpeg.org/wiki/AudioChannelManipulation
  	id3convert -s *.mp3 
 ~~~
 
+
+### Baixar playlist do YouTube a partir de certo nro de item da lista:
+~~~bash
+	youtube-dl -f140 --playlist-start 293  https://www.youtube.com/playlist?list=PL3aVKqLhcR7W-PUzBT2_cOifNPQIh-SDp
+~~~
 
 

@@ -10,20 +10,14 @@ let versao, livro, abrev, nombreLibro, capitulo, nroLivro, qtdeCap, capituloFina
 let capitulosOuvidos = JSON.parse(localStorage.getItem('capitulosOuvidos'))
 
 // seletores:
-let topo = document.querySelector('#topo')
-let logo = document.querySelector('#logo')
-let infolivro = document.querySelector('#infolivro')
 let nomeLivro = document.querySelector('#nomeLivro')
-let h4Capitulo = document.querySelector('.h4Capitulo')
 let nroCapitulo = document.querySelector('#nroCapitulo')
 let imgPlayer = document.querySelector('#imgPlayer')
 let player = document.querySelector('#player')
 let btAvanca = document.querySelector('#btAvanca')
 let btRetrocede = document.querySelector('#btRetrocede')
-let nomeVersao = document.querySelector('#nomeVersao')
+let btEscolher = document.querySelector('#btEscolher')
 let cabecalhos = document.querySelectorAll('.cabecalho')
-let h4Escolher = document.querySelector('.h4Escolher')
-let h4Livro = document.querySelector('.h4Livro')
 let gradeLivros = document.querySelectorAll('.gradeLivros')
 let quadriculaLivro = document.querySelectorAll('.quadriculaLivro')
 let cabecalhoCapitulos = document.querySelector('.cabecalhoCapitulos')
@@ -60,7 +54,7 @@ capituloFinal = Number(BibliaOBJ[nroLivro].qtdeCap)
 
 
 // define imagem e texto de background:
-// document.querySelector('#imgPlayer').src = `fundoMobile${versao}.jpg`
+document.querySelector('#imgPlayer').src = `capaBiblia${versao}.jpg`
 nomeLivro.innerHTML = livro
 // se a versão esteja em espanhol:
 if(versao === "RV"){nomeLivro.innerHTML = nombreLibro}
@@ -157,9 +151,8 @@ function tocaCapitulo() {
     // obtemDataHoje()
     // oculta se estiver visivel as grades de nomes de livros e capítulos 
     // com seus cabeçalhos
-    // cabecalhos.forEach(a => a.classList.add('oculta'))
-    // gradeLivros.forEach(a => a.classList.add('oculta'))
-    h4Capitulo.classList.add('oculta')
+    cabecalhos.forEach(a => a.classList.add('oculta'))
+    gradeLivros.forEach(a => a.classList.add('oculta'))
     cabecalhoCapitulos.classList.add('oculta')
     gradeCapitulos.classList.add('oculta')
 
@@ -192,11 +185,6 @@ function tocaCapitulo() {
 
     // toca a faixa escolhida:
     player.play()
-
-    // rola página ao topo:
-    document.querySelector('#topo').scrollIntoView({
-        behavior: 'smooth'
-    });
 }
 
 function pausaCapitulo() {
@@ -335,9 +323,7 @@ function defineVersao() {
     versao = this.value
     // console.log(versao)
     traduz()
-    // se caso tenha mudado para a versão em espanhol, será preciso traduzir a grade:
-    mostraGradeLivros()
-    // document.querySelector('#imgPlayer').src = `fundoMobile${versao}.jpg`
+    document.querySelector('#imgPlayer').src = `capaBiblia${versao}.jpg`
     tocaCapitulo()
 }
 
@@ -399,7 +385,6 @@ function mostraGradeCapitulos() {
     }))
 
     // exibe as divs que estavam ocultas relacionadas à grade de capítulos:
-    h4Capitulo.classList.remove('oculta')
     cabecalhoCapitulos.classList.remove('oculta')
     gradeCapitulos.classList.remove('oculta')
 
@@ -481,52 +466,33 @@ function mostraGradeLivros() {
     cabecalhos.forEach(a => a.classList.remove('oculta'))
     gradeLivros.forEach(a => a.classList.remove('oculta'))
 
+    // scroll para id grades
+    document.querySelector('#grades').scrollIntoView({
+        behavior: 'smooth'
+    });
 }
 
 function traduz() {
     // traduz botão de escolher livro e cabeçalhos para espanhol:
     let cabecalhoAT = document.querySelector('#cabecalhoAT')
     let cabecalhoNT = document.querySelector('#cabecalhoNT')
-    // listas abaixo - abreviatura e nome correspondentes ao livro escolhido pelo usuário:
-    let abrevVersoes = ['ACF', 'NVI', 'RV']
-    let nomeVersoes = ['Almeida Corrigida Fiel', 'Nova Versão Internacional', 'Reina Valera 1909']
-
     if (versao === "RV") {
-        nomeVersao.innerHTML = nomeVersoes[2]
-        h4Escolher.innerHTML = "ELIGE LA VERSIÓN/TRADUCIÓN:"
-        h4Livro.innerHTML = "SELECIONA EL LIBRO DE LA BIBLIA:"
-        h4Capitulo.innerHTML = "ESCOGE EL CAPÍTULO:"
+        btEscolher.innerHTML = "ELEGIR LIBRO / CAPÍTULO"
         cabecalhoAT.innerHTML = "ANTIGUO TESTAMENTO"
         cabecalhoNT.innerHTML = "NUEVO TESTAMENTO"
     } else {
-        // percorre listas para imprimir nome do livro correspondente à abreviatura escolhida:
-        abrevVersoes.map((e,i)=> {
-            if(e === versao){
-                nomeVersao.innerHTML = nomeVersoes[i]
-            }
-        })
-        h4Escolher.innerHTML = "ESCOLHA A VERSÃO/TRADUÇÃO:"
-        h4Capitulo.innerHTML = "ESCOLHA O CAPÍTULO:"
-        h4Livro.innerHTML = "SELECIONE O LIVRO DA BÍBLIA:"
+        btEscolher.innerHTML = "ESCOLHER LIVRO / CAPÍTULO"
         cabecalhoAT.innerHTML = "ANTIGO TESTAMENTO"
         cabecalhoNT.innerHTML = "NOVO TESTAMENTO"
     }
 }
 
 traduz()
-mostraGradeLivros()
 
-
-function rolaPagina(){
-    // mostraGradeLivros()
-    document.querySelector('#pagina2').scrollIntoView({
-        behavior: 'smooth'
-    });
-}
-
-logo.addEventListener('click', rolaPagina)
-infolivro.addEventListener('click', rolaPagina)
-nomeVersao.addEventListener('click', rolaPagina)
+// ao clicar no botao escolher livro, faz aparecer grade de livros...
+btEscolher.addEventListener('click', () => {
+    mostraGradeLivros()
+})
 
 
 btPlay.addEventListener('click', tocaCapitulo)

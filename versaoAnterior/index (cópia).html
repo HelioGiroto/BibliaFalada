@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles22.css">
 
     <title>A Bíblia Falada</title>
 
@@ -31,27 +31,35 @@
         </div>
 
 
-        <audio controls id='player'></audio>
+        <audio id='player'></audio>
 
 
         <div class="versoes"> 
             <span class="acf">ACF</span>
             <input type="radio" id="acf" value="ACF" name="versao">
-            <input type="radio" id="nvi" value="NVI" name="versao">
             <span class="nvi">NVI</span>
+            <input type="radio" id="nvi" value="NVI" name="versao">
+            <span class="rv">RV</span>
+            <input type="radio" id="rv" value="RV" name="versao">
         </div>
 
         <button id="btEscolher">ESCOLHER LIVRO / CAPÍTULO</button>
     </div>
 
 
+    <div class="btPlayPause">
+        <img src="playBLUE.png" id="btPlay" alt="">
+        <img src="pauseBLUE.png" id="btPause" alt="">
+    </div>
+
+
     <div class="grades" id="grades">
-        <div class="cabecalho lato oculta"><strong>ANTIGO TESTAMENTO</strong></div>
+        <div class="cabecalho lato oculta"><strong id="cabecalhoAT">ANTIGO TESTAMENTO</strong></div>
         <div class="gradeLivros gradeAT oculta">
             <!-- <div class="quadriculaLivro">AT</div> -->
         </div>
 
-        <div class="cabecalho lato oculta"><strong>NOVO TESTAMENTO</strong></div>
+        <div class="cabecalho lato oculta"><strong id="cabecalhoNT">NOVO TESTAMENTO</strong></div>
         <div class="gradeLivros gradeNT oculta">
             <!-- <div class="quadriculaLivro">NT</div> -->
         </div>
@@ -64,8 +72,8 @@
 
 
     <script src="localStorage20.js"></script>
-    <script src="BibliaOBJ.js"></script>
-    <script src="script20.js"></script>
+    <script src="BibliaOBJ26.js"></script>
+    <script src="script26.js"></script>
 
 </body>
 

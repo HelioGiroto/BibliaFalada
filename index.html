@@ -5,10 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles22.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="stylesMobile.css">
+    <link rel="stylesheet" href="stylesDesktop.css">
 
     <title>A Bíblia Falada</title>
 
@@ -16,54 +20,61 @@
 
 <body>
 
-    <div class="divPlayer">
+    <div class="divPlayer" id="topo">
 
         <div class="areaImg">
+            <img src="menuCirculo.svg" class="btMenu" alt="">
             <img class='btsMuda' src="retrocede.png" id="btRetrocede">
             <div class="capa">
-                <div class="infoLivro">
-                    <p class="lato amarelo-sombra" id="nomeLivro"></p>
-                    <p class="lato amarelo-sombra" id="nroCapitulo"></p>
+                <div class="logo"><img id='logo' class='imgLogo' src="logo.png" alt=""></div>
+                <div class="infoLivro" id="infolivro">
+                    <p class="nunito violeta" id="nomeLivro"></p>
+                    <p class="nunito violeta" id="nroCapitulo"></p>
                 </div>
-                <img id="imgPlayer" src="capaBiblia.jpg">
+                <img id="imgPlayer" src="fundoMobile.jpg">
             </div>
             <img class="btsMuda" src="avanca.png" id="btAvanca">
         </div>
 
-
         <audio id='player'></audio>
 
-
-        <div class="versoes"> 
-            <span class="acf">ACF</span>
-            <input type="radio" id="acf" value="ACF" name="versao">
-            <span class="nvi">NVI</span>
-            <input type="radio" id="nvi" value="NVI" name="versao">
-            <span class="rv">RV</span>
-            <input type="radio" id="rv" value="RV" name="versao">
+        <div class="btPlayPause">
+            <img src="playRED.png" id="btPlay" alt="">
+            <img src="pauseRED.png" id="btPause" alt="">
         </div>
 
-        <button id="btEscolher">ESCOLHER LIVRO / CAPÍTULO</button>
+        <div id='nomeVersao' class="nomeVersao montserrat">Nova Versão Internacional</div>
+
+        <div id="pagina2"></div>
+
+        <h4 class="h4Escolher h4 lato">ESCOLHA A VERSÃO/TRADUÇÃO:</h4>
+
+        <div class="versoes">
+            <span class="acf lato">ACF</span>
+            <input type="radio" id="acf" value="ACF" name="versao">
+            <span class="nvi lato">NVI</span>
+            <input type="radio" id="nvi" value="NVI" name="versao">
+            <span class="rv lato">RV</span>
+            <input type="radio" id="rv" value="RV" name="versao">
+        </div>
     </div>
 
-
-    <div class="btPlayPause">
-        <img src="playBLUE.png" id="btPlay" alt="">
-        <img src="pauseBLUE.png" id="btPause" alt="">
-    </div>
 
 
     <div class="grades" id="grades">
-        <div class="cabecalho lato oculta"><strong id="cabecalhoAT">ANTIGO TESTAMENTO</strong></div>
-        <div class="gradeLivros gradeAT oculta">
+        <h4 class="h4Livro h4 lato">SELECIONE O LIVRO DA BÍBLIA:</h4>
+
+        <div class="cabecalho lato _oculta"><strong id="cabecalhoAT">ANTIGO TESTAMENTO</strong></div>
+        <div class="gradeLivros gradeAT _oculta">
             <!-- <div class="quadriculaLivro">AT</div> -->
         </div>
 
-        <div class="cabecalho lato oculta"><strong id="cabecalhoNT">NOVO TESTAMENTO</strong></div>
-        <div class="gradeLivros gradeNT oculta">
+        <div class="cabecalho lato _oculta"><strong id="cabecalhoNT">NOVO TESTAMENTO</strong></div>
+        <div class="gradeLivros gradeNT _oculta">
             <!-- <div class="quadriculaLivro">NT</div> -->
         </div>
 
+        <h4 class="h4Capitulo h4 lato oculta">ESCOLHA O CAPÍTULO:</h4>
         <div class="cabecalhoCapitulos lato oculta"><strong>CAPÍTULO</strong></div>
         <div class="gradeCapitulos oculta" id="gradeCapitulos">
             <!-- <div class="quadriculaCapitulo">1</div> -->

@@ -10,12 +10,16 @@
 
 - Atalho para **RESETAR** a lista de capítulosOuvidos do localStorage
 
+- BASH: AUMENTAR O VOLUME DOS AUDIOS DE NVI (?)
+
+- Div com o texto bíblico impresso tb (?)
+
 
 ### Opções do menú:
 
 - **Pausa automática** em x minutos.
 
-- Meu **desempenho** (gráficos).
+- "Meu **desempenho**" (gráficos).
 
 - Checkboxes dos capítulos **lidos**
 
@@ -30,15 +34,10 @@
 - Ouça a **Rádio J24h**!
 
 
-- BASH: AUMENTAR O VOLUME DOS AUDIOS DE NVI
-
-- Div com o texto bíblico impresso tb (?)
-
----
-
-### Desempenho:
+### Desempenho do usuário (suas métricas):
 
 - Funções de **estatísticas** de audição:
+	- ALERTA: "Faz x dias/semanas/meses que vc não ouve..."; "Parabéns!!"; etc.
 	- Vc já ouviu X caps.
 	- Faltam Y caps.	**- Pizza**.
 	- Faltam Z Horas: Minutos para terminar...
@@ -46,47 +45,48 @@
 	- Gráfico do mês passado... antepassado...
 	- Gráfico dos últimos 10 dias.
 
-- Gráfico e mudança de cor NA GRADE DE CAPÍTULOS conforme porcentagem de leitura: https://developers.google.com/chart/interactive/docs/gallery/piechart 	
 	- CDN Google Charts baixado: *loader.js*
+
+	- Ex.: https://developers.google.com/chart/interactive/docs/gallery/piechart 	
 
 ---
 
+### DONE:
 
 - ~Responsivo para PC.~
+
+- ~Melhorar CSS e visual novo~
+
+- ~Tradução para espanhol - Menú e nome dos livros.~
 
 - ~LocalStorage onde parou e o que já leu~
 
 - ~Velocidade de play~
 
-- ~Tradução para espanhol - Menú e nome dos livros.~
-
-- ~Melhorar CSS e visual novo~
-
-
+---
 
 ## Comandos usados e observações sobre o código:
 
-### SOBRE AS VARIÁVEIS DE ACUMULADORES DE TEMPO DE AUDIÇÃO - Métricas:
-- O Tempo Total (localStorage.getItem('tempoAudicao'):
+### Sobre as variáveis de acumuladores de tempo de audição - Métricas:
+- O Tempo **Total** (localStorage.getItem('tempoAudicao'):
 	- Se refere ao total de tempo de faixas não repetidas ouvidas completamente.
 
-- O Tempo Diário (JSON.parse(localStorage.getItem('biblia-mes-07'))[22]):
+- O Tempo **Diário** (JSON.parse(localStorage.getItem('biblia-mes-07'))[22]):
 	- Se refere ao total de tempo DIÁRIO de faixas repetidas ou não que o usuário ouviu, mesmo sem ser completas.
 	- Portanto, essa variável é computada mesmo se o usuário avance ou retroceda antes de ouvir completamente uma faixa.
 
 
-### link para ouvir uma faixa no github:
-	- https://heliogiroto.github.io/BibliaFalada/audios/RV/Mt%204.mp3
+### Link para ouvir uma faixa no github:
+	https://heliogiroto.github.io/BibliaFalada/audios/RV/Mt%204.mp3
 
 
-
-### converter m4a para acc ou mp3. Teste de um só arq:
+### Converter m4a para acc ou mp3. Teste de um só arq:
 ~~~bash
 	ffmpeg -i arq.m4a -acodec copy arq.aac
 	ffmpeg -i arq.m4a -acodec libmp3lame -ab 256k output.mp3
 ~~~
 
-### converter m4a em acc e mp3 em lote:
+### Converter m4a em acc e mp3 em lote:
 FONTE: https://superuser.com/questions/704493/ffmpeg-convert-m4a-to-mp3-without-significant-loss :
 ~~~bash
  	for i in *.m4a; do ffmpeg -i "$i" -acodec copy "${i}".aac; done
@@ -96,13 +96,13 @@ FONTE: https://superuser.com/questions/704493/ffmpeg-convert-m4a-to-mp3-without-
 	for i in *.m4a; do ffmpeg -i "$i" -acodec libmp3lame -ab 256k ../mp3/"$i".mp3; done
 ~~~
 
-### converter stereo em mono:
+### Converter stereo em mono:
 FONTE: https://trac.ffmpeg.org/wiki/AudioChannelManipulation
 ~~~bash
 	ffmpeg -i Tg1.mp3 -ac 1 mono_Tg1.mp3
 ~~~
 
-### renomear em lote:
+### Renomear em lote:
 ~~~bash
 	for i in *; do NOVO=$(echo "$i" | sed 's/.m4a//'); mv "$i" "$NOVO"; done
 ~~~

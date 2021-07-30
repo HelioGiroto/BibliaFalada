@@ -1,0 +1,9 @@
+ 2014  ffprobe 2_5391040025066472033.mp3 2>&1 | grep 'title'
+ 2015  ffprobe 2_5391040025066472033.mp3 2>&1 | grep 'Duration'
+
+Para obter informações do metadata e para limpar as mesmas:
+
+	id3info audio.mp3 
+ 	id3convert -s *.mp3 
+
+

@@ -1,18 +1,17 @@
 # PARA FAZER (TO DO):
 
-## URL: https://heliogiroto.github.io/BibliaFalada/
+## URL: https://heliogiroto.github.io/BibliaFalada
 
 - Grade do nome do livro **colorida** num gradiente correspondente ao percentual de audição.
+
+- Quadrícula em **destaque** no livro e nro de capítulo que está ouvindo.
 
 - Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos ou input para busca - ???
 
 - Função **EXPORTAR** localStorage de uma máquina para outra que abra o link personalizado (.com/?...&...)
 
-- Atalho para **RESETAR** a lista de capítulosOuvidos do localStorage
+- Atalho para **RESETAR** a lista de capítulosOuvidos do localStorage (apagar histórico de cap. ouvidos) - Pedir confirmação no prompt.
 
-- BASH: AUMENTAR O VOLUME DOS AUDIOS DE NVI (?)
-
-- Div com o texto bíblico impresso tb (?)
 
 
 ### Opções do menú:
@@ -38,6 +37,7 @@
 
 - Funções de **estatísticas** de audição:
 	- ALERTA: "Faz x dias/semanas/meses que vc não ouve..."; "Parabéns!!"; etc.
+	- Hoje você ouviu X cap e Y minutos.
 	- Vc já ouviu X caps.
 	- Faltam Y caps.	**- Pizza**.
 	- Faltam Z Horas: Minutos para terminar...
@@ -62,6 +62,10 @@
 - ~LocalStorage onde parou e o que já leu~
 
 - ~Velocidade de play~
+
+- ~BASH: AUMENTAR O VOLUME DOS AUDIOS DE NVI (?)~
+
+- ~Div com o texto bíblico impresso tb (?)~
 
 ---
 

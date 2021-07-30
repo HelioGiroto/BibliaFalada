@@ -436,6 +436,12 @@ function mostraGradeLivros() {
     livrosAT.map((cadaNome, nroItem) => {
         // cria elemento(s) filhos com texto
         let novaDivAT = document.createElement('div')
+
+        // TO DO:
+        // Se o usuário estiver no Desktop ou tablet,
+        // nas quadriculas dos nomes dos livros
+        // aparece o nome completo do livro e não a abrev.
+
         // texto dentro da div...
         let textoGradeAT = document.createTextNode(cadaNome.abrev)
         // mas, caso seja a versão em espanhol:
@@ -456,6 +462,12 @@ function mostraGradeLivros() {
     livrosNT.map((cadaNome, nroItem) => {
         // cria elemento(s) filhos com texto
         let novaDivNT = document.createElement('div')
+
+        // TO DO:
+        // Se o usuário estiver no Desktop ou tablet,
+        // nas quadriculas dos nomes dos livros
+        // aparece o nome completo do livro e não a abrev.
+
         // texto dentro da div...
         let textoGradeNT = document.createTextNode(cadaNome.abrev)
         // mas, caso seja a versão em espanhol:
@@ -493,8 +505,8 @@ function traduz() {
 
     if (versao === "RV") {
         nomeVersao.innerHTML = nomeVersoes[2]
-        h4Escolher.innerHTML = "ELIGE LA VERSIÓN/TRADUCIÓN:"
-        h4Livro.innerHTML = "SELECIONA EL LIBRO DE LA BIBLIA:"
+        h4Escolher.innerHTML = "ELIGE LA VERSIÓN/TRADUCCIÓN:"
+        h4Livro.innerHTML = "SELECCIONA EL LIBRO DE LA BIBLIA:"
         h4Capitulo.innerHTML = "ESCOGE EL CAPÍTULO:"
         cabecalhoAT.innerHTML = "ANTIGUO TESTAMENTO"
         cabecalhoNT.innerHTML = "NUEVO TESTAMENTO"

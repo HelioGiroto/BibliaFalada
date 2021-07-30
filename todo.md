@@ -1,25 +1,44 @@
-# PARA FAZER
+# PARA FAZER (TO DO):
 
 ## URL: https://heliogiroto.github.io/BibliaFalada/
 
+- Grade do nome do livro **colorida** num gradiente correspondente ao percentual de audição.
+
 - Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos ou input para busca - ???
-
-- **Pausa**  em -- minutos.
-
-- Checkbox com capítulos que já leu
-
-- Div com o texto bíblico impresso tb (?)
 
 - Função **EXPORTAR** localStorage de uma máquina para outra que abra o link personalizado (.com/?...&...)
 
 - Atalho para **RESETAR** a lista de capítulosOuvidos do localStorage
 
 
-- Responsivo para **PC**.
+### Opções do menú:
+
+- **Pausa automática** em x minutos.
+
+- Meu **desempenho** (gráficos).
+
+- Checkboxes dos capítulos **lidos**
+
+- **Compartilhar** esse site...
+
+- **Apoie!**
+
+- Icones das **redes**: Github tb (código fonte)
+
+- Reportar **erro** para o desenvolvedor
+
+- Ouça a **Rádio J24h**!
+
+
+- BASH: AUMENTAR O VOLUME DOS AUDIOS DE NVI
+
+- Div com o texto bíblico impresso tb (?)
 
 ---
 
-- Funções de **estatísticas** de leitura
+### Desempenho:
+
+- Funções de **estatísticas** de audição:
 	- Vc já ouviu X caps.
 	- Faltam Y caps.	**- Pizza**.
 	- Faltam Z Horas: Minutos para terminar...
@@ -27,21 +46,13 @@
 	- Gráfico do mês passado... antepassado...
 	- Gráfico dos últimos 10 dias.
 
-- Gráfico e mudança de cor NA GRADE DE CAÍTULOS conforme porcentagem de leitura: https://developers.google.com/chart/interactive/docs/gallery/piechart 	
+- Gráfico e mudança de cor NA GRADE DE CAPÍTULOS conforme porcentagem de leitura: https://developers.google.com/chart/interactive/docs/gallery/piechart 	
 	- CDN Google Charts baixado: *loader.js*
 
 ---
 
-- Reportar erro para o desenvolvedor
 
-- Icones das redes: Github tb (código fonte)
-
-- Apoie!
-
-- Ouça a Rádio J24h
-
-
-- BASH: AUMENTAR O VOLUME DOS AUDIOS DE NVI
+- ~Responsivo para PC.~
 
 - ~LocalStorage onde parou e o que já leu~
 
@@ -53,15 +64,18 @@
 
 
 
-## SOBRE OS ACUMULADORES DE TEMPO DE AUDIÇÃO - Métricas:
-	- O Tempo Total (localStorage.getItem('tempoAudicao'):
-		- Se refere ao total de tempo de faixas não repetidas ouvidas completamente.
-	- O Tempo Diário (JSON.parse(localStorage.getItem('biblia\_mes_07'))\[22]):
-		- Se refere ao total de tempo DIÁRIO de faixas repetidas ou não que o usuário ouviu, mesmo sem ser completas.
-		- Portanto, essa variável é computada mesmo se o usuário avance ou retroceda antes de ouvir completamente uma faixa.
+## Comandos usados e observações sobre o código:
+
+### SOBRE AS VARIÁVEIS DE ACUMULADORES DE TEMPO DE AUDIÇÃO - Métricas:
+- O Tempo Total (localStorage.getItem('tempoAudicao'):
+	- Se refere ao total de tempo de faixas não repetidas ouvidas completamente.
+
+- O Tempo Diário (JSON.parse(localStorage.getItem('biblia-mes-07'))[22]):
+	- Se refere ao total de tempo DIÁRIO de faixas repetidas ou não que o usuário ouviu, mesmo sem ser completas.
+	- Portanto, essa variável é computada mesmo se o usuário avance ou retroceda antes de ouvir completamente uma faixa.
 
 
-### link para ouvir a faixa no github:
+### link para ouvir uma faixa no github:
 	- https://heliogiroto.github.io/BibliaFalada/audios/RV/Mt%204.mp3
 
 

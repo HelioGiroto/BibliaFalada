@@ -23,10 +23,11 @@ let btRetrocede = document.querySelector('#btRetrocede')
 let nomeVersao = document.querySelector('#nomeVersao')
 let cabecalhos = document.querySelectorAll('.cabecalho')
 let h4Escolher = document.querySelector('.h4Escolher')
+let h4opcoes = document.querySelector('.h4opcoes')
 let h4Livro = document.querySelector('.h4Livro')
 let gradeLivros = document.querySelectorAll('.gradeLivros')
 let quadriculaLivro = document.querySelectorAll('.quadriculaLivro')
-let cabecalhoCapitulos = document.querySelector('.cabecalhoCapitulos')
+// let cabecalhoCapitulos = document.querySelector('.cabecalhoCapitulos')
 let gradeCapitulos = document.querySelector('#gradeCapitulos')
 let btPlay = document.querySelector('#btPlay')
 let btPause = document.querySelector('#btPause')
@@ -160,7 +161,7 @@ function tocaCapitulo() {
     pagina2.classList.remove('oculta')
     // oculta se estiver visivel as grades de capítulos:
     h4Capitulo.classList.add('oculta')
-    cabecalhoCapitulos.classList.add('oculta')
+    // cabecalhoCapitulos.classList.add('oculta')
     gradeCapitulos.classList.add('oculta')
 
     // oculta botão de pause:
@@ -347,16 +348,31 @@ document.querySelectorAll('input[type="radio"]').forEach(a => a.addEventListener
 
 
 function mostraGradeCapitulos() {
-    // Abaixo: Apaga todos os elementos anteriormente criados para não acumular (caso já tivesse aparecido versículos de outro disparo):
+    // Abaixo: Apaga todos os elementos anteriormente criados para não acumular
+    // (caso já tivesse aparecido versículos de outro disparo):
     document.querySelectorAll('.quadriculaCapitulo').forEach(a => a.remove())
 
     // A variável idElemento terá o nome do livro (id) do elemento clicado:
+    // manipula nome do id com replace:
     let idElemento = this.id
     // console.log("idElemento: " + idElemento)
 
     // define qual será o nome da faixa (abrev) a ser tocada:
+    // esta linha só vai em tocaFaixa() ????
     abrev = idElemento
     // console.log(`abrev é : ${abrev}`)
+
+    /*  ERRO:
+    // Abaixo não funciona pq nao se aceita nome de id começando com numeros!!!!!!
+    // o formato aceitável tz seja: _1Co
+    // negrita somente a quadrícula correspondente ao livro atual:
+    document.querySelectorAll('.quadriculaLivro').forEach(a=> {
+        a.style.fontWeight = 'normal'
+        a.style.color = 'black'
+    })
+    document.querySelector(`#${abrev}`).style.fontWeight = 'bold'
+    document.querySelector(`#${abrev}`).style.color = 'red'
+    */
 
     // define o livro, qtdeCaps, abrev do elemento clicado:
     let qtosCapitulos
@@ -402,7 +418,7 @@ function mostraGradeCapitulos() {
 
     // exibe as divs que estavam ocultas relacionadas à grade de capítulos:
     h4Capitulo.classList.remove('oculta')
-    cabecalhoCapitulos.classList.remove('oculta')
+    // cabecalhoCapitulos.classList.remove('oculta')
     gradeCapitulos.classList.remove('oculta')
 
     // faz scroll para o id gradeCapitulos:
@@ -434,14 +450,10 @@ function mostraGradeLivros() {
     let gradeAT = document.querySelector('.gradeAT')
     let gradeNT = document.querySelector('.gradeNT')
 
+    // Forma quadrículas do Antigo Testamento:
     livrosAT.map((cadaNome, nroItem) => {
         // cria elemento(s) filhos com texto
         let novaDivAT = document.createElement('div')
-
-        // TO DO:
-        // Se o usuário estiver no Desktop ou tablet,
-        // nas quadriculas dos nomes dos livros
-        // aparece o nome completo do livro e não a abrev.
 
         // texto dentro da div...
         let textoGradeAT = document.createTextNode(cadaNome.abrev)
@@ -452,6 +464,7 @@ function mostraGradeLivros() {
         // insere uma classe a cada elemento novo:
         novaDivAT.classList.add('quadriculaLivro')
         // insere uma id correspondente à cada elemento
+        // manipula nome do id com replace:
         novaDivAT.id = cadaNome.abrev
         // associa textos ao elemento criado
         novaDivAT.appendChild(textoGradeAT)
@@ -459,7 +472,7 @@ function mostraGradeLivros() {
         gradeAT.appendChild(novaDivAT)
     })
 
-
+    // Forma quadrículas dos livros do Novo Testamento:
     livrosNT.map((cadaNome, nroItem) => {
         // cria elemento(s) filhos com texto
         let novaDivNT = document.createElement('div')
@@ -478,6 +491,7 @@ function mostraGradeLivros() {
         // insere o nome da classe:
         novaDivNT.classList.add('quadriculaLivro')
         // insere uma id correspondente à cada elemento
+        // manipula nome do id com replace:
         // novaDivNT.id = `NT-${nroItem+1}`
         novaDivNT.id = cadaNome.abrev
         // associa textos ao elemento criado
@@ -506,6 +520,7 @@ function traduz() {
 
     if (versao === "RV") {
         nomeVersao.innerHTML = nomeVersoes[2]
+        h4opcoes.innerHTML = 'ESCOGE UNA OPCIÓN:'
         h4Escolher.innerHTML = "ELIGE LA VERSIÓN/TRADUCCIÓN:"
         h4Livro.innerHTML = "SELECCIONA EL LIBRO DE LA BIBLIA:"
         h4Capitulo.innerHTML = "ESCOGE EL CAPÍTULO:"
@@ -518,6 +533,7 @@ function traduz() {
                 nomeVersao.innerHTML = nomeVersoes[i]
             }
         })
+        h4opcoes.innerHTML = "ESCOLHA UMA OPÇÃO:"
         h4Escolher.innerHTML = "ESCOLHA A VERSÃO/TRADUÇÃO:"
         h4Capitulo.innerHTML = "ESCOLHA O CAPÍTULO:"
         h4Livro.innerHTML = "SELECIONE O LIVRO DA BÍBLIA:"
@@ -532,7 +548,7 @@ mostraGradeLivros()
 
 function rolaPagina() {
     // mostraGradeLivros()
-    document.querySelector('.menu').scrollIntoView({
+    document.querySelector('.h4opcoes').scrollIntoView({
         behavior: 'smooth'
     });
 }

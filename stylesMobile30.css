@@ -1,15 +1,17 @@
 * {
     margin: 0;
     padding: 0;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body{
     background: #f2f2f2;
+    overflow-x: hidden;
 }
 
-p, h1, h2, h3, h4, h5, strong, span{
-    user-select: none;
-}
+/*h1, h2, h3, h4, h5, p, strong, span{}*/
 
 /*      
 audio::-webkit-media-controls-panel
@@ -202,21 +204,22 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     background-color: gold;
     text-align: center;
     width: 100%;
+    margin-top: 10px;
     padding: 5px 0px;
     text-align: center;
 }
 
 .h4Escolher{
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
-.h4Livro{
-    padding-bottom: 10px;
+.h4Capitulo{
+    margin-bottom: 15px;
 }
 
-.cabecalho{
-    padding-top: 10px;
-}
+/* .h4Livro{} */
+
+/* .cabecalho{} */
 
 .cabecalho,
 .cabecalhoCapitulos {
@@ -228,7 +231,7 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     display: flex;
     flex-flow: column;
     align-items: center;
-    margin: 35px 0;
+    margin: 30px 0;
 }
 
 .gradeLivros,

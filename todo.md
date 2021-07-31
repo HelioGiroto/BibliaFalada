@@ -6,7 +6,7 @@
 
 - Quadrícula em **destaque** no livro e nro de capítulo que está ouvindo.
 
-- Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos ou input para busca - ???
+- Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos para tablets e desktop ou input para busca - ???
 
 - Função **EXPORTAR** localStorage de uma máquina para outra que abra o link personalizado (.com/?...&...)
 

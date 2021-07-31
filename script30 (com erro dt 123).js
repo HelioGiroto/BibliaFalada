@@ -3,7 +3,7 @@
 // Data: 16/04/2021
 
 // principais variáveis globais:
-let versao, livro, abrev, nombreLibro, capitulo, nroLivro, qtdeCap, capituloFinal, faixaAtual, tempoFaixaAtual, duracaoFaixaAtual, tempoAudicao, dataHoje, diaHoje, mesHoje, anoHoje, idElemento, nroObj
+let versao, livro, abrev, nombreLibro, capitulo, nroLivro, qtdeCap, capituloFinal, faixaAtual, tempoFaixaAtual, duracaoFaixaAtual, tempoAudicao, dataHoje, diaHoje, mesHoje, anoHoje
 // let testamento   // útil ???
 
 // lista global de todos os capítulos lidos:
@@ -354,8 +354,13 @@ function mostraGradeCapitulos() {
 
     // A variável idElemento terá o nome do livro (id) do elemento clicado:
     // manipula nome do id com replace:
-    idElemento = this.id
+    let idElemento = this.id
     // console.log("idElemento: " + idElemento)
+
+    // define qual será o nome da faixa (abrev) a ser tocada:
+    // esta linha só vai em tocaFaixa() ????
+    abrev = idElemento
+    // console.log(`abrev é : ${abrev}`)
 
     /*  ERRO:
     // Abaixo não funciona pq nao se aceita nome de id começando com numeros!!!!!!
@@ -373,13 +378,11 @@ function mostraGradeCapitulos() {
     let qtosCapitulos
 
     // procura em cada item do obj o nome do livro (idElemento) escolhido pelo usuário
-    // para: obter a qtde de capítulos:
     BibliaOBJ.find((a, i) => {
         if (a.abrev === idElemento) {
             qtosCapitulos = Number(a.qtdeCap)
-            nroObj = i
-            // livro = a.livro
-            // nroLivro = i
+            livro = a.livro
+            nroLivro = i
         }
     })
 
@@ -389,7 +392,6 @@ function mostraGradeCapitulos() {
     // seleciona elemento(s) pai
     let gradeCapitulos = document.querySelector('.gradeCapitulos')
 
-    // Forma quadrículas de capítulos:
     // cria novos elementos de acordo com o número de capítulos do livro escolhido pelo usuário:
     for (let cap = 1; cap <= qtosCapitulos; cap++) {
         // cria elemento(s) filhos com texto
@@ -408,12 +410,6 @@ function mostraGradeCapitulos() {
     // ao clicar no nro de cap. abre o audio....
     let quadriculasCapitulos = document.querySelectorAll('.quadriculaCapitulo')
     quadriculasCapitulos.forEach(cada => cada.addEventListener('click', () => {
-        // define qual será o nome da faixa (abrev) a ser tocada:
-        // ao clicar no nro de cap. re-define a abrev, livro, nroLivro a ser tocado:
-        abrev = idElemento  // ou tb: BibliaOBJ[nroObj].abrev ??
-        livro = BibliaOBJ[nroObj].livro
-        nroLivro = nroObj
-        // console.log(`abrev é : ${abrev}`)
         capitulo = cada.innerHTML
         // console.log(capitulo)
         // console.log(livro)
@@ -511,6 +507,7 @@ function mostraGradeLivros() {
     // faz aparecer as grades e cabeçalhos:
     cabecalhos.forEach(a => a.classList.remove('oculta'))
     gradeLivros.forEach(a => a.classList.remove('oculta'))
+
 }
 
 function traduz() {

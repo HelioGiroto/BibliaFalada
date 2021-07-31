@@ -354,20 +354,8 @@ function mostraGradeCapitulos() {
 
     // A variável idElemento terá o nome do livro (id) do elemento clicado:
     // manipula nome do id com replace:
-    idElemento = this.id
+    idElemento = this.id.replace("_", "")
     // console.log("idElemento: " + idElemento)
-
-    /*  ERRO:
-    // Abaixo não funciona pq nao se aceita nome de id começando com numeros!!!!!!
-    // o formato aceitável tz seja: _1Co
-    // negrita somente a quadrícula correspondente ao livro atual:
-    document.querySelectorAll('.quadriculaLivro').forEach(a=> {
-        a.style.fontWeight = 'normal'
-        a.style.color = 'black'
-    })
-    document.querySelector(`#${abrev}`).style.fontWeight = 'bold'
-    document.querySelector(`#${abrev}`).style.color = 'red'
-    */
 
     // define o livro, qtdeCaps, abrev do elemento clicado:
     let qtosCapitulos
@@ -410,13 +398,12 @@ function mostraGradeCapitulos() {
     quadriculasCapitulos.forEach(cada => cada.addEventListener('click', () => {
         // define qual será o nome da faixa (abrev) a ser tocada:
         // ao clicar no nro de cap. re-define a abrev, livro, nroLivro a ser tocado:
-        abrev = idElemento  // ou tb: BibliaOBJ[nroObj].abrev ??
+        abrev = idElemento // ou tb: BibliaOBJ[nroObj].abrev ??
         livro = BibliaOBJ[nroObj].livro
         nroLivro = nroObj
-        // console.log(`abrev é : ${abrev}`)
         capitulo = cada.innerHTML
-        // console.log(capitulo)
-        // console.log(livro)
+
+        negritaCapitulo()
         tocaCapitulo()
     }))
 
@@ -469,7 +456,8 @@ function mostraGradeLivros() {
         novaDivAT.classList.add('quadriculaLivro')
         // insere uma id correspondente à cada elemento
         // manipula nome do id com replace:
-        novaDivAT.id = cadaNome.abrev
+        // abrev = abrev.replace(/.*/, "_$&")
+        novaDivAT.id = cadaNome.abrev.replace(/.*/, "_$&")
         // associa textos ao elemento criado
         novaDivAT.appendChild(textoGradeAT)
         // insere o elemento criado ao elemento pai:
@@ -496,8 +484,8 @@ function mostraGradeLivros() {
         novaDivNT.classList.add('quadriculaLivro')
         // insere uma id correspondente à cada elemento
         // manipula nome do id com replace:
-        // novaDivNT.id = `NT-${nroItem+1}`
-        novaDivNT.id = cadaNome.abrev
+        // abrev = abrev.replace(/.*/, "_$&")
+        novaDivNT.id = cadaNome.abrev.replace(/.*/, "_$&")
         // associa textos ao elemento criado
         novaDivNT.appendChild(textoGradeNT)
         // insere o elemento criado ao elemento pai:
@@ -545,8 +533,29 @@ function traduz() {
     }
 }
 
+function negritaCapitulo() {
+    // negrita somente a quadrícula correspondente ao livro atual,
+    // as demais permanecem normais:
+    document.querySelectorAll('.quadriculaLivro').forEach(a => {
+        a.style.fontWeight = 'normal'
+        a.style.color = 'black'
+        a.style.backgroundColor = '#eeffcc'
+    })
+    document.querySelector(`#_${abrev}`).style.fontWeight = 'bold'
+    document.querySelector(`#_${abrev}`).style.color = 'red'
+    document.querySelector(`#_${abrev}`).style.backgroundColor = 'yellow'
+    /*
+    // document.querySelector(`#_${abrev}`).style.fontSize = '1.1em'
+    // converte para maiúsculas:
+    let livroNegrito = document.querySelector(`#_${abrev}`).innerHTML
+    livroNegrito = livroNegrito.toUpperCase()
+    document.querySelector(`#_${abrev}`).innerHTML = livroNegrito 
+    */
+}
+
 traduz()
 mostraGradeLivros()
+negritaCapitulo()
 
 
 function rolaPagina() {

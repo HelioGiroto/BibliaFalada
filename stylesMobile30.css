@@ -231,7 +231,7 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     display: flex;
     flex-flow: column;
     align-items: center;
-    margin: 30px 0;
+    margin: 10px 0;
 }
 
 .gradeLivros,
@@ -254,11 +254,12 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
 
 .quadriculaLivro,
 .quadriculaCapitulo {
-    text-align: center;
     /* largura de cada quadricula = (100% / 7) - 2px (bordas) */
     width: calc((100% / 7) - 2px);
     /* padding abaixo é para dar altura ao botão: */
     padding: 15px 0;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
     cursor: pointer;
     border: 1px dotted black;
 }

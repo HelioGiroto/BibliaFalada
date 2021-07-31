@@ -2,20 +2,13 @@
 
 ## URL: https://heliogiroto.github.io/BibliaFalada
 
-- Grade do nome do livro **colorida** num gradiente correspondente ao percentual de audição.
-
-- Quadrícula em **destaque** no livro e nro de capítulo que está ouvindo.
+- Grade do nome do livro **colorida** num gradiente **conforme** ao percentual de audição.
 
 - Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos para tablets e desktop ou input para busca - ???
 
 - Função **EXPORTAR** localStorage de uma máquina para outra que abra o link personalizado (.com/?...&...)
 
 - Atalho para **RESETAR** a lista de capítulosOuvidos do localStorage (apagar histórico de cap. ouvidos) - Pedir confirmação no prompt.
-
-
-### ERRO: 
-
-	- Quando seleciona um livro da quadrícula das abrev. a variável global "abrev" altera e se a faixa termina, tocará e se gravará no localStorage o valor de "abrev" (que não é o correto da sequência que está sendo tocada).
 
 
 ### Opções do menú:
@@ -60,6 +53,8 @@
 ---
 
 ### DONE:
+
+- ~Quadrícula em **destaque** no livro e nro de capítulo que está ouvindo.~
 
 - ~Responsivo para PC.~
 

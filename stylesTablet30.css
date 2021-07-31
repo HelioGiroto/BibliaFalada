@@ -1,7 +1,7 @@
 /*
 CSS para estilizar no caso de desktops ou tablets:
 */
-@media only screen and (min-width:900px) {
+@media only screen and (min-width:600px) {
 
     #imgDesktop{
         display: block;
@@ -21,7 +21,7 @@ CSS para estilizar no caso de desktops ou tablets:
 
     #btPlay,
     #btPause {
-        width: 30%;
+        width: 20%;
     }
 
     .btsMuda {
@@ -29,7 +29,7 @@ CSS para estilizar no caso de desktops ou tablets:
     }
 
     .infoLivro {
-        top: 19%;
+        top: 15%;
     }
 
     .menu img {
@@ -53,7 +53,7 @@ CSS para estilizar no caso de desktops ou tablets:
     }
 
     #nomeLivro {
-        font-size: 7em;
+        font-size: 3em;
     }
 
     .quadriculaLivro,
@@ -62,11 +62,12 @@ CSS para estilizar no caso de desktops ou tablets:
     }
 
     #nroCapitulo {
-        font-size: 8em;
+        font-size: 4em;
+        margin: -25px auto;
     }
 
     .nomeVersao {
-        font-size: 2.5em;
+        font-size: 1.5em;
     }
 
     .h4 {

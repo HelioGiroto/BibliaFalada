@@ -13,6 +13,10 @@
 - Atalho para **RESETAR** a lista de capítulosOuvidos do localStorage (apagar histórico de cap. ouvidos) - Pedir confirmação no prompt.
 
 
+### ERRO: 
+
+	- Quando seleciona um livro da quadrícula das abrev. a variável global "abrev" altera e se a faixa termina, tocará e se gravará no localStorage o valor de "abrev" (que não é o correto da sequência que está sendo tocada).
+
 
 ### Opções do menú:
 

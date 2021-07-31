@@ -675,11 +675,11 @@ let gmail     = document.querySelector('#gmail')
 
 let listaRedes = [whatsapp, telegram, facebook, gmail]
 
-let mensagemCompartilhar = "Ouça a Bíblia gratuitamente neste site: www.jesus24horas.com"
+let mensagemCompartilhar = "Ouça a Bíblia gratuitamente neste site: https://www.jesus24horas.com"
 let assuntoEmail = "A fé vem pelo ouvir!!"
 
 if(versao === "RV") {
-    mensagemCompartilhar = "Oye la Biblia gratuitamente en este sitio: www.jesus24horas.com"
+    mensagemCompartilhar = "Oye la Biblia gratuitamente en este sitio: https://www.jesus24horas.com"
     assuntoEmail = "¡La fé viene por el oír!"
 }
 
@@ -689,7 +689,7 @@ let linkRedes = [
     `whatsapp://send?text=${msgEncode}`, 
     `https://t.me/share/url?url=www.jesus24horas.com&text=${msgEncode}`, 
     `https://www.facebook.com/sharer/sharer.php?u=heliogiroto.github.io/BibliaFalada`,
-    `mailto:?subject=${assuntoEmail}&amp;body=${mensagemCompartilhar}.`
+    `mailto:?subject=${assuntoEmail}&body=${mensagemCompartilhar}`
 ]
 
 // adicionando disparadores de eventos em cada icone:
@@ -707,7 +707,7 @@ listaRedes.forEach((e,i)=>{
 // https://stackoverflow.com/questions/21935149/sharing-link-on-whatsapp-from-mobile-website-not-application-for-android
 // https://stackoverflow.com/questions/31356360/share-a-link-via-url-scheme-to-telegram
 // https://stackoverflow.com/questions/5045918/adding-a-share-by-email-link-to-website
-// "mailto:?subject=I wanted you to see this site&amp;body=Check out this site http://www.website.com."
+// https://stackoverflow.com/questions/4782068/can-i-set-subject-content-of-email-using-mailto
 
 
 logo.addEventListener('click', rolaPagina)

@@ -164,7 +164,7 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     background: goldenrod;
 }
 
-.menu img {
+.menu img, .fechaJanela {
     width: 15%;
 }
 
@@ -210,7 +210,7 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
 }
 
 .h4Escolher{
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .h4Capitulo{
@@ -264,8 +264,45 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     border: 1px dotted black;
 }
 
-.pagina3 > div {
-    height: 90vh;
+.divPausa, .divDesempenho, .divCompartilha, .divMais {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    height: 84vh;
+}
+
+.h4Pausa{
+    margin-bottom: 20px;
+}
+
+.divPausa > p{
+    font-size: 1.2em;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.divPausa > input{
+    margin: 20px auto;
+    width: 50px;
+    padding: 10px;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(92, 92, 92);
+}
+
+.divPausa > button{
+    background-color: chocolate;
+    margin: 40px;
+    width: 60%;
+    padding: 15px;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.fechaJanela {
+    margin-top: 30px;
 }
 
 .montserrat{

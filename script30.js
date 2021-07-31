@@ -601,35 +601,69 @@ function abreDivCompartilha() {
 
 let pagina2 = document.querySelector('.pagina2')
 
-// ao clicar em alguma das divs abertas pelo menu, executa:
-document.querySelectorAll('.pagina3 > div').forEach(a => {
-    a.addEventListener('click', () => {
-        pagina2.classList.remove('oculta')
-        a.classList.add('oculta')
-        // rola página ao topo:
-        document.querySelector('#topo').scrollIntoView({
-            behavior: 'smooth'
-        });
-    })
+
+function programaPausa() {
+    let minutosEmEspera = Number(minutosPausa.value)
+    // programa a pausa conforme número passado pelo usuário:
+    setTimeout(() => {
+        pausaCapitulo()
+    }, minutosEmEspera * 60000);
+    alert('Programado!')
+    // Oculta divPausa
+    divPausa.classList.add('oculta')
+    // Mostra div capítulos:
+    pagina2.classList.remove('oculta')
+    // rola página ao topo:
+    document.querySelector('#topo').scrollIntoView({
+        behavior: 'smooth'
+    });
+}
+
+// clicando no bt de programar, chama a função programaPausa:
+document.querySelector('#btProgramaPausa').addEventListener('click', programaPausa)
+
+// ao dar foco no input de programar pausa, zera conteúdo e valor:
+let minutosPausa = document.querySelector('#minutosPausa')
+minutosPausa.addEventListener('focus', () => {
+    minutosPausa.value = ''
+    minutosPausa.innerHTML = ''
 })
 
 let divPausa = document.querySelector('.divPausa')
 let divDesempenho = document.querySelector('.divDesempenho')
 let divMais = document.querySelector('.divMais')
 let divCompartilha = document.querySelector('.divCompartilha')
-// let grades = document.querySelector('.grades')
 
 let iconePausa = document.querySelector('#iconePausa')
 let iconeDesempenho = document.querySelector('#iconeDesempenho')
 let iconeMais = document.querySelector('#iconeMais')
 let iconeCompartilha = document.querySelector('#iconeCompartilha')
 
-
 iconePausa.addEventListener('click', abreDivPausa)
 iconeDesempenho.addEventListener('click', abreDivDesempenho)
 iconeMais.addEventListener('click', abreDivMais)
 iconeCompartilha.addEventListener('click', abreDivCompartilha)
 
+
+// cada div de menu tem um botão de fechar com classe igual (.fechaJanela)
+let fechaJanela = document.querySelectorAll('.fechaJanela')
+// acrescenta em todos esses botões o seguinte evento:
+fechaJanela.forEach(a => {
+    // pega nome da sub-div (programarPausa, Desempenho, Compartilha...) de dentro de menu:
+    let div = a.parentElement.classList[0];
+    // em cada botão adiciona evento:
+    a.addEventListener('click', () => {
+        console.log(div)
+        // mostra grid de livros:
+        pagina2.classList.remove('oculta')
+        // esconde janela da opção de menú aberta:
+        document.querySelector(`.${div}`).classList.add('oculta')
+        // rola página ao topo do site:
+        document.querySelector('#topo').scrollIntoView({
+            behavior: 'smooth'
+        });
+    })
+})
 
 logo.addEventListener('click', rolaPagina)
 infolivro.addEventListener('click', rolaPagina)

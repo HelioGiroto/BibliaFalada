@@ -13,13 +13,13 @@
 
 ### Opções do menú:
 
-- **Pausa automática** em x minutos.
+~- **Pausa automática** em x minutos.~
 
 - "Meu **desempenho**" (gráficos).
 
 	- Checkboxes dos capítulos **lidos**
 
-- Mais recursos...
+- Mais recursos... (details tags):
 
 	- **Exportar** histório de capítulos ouvidos
 	

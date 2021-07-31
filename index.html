@@ -90,12 +90,32 @@
         </div>
     </div>
 
+    <!-- pagina das divs de menú: -->
     <div class="pagina3">
         <!-- dentro de cada div abaixo vai os details: https://heliogiroto.github.io/Escatologia-em-Lucas -->
-        <div class="divPausa oculta"><br><h4 class="h4Livro h4 lato">BREVE: Desliga (pausa) em __ minutos.</h4><br></div>
-        <div class="divDesempenho oculta"><br><h4 class="h4Livro h4 lato">BREVE: Meu Desempenho - Gráficos!</h4><br></div>
-        <div class="divCompartilha oculta"><br><h4 class="h4Livro h4 lato">Compartilhe este site</h4><br></div>
-        <div class="divMais oculta"><br><h4 class="h4Livro h4 lato">BREVE: Outros recursos...</h4><br></div>
+        <div class="divPausa oculta">
+            <h4 class="h4Pausa h4 lato">Programação de pausa</h4>
+            <p>Pára de tocar em:</p>
+            <input type="number" id="minutosPausa" class="minutosPausa" value="60">
+            <p>minutos.</p>
+            <button id="btProgramaPausa">PROGRAMAR</button>
+            <img src="close.png" class="fechaJanela">
+        </div>
+
+        <div class="divDesempenho oculta">
+            <h4 class="h4Desempenho h4 lato">BREVE: Meu Desempenho - Gráficos!</h4>
+            <img src="close.png" class="fechaJanela">
+        </div>
+
+        <div class="divCompartilha oculta">
+            <h4 class="h4Compartilha h4 lato">Compartilhe este site</h4>
+            <img src="close.png" class="fechaJanela">    
+        </div>
+        
+        <div class="divMais oculta">
+            <h4 class="h4Mais h4 lato">BREVE: Outros recursos...</h4>
+            <img src="close.png" class="fechaJanela">
+        </div>
     </div>
 
     <script src="localStorage20.js"></script>

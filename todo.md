@@ -20,17 +20,21 @@
 
 - "Meu **desempenho**" (gráficos).
 
-- Checkboxes dos capítulos **lidos**
+	- Checkboxes dos capítulos **lidos**
 
-- **Compartilhar** esse site...
+- Mais recursos...
 
-- **Apoie!**
+	- **Exportar** histório de capítulos ouvidos
+	
+	- **Compartilhar** esse site...
 
-- Icones das **redes**: Github tb (código fonte)
+	- Ouça a **Rádio J24h**!
 
-- Reportar **erro** para o desenvolvedor
+	- **Apoie!** esse trabalho.
+	
+	- Reportar **erro** para o desenvolvedor
 
-- Ouça a **Rádio J24h**!
+	- Ver código fonte - Github tb 
 
 
 ### Desempenho do usuário (suas métricas):

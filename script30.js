@@ -63,7 +63,9 @@ capituloFinal = Number(BibliaOBJ[nroLivro].qtdeCap)
 // document.querySelector('#imgPlayer').src = `fundoMobile${versao}.jpg`
 nomeLivro.innerHTML = livro
 // se a versão esteja em espanhol:
-if(versao === "RV"){nomeLivro.innerHTML = nombreLibro}
+if (versao === "RV") {
+    nomeLivro.innerHTML = nombreLibro
+}
 nroCapitulo.innerHTML = capitulo
 
 
@@ -154,11 +156,9 @@ function gravaTempoDiario() {
 }
 
 function tocaCapitulo() {
-    // obtemDataHoje()
-    // oculta se estiver visivel as grades de nomes de livros e capítulos 
-    // com seus cabeçalhos
-    // cabecalhos.forEach(a => a.classList.add('oculta'))
-    // gradeLivros.forEach(a => a.classList.add('oculta'))
+    // faz aparecer se estiver oculto a grade de livros:
+    pagina2.classList.remove('oculta')
+    // oculta se estiver visivel as grades de capítulos:
     h4Capitulo.classList.add('oculta')
     cabecalhoCapitulos.classList.add('oculta')
     gradeCapitulos.classList.add('oculta')
@@ -170,7 +170,7 @@ function tocaCapitulo() {
     // altera a imagem de capa:
     nomeLivro.innerHTML = livro
     // altera o nome do livro em caso que esteja na versão em espanhol:
-    if(versao === "RV"){
+    if (versao === "RV") {
         nombreLibro = BibliaOBJ[nroLivro].nombreLibro
         nomeLivro.innerHTML = nombreLibro
     }
@@ -202,6 +202,8 @@ function tocaCapitulo() {
 function pausaCapitulo() {
     btPlay.style.display = 'block'
     btPause.style.display = 'none'
+    // faz aparecer a grade de livros se estiver oculta:
+    pagina2.classList.remove('oculta')
     player.pause()
 }
 
@@ -409,7 +411,6 @@ function mostraGradeCapitulos() {
     });
 }
 
-
 function mostraGradeLivros() {
     // Cria duas listas conforme o nome do testamento e adiciona os livros conforme o testamento:
     let livrosAT = []
@@ -512,8 +513,8 @@ function traduz() {
         cabecalhoNT.innerHTML = "NUEVO TESTAMENTO"
     } else {
         // percorre listas para imprimir nome do livro correspondente à abreviatura escolhida:
-        abrevVersoes.map((e,i)=> {
-            if(e === versao){
+        abrevVersoes.map((e, i) => {
+            if (e === versao) {
                 nomeVersao.innerHTML = nomeVersoes[i]
             }
         })
@@ -529,17 +530,78 @@ traduz()
 mostraGradeLivros()
 
 
-function rolaPagina(){
+function rolaPagina() {
     // mostraGradeLivros()
-    document.querySelector('#pagina2').scrollIntoView({
+    document.querySelector('.menu').scrollIntoView({
         behavior: 'smooth'
     });
 }
 
 
-/*
-    filter: blur(5px);  // ?? - na imagem de fundo do celular. 
-*/
+function abreDivPausa() {
+    divPausa.classList.remove('oculta')
+    divDesempenho.classList.add('oculta')
+    divMais.classList.add('oculta')
+    pagina2.classList.add('oculta')
+    divCompartilha.classList.add('oculta')
+}
+
+function abreDivDesempenho() {
+    divDesempenho.classList.remove('oculta')
+    divPausa.classList.add('oculta')
+    divMais.classList.add('oculta')
+    pagina2.classList.add('oculta')
+    divCompartilha.classList.add('oculta')
+}
+
+function abreDivMais() {
+    divMais.classList.remove('oculta')
+    divPausa.classList.add('oculta')
+    divDesempenho.classList.add('oculta')
+    pagina2.classList.add('oculta')
+    divCompartilha.classList.add('oculta')
+}
+
+function abreDivCompartilha() {
+    divCompartilha.classList.remove('oculta')
+    divMais.classList.add('oculta')
+    divPausa.classList.add('oculta')
+    divDesempenho.classList.add('oculta')
+    pagina2.classList.add('oculta')
+}
+
+
+let pagina2 = document.querySelector('.pagina2')
+
+// ao clicar em alguma das divs abertas pelo menu, executa:
+document.querySelectorAll('.pagina3 > div').forEach(a => {
+    a.addEventListener('click', () => {
+        pagina2.classList.remove('oculta')
+        a.classList.add('oculta')
+        // rola página ao topo:
+        document.querySelector('#topo').scrollIntoView({
+            behavior: 'smooth'
+        });
+    })
+})
+
+let divPausa = document.querySelector('.divPausa')
+let divDesempenho = document.querySelector('.divDesempenho')
+let divMais = document.querySelector('.divMais')
+let divCompartilha = document.querySelector('.divCompartilha')
+// let grades = document.querySelector('.grades')
+
+let iconePausa = document.querySelector('#iconePausa')
+let iconeDesempenho = document.querySelector('#iconeDesempenho')
+let iconeMais = document.querySelector('#iconeMais')
+let iconeCompartilha = document.querySelector('#iconeCompartilha')
+
+
+iconePausa.addEventListener('click', abreDivPausa)
+iconeDesempenho.addEventListener('click', abreDivDesempenho)
+iconeMais.addEventListener('click', abreDivMais)
+iconeCompartilha.addEventListener('click', abreDivCompartilha)
+
 
 logo.addEventListener('click', rolaPagina)
 infolivro.addEventListener('click', rolaPagina)

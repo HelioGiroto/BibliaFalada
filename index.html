@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="stylesMobile29.css">
-    <link rel="stylesheet" href="stylesDesktop29.css">
+    <link rel="stylesheet" href="stylesMobile30.css">
+    <link rel="stylesheet" href="stylesDesktop30.css">
 
     <title>A Bíblia Falada</title>
 
@@ -21,8 +21,7 @@
 
 <body>
 
-    <div class="divPlayer" id="topo">
-
+    <div class="pagina1" id="topo">
         <div class="areaImg">
             <img src="menuCirculo.svg" class="btMenu" alt="">
             <img class='btsMuda' src="retrocede.png" id="btRetrocede">
@@ -46,47 +45,62 @@
         </div>
 
         <div id='nomeVersao' class="nomeVersao montserrat">Nova Versão Internacional</div>
+    </div>
 
-        <div id="pagina2"></div>
+    <div class="menu">
+        <img src="icon1.png" id="iconePausa" alt="">
+        <img src="icon2.png" id="iconeDesempenho" alt="">
+        <img src="icon4.png" id="iconeCompartilha" alt="">
+        <img src="icon3.png" id="iconeMais" alt="">
+    </div>
 
-        <h4 class="h4Escolher h4 lato">ESCOLHA A VERSÃO/TRADUÇÃO:</h4>
+    <div class="pagina2">
+        <div class="escolherVersao">
+            <h4 class="h4Escolher h4 lato">ESCOLHA A VERSÃO/TRADUÇÃO:</h4>
+            <div class="versoes">
+                <span class="acf lato">ACF</span>
+                <input type="radio" id="acf" value="ACF" name="versao">
+                <span class="nvi lato">NVI</span>
+                <input type="radio" id="nvi" value="NVI" name="versao">
+                <span class="rv lato">RV</span>
+                <input type="radio" id="rv" value="RV" name="versao">
+            </div>
+        </div>
 
-        <div class="versoes">
-            <span class="acf lato">ACF</span>
-            <input type="radio" id="acf" value="ACF" name="versao">
-            <span class="nvi lato">NVI</span>
-            <input type="radio" id="nvi" value="NVI" name="versao">
-            <span class="rv lato">RV</span>
-            <input type="radio" id="rv" value="RV" name="versao">
+        <div class="grades" id="grades">
+            <h4 class="h4Livro h4 lato">SELECIONE O LIVRO DA BÍBLIA:</h4>
+
+            <div class="cabecalho lato _oculta"><strong id="cabecalhoAT">ANTIGO TESTAMENTO</strong></div>
+            <div class="gradeLivros gradeAT _oculta">
+                <!-- <div class="quadriculaLivro">AT</div> -->
+            </div>
+
+            <div class="cabecalho lato _oculta"><strong id="cabecalhoNT">NOVO TESTAMENTO</strong></div>
+            <div class="gradeLivros gradeNT _oculta">
+                <!-- <div class="quadriculaLivro">NT</div> -->
+            </div>
+
+            <h4 class="h4Capitulo h4 lato oculta">ESCOLHA O CAPÍTULO:</h4>
+            <div class="cabecalhoCapitulos lato oculta"><strong>CAPÍTULO</strong></div>
+            <div class="gradeCapitulos oculta" id="gradeCapitulos">
+                <!-- <div class="quadriculaCapitulo">1</div> -->
+            </div>
         </div>
     </div>
 
-
-
-    <div class="grades" id="grades">
-        <h4 class="h4Livro h4 lato">SELECIONE O LIVRO DA BÍBLIA:</h4>
-
-        <div class="cabecalho lato _oculta"><strong id="cabecalhoAT">ANTIGO TESTAMENTO</strong></div>
-        <div class="gradeLivros gradeAT _oculta">
-            <!-- <div class="quadriculaLivro">AT</div> -->
-        </div>
-
-        <div class="cabecalho lato _oculta"><strong id="cabecalhoNT">NOVO TESTAMENTO</strong></div>
-        <div class="gradeLivros gradeNT _oculta">
-            <!-- <div class="quadriculaLivro">NT</div> -->
-        </div>
-
-        <h4 class="h4Capitulo h4 lato oculta">ESCOLHA O CAPÍTULO:</h4>
-        <div class="cabecalhoCapitulos lato oculta"><strong>CAPÍTULO</strong></div>
-        <div class="gradeCapitulos oculta" id="gradeCapitulos">
-            <!-- <div class="quadriculaCapitulo">1</div> -->
-        </div>
+    <div class="pagina3">
+        <!-- dentro de cada div abaixo vai os details: https://heliogiroto.github.io/Escatologia-em-Lucas -->
+        <div class="divPausa oculta"><br><h4 class="h4Livro h4 lato">BREVE: Desliga (pausa) em __ minutos.</h4><br></div>
+        <div class="divDesempenho oculta"><br><h4 class="h4Livro h4 lato">BREVE: Meu Desempenho - Gráficos!</h4><br></div>
+        <div class="divCompartilha oculta"><br><h4 class="h4Livro h4 lato">Compartilhe este site</h4><br></div>
+        <div class="divMais oculta"><br><h4 class="h4Livro h4 lato">BREVE: Outros recursos...</h4><br></div>
     </div>
+
 
 
     <script src="localStorage20.js"></script>
     <script src="BibliaOBJ26.js"></script>
-    <script src="script29a.js"></script>
+    <script src="script30.js"></script>
 
 </body>
 

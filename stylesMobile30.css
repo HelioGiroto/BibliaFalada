@@ -7,6 +7,10 @@ body{
     background: #f2f2f2;
 }
 
+p, h1, h2, h3, h4, h5, strong, span{
+    user-select: none;
+}
+
 /*      
 audio::-webkit-media-controls-panel
 audio::-webkit-media-controls-mute-button   
@@ -35,7 +39,7 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     display: block;
 }
 
-.divPlayer {
+.pagina1 {
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -149,17 +153,31 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     text-shadow: 1px 1px 5px black;
 }
 
-#pagina2{
-    padding-top: 15px;
+
+.menu{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    padding: 12px;
+    background: goldenrod;
+}
+
+.menu img {
+    width: 15%;
 }
 
 .versoes {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
     margin-top: 15px;
 }
 
 .versoes > input {
     height: 15px;
     width: 20px;
+    margin-top: 4px;
+    margin-left: 5px;
 }
 
 .versoes > span {
@@ -182,9 +200,14 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
 
 .h4{
     background-color: gold;
-    padding: 5px 5px;
-    width: 100%;
     text-align: center;
+    width: 100%;
+    padding: 5px 0px;
+    text-align: center;
+}
+
+.h4Escolher{
+    margin-top: 10px;
 }
 
 .h4Livro{
@@ -235,6 +258,10 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     padding: 15px 0;
     cursor: pointer;
     border: 1px dotted black;
+}
+
+.pagina3 > div {
+    height: 90vh;
 }
 
 .montserrat{

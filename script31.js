@@ -665,6 +665,51 @@ fechaJanela.forEach(a => {
     })
 })
 
+
+// funções de divCompartilha:
+// let instagram = document.querySelector('#instagram')
+let facebook  = document.querySelector('#facebook')
+let whatsapp  = document.querySelector('#whatsapp')
+let telegram  = document.querySelector('#telegram')
+let gmail     = document.querySelector('#gmail')
+
+let listaRedes = [whatsapp, telegram, facebook, gmail]
+
+let mensagemCompartilhar = "Ouça a Bíblia gratuitamente neste site: www.jesus24horas.com"
+let assuntoEmail = "A fé vem pelo ouvir!!"
+
+if(versao === "RV") {
+    mensagemCompartilhar = "Oye la Biblia gratuitamente en este sitio: www.jesus24horas.com"
+    assuntoEmail = "¡La fé viene por el oír!"
+}
+
+let msgEncode = encodeURIComponent(mensagemCompartilhar)
+
+let linkRedes = [
+    `whatsapp://send?text=${msgEncode}`, 
+    `https://t.me/share/url?url=www.jesus24horas.com&text=${msgEncode}`, 
+    `https://www.facebook.com/sharer/sharer.php?u=heliogiroto.github.io/BibliaFalada`,
+    `mailto:?subject=${assuntoEmail}&amp;body=${mensagemCompartilhar}.`
+]
+
+// adicionando disparadores de eventos em cada icone:
+listaRedes.forEach((e,i)=>{
+    e.addEventListener('click', ()=>{
+        window.open(linkRedes[i], '_blank')
+    })
+})
+
+// Se der erro (no Whatsapp), tentar:
+// https://wa.me/?text=${msgEncode}
+
+// Fontes:
+// https://stackoverflow.com/questions/16463030/how-to-add-facebook-share-button-on-my-website
+// https://stackoverflow.com/questions/21935149/sharing-link-on-whatsapp-from-mobile-website-not-application-for-android
+// https://stackoverflow.com/questions/31356360/share-a-link-via-url-scheme-to-telegram
+// https://stackoverflow.com/questions/5045918/adding-a-share-by-email-link-to-website
+// "mailto:?subject=I wanted you to see this site&amp;body=Check out this site http://www.website.com."
+
+
 logo.addEventListener('click', rolaPagina)
 infolivro.addEventListener('click', rolaPagina)
 nomeVersao.addEventListener('click', rolaPagina)

@@ -1,17 +1,21 @@
 /*
 CSS para estilizar no caso de desktops ou tablets:
 */
-@media only screen and (min-width:600px) {
+@media only screen and (min-width:900px) {
 
-    #imgDesktop{
+    #imgDesktop {
         display: block;
     }
-        
-    #imgMobile{
+
+    #imgMobile {
         display: none;
     }
-    
-    #logo, #infolivro, #nomeVersao, .btPlayPause, .btsMuda {
+
+    #logo,
+    #infolivro,
+    #nomeVersao,
+    .btPlayPause,
+    .btsMuda {
         cursor: pointer;
     }
 
@@ -21,7 +25,7 @@ CSS para estilizar no caso de desktops ou tablets:
 
     #btPlay,
     #btPause {
-        width: 20%;
+        width: 30%;
     }
 
     .btsMuda {
@@ -29,12 +33,7 @@ CSS para estilizar no caso de desktops ou tablets:
     }
 
     .infoLivro {
-        top: 15%;
-    }
-
-    .menu img {
-        width: 5%;
-        cursor: pointer;
+        top: 19%;
     }
 
     .versoes>span {
@@ -53,7 +52,7 @@ CSS para estilizar no caso de desktops ou tablets:
     }
 
     #nomeLivro {
-        font-size: 3em;
+        font-size: 6.5em;
     }
 
     .quadriculaLivro,
@@ -62,12 +61,11 @@ CSS para estilizar no caso de desktops ou tablets:
     }
 
     #nroCapitulo {
-        font-size: 4em;
-        margin: -25px auto;
+        font-size: 8em;
     }
 
     .nomeVersao {
-        font-size: 1.5em;
+        font-size: 2.5em;
     }
 
     .h4 {
@@ -75,9 +73,20 @@ CSS para estilizar no caso de desktops ou tablets:
         margin-top: 20px;
     }
 
+    .icons {
+        width: 20%;
+    }
+
     .cabecalho,
     .cabecalhoCapitulos {
         font-size: 1.5em;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+
+    .menu img {
+        width: 5%;
     }
 
 }

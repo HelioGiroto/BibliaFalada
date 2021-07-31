@@ -13,8 +13,6 @@
 
 ### Opções do menú:
 
-~- **Pausa automática** em x minutos.~
-
 - "Meu **desempenho**" (gráficos).
 
 	- Checkboxes dos capítulos **lidos**
@@ -23,8 +21,6 @@
 
 	- **Exportar** histório de capítulos ouvidos
 	
-	- **Compartilhar** esse site...
-
 	- Ouça a **Rádio J24h**!
 
 	- **Apoie!** esse trabalho.
@@ -53,6 +49,10 @@
 ---
 
 ### DONE:
+
+~- **Compartilhar** esse site...~
+
+~- **Pausa automática** em x minutos.~
 
 - ~Quadrícula em **destaque** no livro e nro de capítulo que está ouvindo.~
 

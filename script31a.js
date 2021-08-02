@@ -71,7 +71,7 @@ nroCapitulo.innerHTML = capitulo
 
 
 // msg de console:
-console.log(`Faixa Abertura: ${abrev} ${capitulo}`)
+console.log(`%c Faixa Abertura: ${abrev} ${capitulo} `, 'background: yellow; color: black')
 
 
 // Engatilha o audio inicial:
@@ -195,7 +195,7 @@ function tocaCapitulo() {
 
     // obtem o nome da faixa atual:
     faixaAtual = `${abrev} ${capitulo}`
-    console.log(`Faixa Atual: ${faixaAtual}`)
+    console.log(`%c Faixa Atual: ${faixaAtual} `, 'background: red; color: black')
 
     // altera a faixa que será engatilhada:
     player.src = `audios/${versao}/${abrev} ${capitulo}.mp3`

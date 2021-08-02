@@ -322,6 +322,10 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
 
 .divDesempenho{}
 
+#pizza1 {
+    width: 100%; 
+}
+
 .cabecalhoPeriodo{
     display: flex;
     flex-flow: row;

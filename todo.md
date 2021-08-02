@@ -2,6 +2,8 @@
 
 ## URL: https://heliogiroto.github.io/BibliaFalada
 
+- Celular landscape - verificar CSS (responsividade).
+
 - Verificar **tradução** das janelas do **menú**.
 
 - Grade do nome do livro **colorida** num gradiente **conforme** ao percentual de audição.
@@ -36,10 +38,10 @@
 
 - Funções de **estatísticas** de audição:
 	- ALERTA: "Faz x dias/semanas/meses que vc não ouve..."; "Parabéns!!"; etc.
-	- Vc já ouviu X caps.
-	- Faltam Y caps.	**- Pizza**.
-	- Faltam Z Horas: Minutos para terminar...
-	- Hoje você ouviu X cap e Y minutos.
+	+ ~Hoje você ouviu X cap e Y minutos.~
+	+ ~Faltam Y caps.~
+	+ ~Faltam Z Horas: Minutos para terminar...~
+		**- Pizza**.
 	- Gráfico dos últimos 10 dias. Média...
 	- Gráfico da semana atual... passada... etc.. Média:...
 	- Gráfico do mês atual... do mês passado... antepassado...

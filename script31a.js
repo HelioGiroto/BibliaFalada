@@ -145,20 +145,21 @@ function gravaTempoDiario() {
     let listaAudicaoMes = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))
     // procura no array correspondente ao dia de hoje o tempo armazenado:
     // abaixo: quando o dia seja 01 até 09:
-    diaHojeSemZero = diaHoje.replace(/^0/, '')
+    let diaHojeSemZero = diaHoje.replace(/^0/, '')
     let tempoDiaHoje = Number(listaAudicaoMes[`${diaHojeSemZero}`])
     // if(tempoDiaHoje === '' || tempoDiaHoje === NaN) tempoDiaHoje = 0
 
     // soma este tempo acima com o tempo de transmissäo da faixa recém-terminada:
     // let tempoAudicaoHoje = duracaoFaixaAtual + tempoDiaHoje
     let tempoAudicaoHoje = tempoFaixaAtual + tempoDiaHoje
+    
+    // Salva na lista no nro de array (item) correspondente:
+    listaAudicaoMes[`${diaHojeSemZero}`] = tempoAudicaoHoje
     // console.log('tempo Fx: ' + tempoFaixaAtual)
     // console.log('ja ouvido hj: ' + tempoDiaHoje)
     // console.log('tot: ' + tempoAudicaoHoje)
-
-    // Salva na lista no nro de array (item) correspondente:
-    listaAudicaoMes[`${diaHojeSemZero}`] = tempoAudicaoHoje
-    console.log(listaAudicaoMes)
+    // console.log(listaAudicaoMes)
+    
     // salva em localStorage:
     localStorage.setItem(`biblia_mes_${mesHoje}`, JSON.stringify(listaAudicaoMes))
 
@@ -327,7 +328,8 @@ function terminaFaixa() {
 
     // Grava acumulando o tempo de audição em localStorage:
     gravaTempoTotal()
-    gravaTempoDiario()
+    // abaixo -- comentado pq já faz isso na função seguinteCapitulo():
+    // gravaTempoDiario()
 
     // Adiciona na lista de localStorage mais um capítulo ouvido!
     adicionaCapituloOuvido()

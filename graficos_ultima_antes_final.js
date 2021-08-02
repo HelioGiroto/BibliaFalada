@@ -64,19 +64,22 @@ function quantoOuviuHoje() {
     // soma quanto ouviu hoje com o tempo de duração da faixa atual:
     qtoOuviuHoje = qtoOuviuHoje + tempoFaixaAtual
 
-    // vai buscar os valores de hora, minuto e segundo de total de segundos (qtoOuviuHoje)
-    let tempoFatiado = fatiaTempo(qtoOuviuHoje)
-
     // se não chega a 60 minutos:
-    // let horas = Math.trunc(qtoOuviuHoje / 3600)
-    if (tempoFatiado[0] === 0) {
-        tempoFatiado[0] = ''
+    let horas = Math.trunc(qtoOuviuHoje / 3600)
+    if (horas === 0) {
+        horas = ''
     } else {
-        tempoFatiado[0] = `${tempoFatiado[0]}h, `
+        horas = `${horas}h, `
     }
 
+    // obtem minutos que não chegaram a completar 1 hora (resto da divisão do Total de Segundos por 60 segundos):
+    let minutos = Math.trunc((qtoOuviuHoje / 60) % 60)
+
+    // obtem segundos que não chegaram a completar 1 minuto:
+    let segundos = Math.trunc(qtoOuviuHoje % 60)
+
     // imprime qto tempo já ouvir hoje em ('#totalDiario'):
-    document.querySelector('#totalDiario').innerHTML = `${tempoFatiado[0]}${tempoFatiado[1]} min e ${tempoFatiado[2]} seg.`
+    document.querySelector('#totalDiario').innerHTML = `${horas}${minutos} min e ${segundos} seg.`
 
 }
 

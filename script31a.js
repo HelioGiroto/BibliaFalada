@@ -144,13 +144,21 @@ function gravaTempoDiario() {
     // carrega a lista de localStorage
     let listaAudicaoMes = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))
     // procura no array correspondente ao dia de hoje o tempo armazenado:
-    let tempoDiaHoje = Number(listaAudicaoMes[`${diaHoje}`])
+    // abaixo: quando o dia seja 01 até 09:
+    diaHojeSemZero = diaHoje.replace(/^0/, '')
+    let tempoDiaHoje = Number(listaAudicaoMes[`${diaHojeSemZero}`])
+    // if(tempoDiaHoje === '' || tempoDiaHoje === NaN) tempoDiaHoje = 0
+
     // soma este tempo acima com o tempo de transmissäo da faixa recém-terminada:
     // let tempoAudicaoHoje = duracaoFaixaAtual + tempoDiaHoje
     let tempoAudicaoHoje = tempoFaixaAtual + tempoDiaHoje
+    // console.log('tempo Fx: ' + tempoFaixaAtual)
+    // console.log('ja ouvido hj: ' + tempoDiaHoje)
+    // console.log('tot: ' + tempoAudicaoHoje)
 
     // Salva na lista no nro de array (item) correspondente:
-    listaAudicaoMes[`${diaHoje}`] = tempoAudicaoHoje
+    listaAudicaoMes[`${diaHojeSemZero}`] = tempoAudicaoHoje
+    console.log(listaAudicaoMes)
     // salva em localStorage:
     localStorage.setItem(`biblia_mes_${mesHoje}`, JSON.stringify(listaAudicaoMes))
 
@@ -195,9 +203,7 @@ function tocaCapitulo() {
     player.play()
 
     // rola página ao topo:
-    document.querySelector('#topo').scrollIntoView({
-        behavior: 'smooth'
-    });
+    rolaTopo()
 }
 
 function pausaCapitulo() {
@@ -558,15 +564,22 @@ mostraGradeLivros()
 negritaCapitulo()
 
 
-function rolaPagina() {
+function rolaMenu() {
     // mostraGradeLivros()
     document.querySelector('.h4opcoes').scrollIntoView({
         behavior: 'smooth'
     });
 }
 
+function rolaTopo(){
+    document.querySelector('#topo').scrollIntoView({
+        behavior: 'smooth'
+    });
+}
+
 
 function abreDivPausa() {
+    rolaMenu()
     divPausa.classList.remove('oculta')
     divDesempenho.classList.add('oculta')
     divMais.classList.add('oculta')
@@ -575,14 +588,18 @@ function abreDivPausa() {
 }
 
 function abreDivDesempenho() {
+    rolaMenu()
     divDesempenho.classList.remove('oculta')
     divPausa.classList.add('oculta')
     divMais.classList.add('oculta')
     pagina2.classList.add('oculta')
     divCompartilha.classList.add('oculta')
+    // função de graficos.js:
+    calculaMetricas()
 }
 
 function abreDivMais() {
+    rolaMenu()
     divMais.classList.remove('oculta')
     divPausa.classList.add('oculta')
     divDesempenho.classList.add('oculta')
@@ -591,6 +608,7 @@ function abreDivMais() {
 }
 
 function abreDivCompartilha() {
+    rolaMenu()
     divCompartilha.classList.remove('oculta')
     divMais.classList.add('oculta')
     divPausa.classList.add('oculta')
@@ -614,9 +632,7 @@ function programaPausa() {
     // Mostra div capítulos:
     pagina2.classList.remove('oculta')
     // rola página ao topo:
-    document.querySelector('#topo').scrollIntoView({
-        behavior: 'smooth'
-    });
+    rolaTopo()
 }
 
 // clicando no bt de programar, chama a função programaPausa:
@@ -659,9 +675,7 @@ fechaJanela.forEach(a => {
         // esconde janela da opção de menú aberta:
         document.querySelector(`.${div}`).classList.add('oculta')
         // rola página ao topo do site:
-        document.querySelector('#topo').scrollIntoView({
-            behavior: 'smooth'
-        });
+        rolaTopo()
     })
 })
 
@@ -710,9 +724,9 @@ listaRedes.forEach((e,i)=>{
 // https://stackoverflow.com/questions/4782068/can-i-set-subject-content-of-email-using-mailto
 
 
-logo.addEventListener('click', rolaPagina)
-infolivro.addEventListener('click', rolaPagina)
-nomeVersao.addEventListener('click', rolaPagina)
+logo.addEventListener('click', rolaMenu)
+infolivro.addEventListener('click', rolaMenu)
+nomeVersao.addEventListener('click', rolaMenu)
 
 
 btPlay.addEventListener('click', tocaCapitulo)

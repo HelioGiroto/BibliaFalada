@@ -2,6 +2,8 @@
 
 ## URL: https://heliogiroto.github.io/BibliaFalada
 
+- Verificar **tradução** das janelas do **menú**.
+
 - Grade do nome do livro **colorida** num gradiente **conforme** ao percentual de audição.
 
 - Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos para tablets e desktop ou input para busca - ???
@@ -17,7 +19,7 @@
 
 	- Checkboxes dos capítulos **lidos**
 
-- Mais recursos... (details tags):
+- **Mais** recursos... (details tags):
 
 	- **Exportar** histório de capítulos ouvidos
 	
@@ -34,13 +36,14 @@
 
 - Funções de **estatísticas** de audição:
 	- ALERTA: "Faz x dias/semanas/meses que vc não ouve..."; "Parabéns!!"; etc.
-	- Hoje você ouviu X cap e Y minutos.
 	- Vc já ouviu X caps.
 	- Faltam Y caps.	**- Pizza**.
 	- Faltam Z Horas: Minutos para terminar...
-	- Gráfico do mês atual
-	- Gráfico do mês passado... antepassado...
-	- Gráfico dos últimos 10 dias.
+	- Hoje você ouviu X cap e Y minutos.
+	- Gráfico dos últimos 10 dias. Média...
+	- Gráfico da semana atual... passada... etc.. Média:...
+	- Gráfico do mês atual... do mês passado... antepassado...
+	- Livros mais lidos (Em porcentagem) ? 
 
 	- CDN Google Charts baixado: *loader.js*
 

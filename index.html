@@ -103,7 +103,87 @@
         </div>
 
         <div class="divDesempenho oculta">
-            <h4 class="h4Desempenho h4 lato">EM BREVE: Meu Desempenho - Gráficos!</h4>
+            <h4 class="h4Desempenho h4 lato">MEU DESEMPENHO</h4>
+
+            <div class="totalOuvido">
+                    <div class="jaOuviu">
+                        <br>
+                        <center>
+                            <h2 class="cabecalhoGrafico">TOTAL:</h2>
+                            <p>Até agora você já ouviu:</p>
+                            <h2><span id="totalCapitulos">200</span> capítulos</h2>
+                            <p>de toda a "Bíblia Falada"!</p>
+                            <br>
+                            <p>Num tempo total de:</p>
+                            <h2><span id="horasOuvido">1</span>hs, 
+                                <span id="minutosOuvido">29</span>min e 
+                                <span id="segundosOuvido">27</span>seg.
+                            </h2>
+                        </center>
+                    </div>
+                    <div class="areaGraficoTotal">
+                        <center>
+                            <img src="pie.png" alt="">
+                        </center>
+                    </div>
+                    <div class="faltaOuvir">
+                        <center>
+                            <p>Nos últimos 10 dias você mantém uma...</p>
+                            <h3>média de 60 minutos</h3>
+                            <p>cada vez que escuta a "Bíblia Falada".</p>
+                            <br>
+                            <br>
+                            <p>Para completar toda a Bíblia, faltam:</p>
+                            <h3><span id="faltaOuvirCapitulos">990</span> capítulos</h3>
+                            <p>ou</p>
+                            <h3>
+                                <span id="horasFaltam">71</span> hs, 
+                                <span id="minutosFaltam">30</span> min e 
+                                <span id="segundosFaltam">10</span> seg.
+                            </h3>
+                            <p>aproximadamente.</p>
+                            <br>
+                            <p>Você pode completar isso em:</p>
+                            <h2>70 dias</h2>
+                            <p>mantendo essa mesma média.</p>
+                        </center>
+                    </div>
+            </div>
+
+            <br><hr><br>
+
+            <div class="hojeOuvido">
+                <center>
+                    <h2>HOJE:</h2>
+                    <p>Hoje você ouviu:</p>
+                    <h2> <span id="totalDiario">23</span> </h2>
+                    <p>minutos.</p>
+                    <br>
+                    <p><strong><span class="mediaHoje">Y</span></strong> minutos atrás/à frente</p>
+                    <p>da média diária.</p>
+                </center>
+            </div>
+
+            <br><hr><br>
+
+            <div class="periodosOuvidos">
+                <center>
+                    <h2>OUTROS GRÁFICOS:</h2>
+                    <div class="cabecalhoPeriodo">
+                        <div class="semanasOuvido">SEMANAS</div>
+                        <div class="10diasOuvido">ÚLT. 10 DIAS</div>
+                        <div class="mesesOuvido">MESES</div>
+                    </div>
+                    <div class="subtitulo"><small>Subtítulo sobre a opção acima.</small></div>
+                    <div class="areaGraficoPeriodo">
+                        <img src="barDias.png" alt="" width="50%">
+                        <img src="bar.png" alt="" width="50%">
+                    </div>
+                </center>
+            </div>
+
+            <br>
+
             <img src="close.png" class="fechaJanela">
         </div>
 
@@ -130,6 +210,7 @@
     </div>
 
     <script src="localStorage20.js"></script>
+    <script src="_graficos.js"></script>
     <script src="BibliaOBJ26.js"></script>
     <script src="script31a.js"></script>
 

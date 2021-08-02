@@ -320,6 +320,21 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     cursor: pointer;
 }
 
+.divDesempenho{}
+
+.cabecalhoPeriodo{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+}
+
+.cabecalhoPeriodo div{
+    width: 33%;
+    padding: 5px 0;
+    font-weight: bold;
+    border-style: groove;
+}
+
 .fechaJanela {
     margin-top: 30px;
     padding-bottom: 30px;

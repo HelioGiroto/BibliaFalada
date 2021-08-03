@@ -671,7 +671,7 @@ fechaJanela.forEach(a => {
     let div = a.parentElement.classList[0];
     // em cada botão adiciona evento:
     a.addEventListener('click', () => {
-        console.log(div)
+        // console.log(div)
         // mostra grid de livros:
         pagina2.classList.remove('oculta')
         // esconde janela da opção de menú aberta:

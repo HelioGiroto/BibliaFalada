@@ -41,8 +41,8 @@
 	+ ~Hoje você ouviu X cap e Y minutos.~
 	+ ~Faltam Y caps.~
 	+ ~Faltam Z Horas: Minutos para terminar...~
-		**- Pizza**.
-	- Gráfico dos últimos 10 dias. Média...
+		~**- Pizza**.~
+	- ~Gráfico dos últimos 10 dias. Média...~
 	- Gráfico da semana atual... passada... etc.. Média:...
 	- Gráfico do mês atual... do mês passado... antepassado...
 	- Livros mais lidos (Em porcentagem) ? 

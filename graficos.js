@@ -123,10 +123,14 @@ function piechart() {
         let options = {
             // is3D: true,
             pieHole: 0.4,
-            'legend':'bottom',
+            'legend': 'bottom',
             'width': '100%',
-            'height': 300,
-            'chartArea': {top: 0, width: '98%', height: '80%'},
+            'height': 310,
+            'chartArea': {
+                top: 20,
+                width: '98%',
+                height: '80%'
+            },
             colors: ['#ff6666', '#668cff']
         };
 
@@ -135,8 +139,124 @@ function piechart() {
     }
 }
 
+
+function ult10dias() {
+    // obtem nro do mes:
+    obtemDataHoje()
+
+    // manipula string do nro do mês atual e anterior:
+    let mesAnt = Number(mesHoje) - 1
+    if (mesAnt < 10) mesAnt = `0${mesAnt}`
+
+    // obtem dados da lista do mês atual:
+    let listaMesAtual = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))
+    let listaMesAnterior = JSON.parse(localStorage.getItem(`biblia_mes_${mesAnt}`))
+
+    // reseta listas:
+    let novaListaMesAtual = []
+    let novaListaMesAnterior = []
+
+    // ABAIXO:
+    // if(e) significa se o espaço da lista tem algum conteúdo...
+    // O formato de saida para appendar às listas acima (no caso: ${i}/${mesHoje} é para sair com a data formatada d/mm):
+    listaMesAtual.map((e, i) => {
+        if (e) {
+            let subLista = [`${i}/${mesHoje}`, Number((e/60).toFixed(2))]
+            novaListaMesAtual.push(subLista)
+        }
+    })
+
+
+    listaMesAnterior.map((e, i) => {
+        if (e) {
+            let subLista = [`${i}/${mesAnt}`, Number((e/60).toFixed(2))]
+            novaListaMesAnterior.push(subLista)
+        }
+    })
+
+    /*
+    
+    */
+
+
+    /* 
+    // formato antes do mesmo que está ACIMA:
+    
+    listaMesAnterior.map((e,i)=>{
+        if(e){
+            let subLista = [`${i}`, mesAnt, e]
+            novaListaMesAnterior.push(subLista)
+        }
+    })
+    
+    //  saida: ["26", "07", 20.842181]
+    */
+
+    // ABAIXO: Não é necessário, senão o gráfico tb ficará ao revés.
+    // coloca em ordem inversa de dias: 31, 30, 29, 28.... 1.
+    // novaListaMesAtual = novaListaMesAtual.reverse()
+    // novaListaMesAnterior = novaListaMesAnterior.reverse()
+
+
+    // faz um merge das listas dos últimos dias do mês atual + mês anterior
+    let listaUltDias = [...novaListaMesAnterior, ...novaListaMesAtual]
+
+    // de toda a lista acima, pega apenas 10 itens (dias):
+    // usa reverse duas vezes para obter apenas os últimos 10 da lista e não os primeiros 10 da lista:
+    let listaUlt10dias = listaUltDias.reverse().filter((e, i) => i < 10).reverse()
+
+    console.log(typeof(listaUlt10dias))
+    console.log('lista 10 dias atrás: ', listaUlt10dias)
+
+    // para ser aceito no Google Charts, é preciso esta linha como cabeçalho:
+    listaUlt10dias.unshift(['Dia/Mês', 'Minutos'])
+
+    // e o nro de index (do dia?)
+    // listaMesAtual.reverse().filter(a=>a)
+    // listaMesAnterior.reverse().filter(a=>a)
+
+    google.charts.load("current", {
+        packages: ["corechart"]
+    });
+
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        let data = google.visualization.arrayToDataTable(
+            listaUlt10dias
+        );
+
+        let options = {
+            title: 'ÚLTIMOS 10 DIAS - EM MINUTOS',
+            legend: {
+                position: 'none'
+            },
+            colors: ['#e7711c'],
+            'width': '98%',
+            'height': '50%',
+            'chartArea': {
+                width: '90%',
+                height: '80%'
+            },
+        };
+
+        let chart = new google.visualization.ColumnChart(document.querySelector('#barras10dias'));
+        chart.draw(data, options);
+    }
+}
+
+// quando muda a orientação do celular, chama novamente a função ult10dias para ajustar ao tamanho responsivo o bar column plot:
+// https://stackoverflow.com/questions/4917664/detect-viewport-orientation-if-orientation-is-portrait-display-alert-message-ad
+window.addEventListener("orientationchange", ()=>{
+    abreDivDesempenho()
+    ult10dias()
+    // ERRO - corrigir melhor.
+})
+
+
 // https://developers.google.com/chart/interactive/docs/gallery/piechart?hl=en#data-format
 // http://www.duncanstruthers.design/ddv/tutorials/google-charts/responsive-google-charts-api/
+// https://developers.google.com/chart/interactive/docs/gallery/columnchart?hl=en
 
 function bars() {}
 
@@ -158,4 +278,5 @@ function calculaMetricas() {
     faltaOuvir(totalTempo)
 
     piechart()
+    ult10dias()
 }

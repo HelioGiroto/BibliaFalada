@@ -126,14 +126,20 @@ function piechart() {
             pieHole: 0.5,
             colors: ['#ff6666', '#668cff'],
             legend: 'bottom',
-            width: 320, // iPhone aqui é 360
+            width: window.innerWidth,
             height: 320,
             chartArea: {
                 top: '7%',
-                width: '80%',
+                left: 0,
+                width: '90%',
                 height: '80%'
             },
         };
+
+        // if(window.innerWidth < 350){ options.width = 300 }
+        // if(window.innerWidth > 380){ options.width = 380 }
+        // if(window.innerWidth > 450){ options.width = window.innerWidth }
+        // if(window.innerWidth > 380){ options.width = window.innerWidth }
 
         let chart = new google.visualization.PieChart(document.querySelector('#pizza1'));
         chart.draw(data, options);
@@ -247,7 +253,7 @@ function ult10dias() {
                 position: 'none'
             },
             colors: ['#e7711c'],
-            'width': '90%',
+            'width': window.innerWidth,
             'height': '70%',
             'chartArea': {
                 width: '80%',
@@ -266,7 +272,7 @@ function ult10dias() {
     }
 }
 
-// para ajustar:
+// clica no gráfico para ajustar:
 document.querySelector('#barras10dias').addEventListener('click', ()=>{
     abreDivDesempenho()
     document.querySelector('#barras10dias').scrollIntoView({
@@ -275,17 +281,17 @@ document.querySelector('#barras10dias').addEventListener('click', ()=>{
     document.querySelector('#ajuste2').style.display = 'none'
 })
 
-
+/* 
 // quando muda a orientação do celular, chama novamente a função ult10dias para ajustar ao tamanho responsivo o bar column plot:
 // https://stackoverflow.com/questions/4917664/detect-viewport-orientation-if-orientation-is-portrait-display-alert-message-ad
 window.addEventListener("orientationchange", () => {
-    abreDivDesempenho()
+    piechart()
     // ult10dias()
     // calculaMetricas()
     // ERRO - corrigir melhor.
 })
 
-
+ */
 // https://developers.google.com/chart/interactive/docs/gallery/piechart?hl=en#data-format
 // http://www.duncanstruthers.design/ddv/tutorials/google-charts/responsive-google-charts-api/
 // https://developers.google.com/chart/interactive/docs/gallery/columnchart?hl=en

@@ -423,12 +423,17 @@ summary>h4 {
 }
 
 .maisGraficos{
-    margin-bottom: 90px;
+    margin-bottom: 100px;
+}
+
+#ajuste1{
+    color: brown;
 }
 
 #ajuste2{
     text-align: center;
     padding-top: 10px;
+    color: brown;
 }
 
 .fechaJanela {

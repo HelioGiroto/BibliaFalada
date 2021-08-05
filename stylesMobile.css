@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    max-width: 100%;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -275,10 +276,10 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
 }
 
 details {
-    width: 96%;
+    width: 100%;
     background: burlywood;
     margin-top: 10px;
-    padding: 7px 12px;
+    padding: 7px 0;
 }
 
 details div {
@@ -354,8 +355,8 @@ summary>h4 {
 
 .googleImagem{
     display: flex;
-    justify-content: flex-end;
-    width: 30%;
+    justify-content: center;
+    width: 25%;
     height: 80px;
 }
 
@@ -363,11 +364,10 @@ summary>h4 {
     display: flex;
     justify-content: center;
     width: 70%;
-    padding: 5px 15px;
+    padding: 5px 5px;
 }
 
 #googleAgenda {
-  
 }
 
 
@@ -393,12 +393,12 @@ summary>h4 {
 
 .divDesempenho {}
 
-
 .areaGraficoTotal {}
 
 
 #pizza1 {
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
     margin-top: -25px;
 }
 
@@ -407,6 +407,7 @@ summary>h4 {
     flex-flow: row;
     justify-content: space-around;
     margin-top: -5px;
+    margin-bottom: -10px;
 }
 
 .cabecalhoPeriodo div {
@@ -419,6 +420,15 @@ summary>h4 {
 
 #ult10Ouvido {
     background: chocolate;
+}
+
+.maisGraficos{
+    margin-bottom: 90px;
+}
+
+#ajuste2{
+    text-align: center;
+    padding-top: 10px;
 }
 
 .fechaJanela {
@@ -454,6 +464,10 @@ summary>h4 {
 
 .negrito900 {
     font-weight: 900;
+}
+
+.peq{
+    font-size: .65em;
 }
 
 .centraliza {

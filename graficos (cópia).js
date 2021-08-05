@@ -117,19 +117,19 @@ function piechart() {
     function drawChart() {
         let data = google.visualization.arrayToDataTable([
             ['Dado', 'Valor'],
-            ['Falta ouvir (em minutos):', faltaOuvirTotal / 60],
-            ['Já ouvido (em minutos):', totalTempo / 60]
+            ['Falta ouvir', Math.trunc(faltaOuvirTotal / 60)],
+            ['Já ouvido', Math.trunc(totalTempo / 60)]
         ]);
 
         let options = {
             // is3D: true,
             pieHole: 0.4,
             'legend': 'bottom',
-            'width': '100%',
+            'width': '98%',
             'height': 310,
             'chartArea': {
-                top: 20,
-                width: '98%',
+                top: '7%',
+                width: '80%',
                 height: '80%'
             },
             colors: ['#ff6666', '#668cff']

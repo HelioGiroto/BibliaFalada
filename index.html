@@ -12,9 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="stylesMobile4.css">
-    <link rel="stylesheet" href="stylesTablet4.css">
-    <link rel="stylesheet" href="stylesDesktop4.css">
+    <link rel="stylesheet" href="stylesMobile.css">
+    <link rel="stylesheet" href="stylesTablet.css">
+    <link rel="stylesheet" href="stylesDesktop.css">
 
     <title>A Bíblia Falada</title>
 
@@ -61,14 +61,14 @@
     <div class="pagina2">
         <div class="escolherVersao">
             <h3 class="h4Escolher h3 lato">ESCOLHA A VERSÃO/TRADUÇÃO:</h4>
-            <div class="versoes">
-                <span class="acf lato">ACF</span>
-                <input type="radio" id="acf" value="ACF" name="versao">
-                <span class="nvi lato">NVI</span>
-                <input type="radio" id="nvi" value="NVI" name="versao">
-                <span class="rv lato">RV</span>
-                <input type="radio" id="rv" value="RV" name="versao">
-            </div>
+                <div class="versoes">
+                    <span class="acf lato">ACF</span>
+                    <input type="radio" id="acf" value="ACF" name="versao">
+                    <span class="nvi lato">NVI</span>
+                    <input type="radio" id="nvi" value="NVI" name="versao">
+                    <span class="rv lato">RV</span>
+                    <input type="radio" id="rv" value="RV" name="versao">
+                </div>
         </div>
 
         <div class="grades" id="grades">
@@ -107,10 +107,11 @@
             <div class="googleAgenda">
                 <div class="googleImagem"><img id='googleAgenda' src="googleCalendar.png" alt=""></div>
                 <div class="googleTexto">
-                    <p class="lato">Clique ao lado no ícone do Google Agenda para programar um lembrete diário no seu celular!*</p>
+                    <p class="lato">Clique ao lado no ícone do Google Agenda para programar um lembrete diário no seu
+                        celular!*</p>
                 </div>
             </div>
-        
+
             <br>
             <small class="lato centraliza">* Não se esqueça de marcar a opção:</small>
             <small class="lato centraliza negrito">"SE REPETE: TODOS OS DIAS"</small>
@@ -122,7 +123,9 @@
             <h3 class="h4Desempenho h3 lato">MEU DESEMPENHO</h3>
 
             <details class="total">
-                <summary><h4 class="lato">DESEMPENHO TOTAL</h4></summary>
+                <summary>
+                    <h4 class="lato">DESEMPENHO TOTAL</h4>
+                </summary>
 
                 <div>
                     <h4>Até agora você já ouviu:</h4>
@@ -140,29 +143,32 @@
                     <h3>Gráfico</h3>
                     <small>(Quantidade de tempo ouvido - em minutos)</small>
                     <div id="pizza1"></div><br>
+                    <p id='ajuste1' class="peq lato negrito">(Clique no gráfico para ajustá-lo à tela)</p>
                 </div>
             </details>
 
             <details class="media">
-                <summary><h4 class="lato">MÉDIA E ESTIMATIVAS</h4></summary>
+                <summary>
+                    <h4 class="lato">MÉDIA E ESTIMATIVAS</h4>
+                </summary>
                 <div>
                     <p>O tempo médio dos últimos 10 dias</p>
                     <p>que você ouviu a "Bíblia Falada" foi de:</p>
                     <h2><span id="media">X</span> minutos.</h3>
-                    <br>
+                        <br>
 
-                    <p>Se mantiver essa mesma média,</p>
-                    <p>você conseguirá ouvir toda a Bíblia em:</p>
-                    <h2><span id="faltaMedia">Y</span> dias!</h2>
-                    <br>
+                        <p>Se mantiver essa mesma média,</p>
+                        <p>você conseguirá ouvir toda a Bíblia em:</p>
+                        <h2><span id="faltaMedia">Y</span> dias!</h2>
+                        <br>
 
-                    <div class="abrirLembrete">
-                        <p><strong>A FÉ VEM PELO OUVIR A PALAVRA!</strong></p>
-                        <p>Se quiser, pode programar um aviso diário</p>
-                        <p>para lembrar você num horário que escolher!</p>
-                        <p>CLIQUE AQUI PARA AGENDAR</p>
-                    </div>
-                    <br>
+                        <div class="abrirLembrete">
+                            <p><strong>A FÉ VEM PELO OUVIR A PALAVRA!</strong></p>
+                            <p>Se quiser, pode programar um aviso diário</p>
+                            <p>para lembrar você num horário que escolher!</p>
+                            <p>CLIQUE AQUI PARA AGENDAR</p>
+                        </div>
+                        <br>
                 </div>
             </details>
 
@@ -189,9 +195,8 @@
                     <div id="ult10Ouvido">ÚLT. 10 DIAS</div>
                     <div id="mesesOuvido">MENSAL</div>
                 </div>
-                <div class="subtitulo oculta"><small>Subtítulo sobre a opção acima.</small></div>
-                <div class="areaGraficoPeriodo" id="barras10dias">
-                </div>
+                <div class="areaGraficoPeriodo" id="barras10dias"></div>
+                <p id='ajuste2' class="peq lato negrito">(Clique no gráfico para ajustá-lo à tela)</p>
                 <br>
             </details>
 
@@ -200,18 +205,18 @@
 
         <div class="divCompartilha oculta">
             <h3 class="h4Compartilha h3 lato">COMPARTILHE A BÍBLIA FALADA:</h4>
-            <div class="redes">
-                <div>
-                    <img class='icons' id='whatsapp' src="whatsapp.png" alt="whatsapp">
-                    <img class='icons' id='telegram' src="telegram.png" alt="telegram">
-                </div>
-                <div>
-                    <img class='icons' id='facebook' src="facebook.png" alt="facebook">
-                    <img class='icons' id='gmail' src="gmail.png" alt="gmail">
-                </div>
+                <div class="redes">
+                    <div>
+                        <img class='icons' id='whatsapp' src="whatsapp.png" alt="whatsapp">
+                        <img class='icons' id='telegram' src="telegram.png" alt="telegram">
+                    </div>
+                    <div>
+                        <img class='icons' id='facebook' src="facebook.png" alt="facebook">
+                        <img class='icons' id='gmail' src="gmail.png" alt="gmail">
+                    </div>
 
-            </div>
-            <img src="close.png" class="fechaJanela">
+                </div>
+                <img src="close.png" class="fechaJanela">
         </div>
 
         <div class="divMais oculta">
@@ -220,11 +225,12 @@
         </div>
     </div>
 
-    <script src="localStorage20.js"></script>
-    <script src="BibliaOBJ26.js"></script>
+    <script src="localStorage.js"></script>
+    <script src="BibliaOBJ.js"></script>
     <script src="loader.js"></script>
-    <script src="graficos4.js"></script>
-    <script src="script4.js"></script>
+    <script src="graficos.js"></script>
+    <script src="script.js"></script>
+    <script src="history5.js"></script>
 
 </body>
 

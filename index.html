@@ -113,8 +113,8 @@
             </div>
 
             <br>
-            <small class="lato centraliza">* Não se esqueça de marcar a opção:</small>
-            <small class="lato centraliza negrito">"SE REPETE: TODOS OS DIAS"</small>
+            <small class="lato centraliza">* Não se esqueça de marcar na opção:</small>
+            <small class="lato centraliza negrito">"REPETIR: TODOS OS DIAS"</small>
             <img src="close.png" class="fechaJanela">
 
         </div>
@@ -179,9 +179,9 @@
                 <div>
                     <p>Hoje você ouviu:</p>
                     <h2><span id="totalDiario">23</span></h2>
-                    <p>...e está</p>
-                    <h2><span class="mediaHoje">Z</span> minutos</h2>
-                    <p><span id="frenteOuTras">[atrás] || [à frente]</span> da média diária.</p>
+                    <p>... e está a</p>
+                    <h2><span id="mediaHoje">Z</span> minutos</h2>
+                    <p><span id="frenteOuTras" class="negrito">W</span> da média diária.</p>
                     <br>
                 </div>
             </details>
@@ -196,8 +196,12 @@
                     <div id="mesesOuvido">MENSAL</div>
                 </div>
                 <div class="areaGraficoPeriodo" id="barras10dias"></div>
-                <p id='ajuste2' class="peq lato negrito">(Clique no gráfico para ajustá-lo à tela)</p>
-                <br>
+                <p id='ajuste2' class="peq lato negrito oculta">(Clique no gráfico se precisar ajustá-lo melhor à tela)</p>
+                <h4 class="lato" id="escolhaBarra">Escolha o tipo de gráfico:</h4>
+                <div class="btsMudaBarra">
+                    <img class="mudaBarra" id="barrasV" src="bar_vertical.png" alt="">
+                    <img class="mudaBarra" id="barrasH" src="bar_horizontal.png" alt="">
+                </div>
             </details>
 
             <img src="close.png" class="fechaJanela">
@@ -230,7 +234,7 @@
     <script src="loader.js"></script>
     <script src="graficos.js"></script>
     <script src="script.js"></script>
-    <script src="history5a.js"></script>
+    <script src="history5b.js"></script>
 
 </body>
 

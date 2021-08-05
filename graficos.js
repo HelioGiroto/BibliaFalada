@@ -5,7 +5,7 @@
 
 // Autor: Hélio Giroto
 
-let totalCapOuvidos, faltaOuvirTotal, totalTempo
+let totalCapOuvidos, faltaOuvirTotal, totalTempo, qtoOuviuHoje, media, relacaoMedia
 
 function fatiaTempo(valor) {
     // obtem quantas horas completas o usuário ouviu a Bíblia:
@@ -32,7 +32,7 @@ function totalTempoOuvido(valor) {
     // chama função:
     let tempoFatiado = fatiaTempo(valor)
 
-    // imprime qto tempo já ouvir hoje em ('#tempoOuvido'):
+    // imprime qto tempo já ouviu hoje em ('#tempoOuvido'):
     let impressao = imprimeFatiado(tempoFatiado)
     document.querySelector('#tempoOuvido').innerHTML = `${impressao[0]}${impressao[1]}${impressao[2]}`
 }
@@ -65,7 +65,7 @@ function quantoOuviuHoje() {
     let diaSemZero = diaHoje.replace(/^0/, '')
 
     // obtem da lista${mes}[dia]
-    let qtoOuviuHoje = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))[diaSemZero]
+    qtoOuviuHoje = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))[diaSemZero]
 
     // soma quanto ouviu hoje com o tempo de duração da faixa atual:
     qtoOuviuHoje = qtoOuviuHoje + tempoFaixaAtual
@@ -75,7 +75,11 @@ function quantoOuviuHoje() {
 
     // imprime qto tempo em ('#totalDiario'):
     let impressao = imprimeFatiado(tempoFatiado)
-    document.querySelector('#totalDiario').innerHTML = `${impressao[0]}${impressao[1]}${impressao[2]}`
+    if(qtoOuviuHoje == 0){
+        document.querySelector('#totalDiario').innerHTML = `nenhum capítulo!`
+    } else {
+        document.querySelector('#totalDiario').innerHTML = `${impressao[0]}${impressao[1]}${impressao[2]}`
+    }
 }
 
 
@@ -147,7 +151,7 @@ function piechart() {
 }
 
 // para ajustar:
-document.querySelector('#pizza1').addEventListener('click', ()=>{
+document.querySelector('#pizza1').addEventListener('click', () => {
     abreDivDesempenho()
     document.querySelector('#pizza1').scrollIntoView({
         behavior: 'smooth'
@@ -183,7 +187,6 @@ function ult10dias() {
         }
     })
 
-
     listaMesAnterior.map((e, i) => {
         if (e) {
             let subLista = [`${i}/${mesAnt}`, Math.trunc(e / 60)]
@@ -191,11 +194,6 @@ function ult10dias() {
             novaListaMesAnterior.push(subLista)
         }
     })
-
-    /*
-    
-    */
-
 
     /* 
     // formato antes do mesmo que está ACIMA:
@@ -223,9 +221,43 @@ function ult10dias() {
     // usa reverse duas vezes para obter apenas os últimos 10 da lista e não os primeiros 10 da lista:
     let listaUlt10dias = listaUltDias.reverse().filter((e, i) => i < 10).reverse()
 
-    console.log(typeof (listaUlt10dias))
-    console.log('lista 10 dias atrás: ', listaUlt10dias)
+    // console.log(typeof (listaUlt10dias))
+    // console.log('lista 10 dias atrás: ', listaUlt10dias)
 
+    // reseta média (é variável global):
+    media = 0
+
+    // Cria lista para obter dados do tempo dos 10 últimos dias: 
+    let tempo10dias = []
+
+    // pega da lista de dados listaUlt10dias somente o valor do tempo (sem data):
+    listaUlt10dias.map(a=>tempo10dias.push(a[1]))
+    console.log(listaUlt10dias)
+
+    // soma total do tempo da lista:
+    let total10dias = tempo10dias.reduce((total,cada)=>total + cada, 0)
+    console.log(total10dias)
+
+    media = Math.round(total10dias / 10)
+
+    // imprime em tela na details .media:
+    document.querySelector('#media').innerHTML = media
+
+
+    // hoje em relação com a média. Média está em minutos, qtoOuviuHoje está em segundos:
+    relacaoMedia = Math.round((qtoOuviuHoje/60) - media)
+
+    // imprime valor e frase:
+    if(relacaoMedia < 0){
+        document.querySelector('#frenteOuTras').style.color = 'red'
+        document.querySelector('#frenteOuTras').innerHTML = "atrás"
+        document.querySelector('#mediaHoje').innerHTML = relacaoMedia * -1
+    } else{
+        document.querySelector('#frenteOuTras').style.color = 'green'
+        document.querySelector('#frenteOuTras').innerHTML = "a frente"
+        document.querySelector('#mediaHoje').innerHTML = relacaoMedia
+    }
+    
     // para ser aceito no Google Charts, é preciso esta linha como cabeçalho:
     listaUlt10dias.unshift(['Dia/Mês', 'Minutos'])
 
@@ -267,13 +299,35 @@ function ult10dias() {
 
         // define tipo gráfico e dispara na div escolhida:
         // let chart = new google.visualization.ColumnChart(document.querySelector('#barras10dias'));
-        let chart = new google.visualization.BarChart(document.querySelector('#barras10dias'));
-        chart.draw(data, options);
+        // let chart = new google.visualization.BarChart(document.querySelector('#barras10dias'));
+        // chart.draw(data, options);
+
+        let chart
+
+        // muda para gráfico de colunas (barras verticais):
+        document.querySelector('#barrasV').addEventListener('click', () => {
+            document.querySelector('#barrasV').classList.add('oculta')
+            document.querySelector('#barrasH').classList.remove('oculta')
+            document.querySelector('#escolhaBarra').classList.add('oculta')
+            document.querySelector('#ajuste2').classList.remove('oculta')
+            chart = new google.visualization.ColumnChart(document.querySelector('#barras10dias'))
+            chart.draw(data, options)
+        })
+
+        // muda para gráfico de barras horizontais:
+        document.querySelector('#barrasH').addEventListener('click', () => {
+            document.querySelector('#barrasH').classList.add('oculta')
+            document.querySelector('#barrasV').classList.remove('oculta')
+            document.querySelector('#escolhaBarra').classList.add('oculta')
+            document.querySelector('#ajuste2').classList.remove('oculta')
+            chart = new google.visualization.BarChart(document.querySelector('#barras10dias'))
+            chart.draw(data, options)
+        })
     }
 }
 
 // clica no gráfico para ajustar:
-document.querySelector('#barras10dias').addEventListener('click', ()=>{
+document.querySelector('#barras10dias').addEventListener('click', () => {
     abreDivDesempenho()
     document.querySelector('#barras10dias').scrollIntoView({
         behavior: 'smooth'

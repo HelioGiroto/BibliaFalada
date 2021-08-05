@@ -436,6 +436,22 @@ summary>h4 {
     color: brown;
 }
 
+#escolhaBarra{
+    color: darkred;
+    text-align: center;
+}
+
+.btsMudaBarra{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+.mudaBarra{
+    width: 20%;
+    margin: 20px auto;
+}
+
 .fechaJanela {
     margin-top: 30px;
     padding-bottom: 30px;

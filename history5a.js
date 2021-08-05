@@ -1,3 +1,0 @@
-// falta
-
-// Calcular a média.

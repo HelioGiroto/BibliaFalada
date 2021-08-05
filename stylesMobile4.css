@@ -6,7 +6,7 @@
     user-select: none;
 }
 
-body{
+body {
     background: #f2f2f2;
     overflow-x: hidden;
 }
@@ -33,11 +33,11 @@ audio::-webkit-media-controls-toggle-closed-captions-button
 FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51def8133b336a6f6588f/Source/core/css/mediaControls.css?autodive=0%2F%2F%2F
 */
 
-#imgDesktop{
+#imgDesktop {
     display: none;
 }
 
-#imgMobile{
+#imgMobile {
     display: block;
 }
 
@@ -58,7 +58,7 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     justify-content: center;
 }
 
-.imgLogo{
+.imgLogo {
     position: absolute;
     left: 4%;
     top: 1%;
@@ -66,7 +66,7 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     z-index: 100;
 }
 
-.btMenu{
+.btMenu {
     display: none;
     position: absolute;
     right: 8%;
@@ -126,7 +126,7 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     width: 90%;
 }
 
-.btPlayPause{
+.btPlayPause {
     position: absolute;
     bottom: 23%;
     display: flex;
@@ -142,7 +142,7 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     display: none;
 }
 
-.nomeVersao{
+.nomeVersao {
     position: absolute;
     z-index: 200;
     bottom: 7%;
@@ -156,12 +156,12 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
 }
 
 
-.menu{
+.menu {
     display: flex;
     flex-flow: row;
     justify-content: space-around;
     padding: 12px;
-    background: goldenrod;
+    background: khaki;
 }
 
 .menu img {
@@ -175,19 +175,20 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     margin-top: 15px;
 }
 
-.versoes > input {
+.versoes>input {
     height: 15px;
     width: 20px;
     margin-top: 4px;
     margin-left: 5px;
 }
 
-.versoes > span {
+.versoes>span {
     font-size: 1.2em;
     font-weight: bold;
 }
 
-.nvi, .rv {
+.nvi,
+.rv {
     padding-left: 20px;
 }
 
@@ -200,20 +201,21 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     background-color: rgb(255, 207, 149);
 }
 
-.h4{
-    background-color: gold;
+.h3 {
+    background-color: darkred;
+    color: white;
+    text-shadow: 2px 1px 3px black;
     text-align: center;
     width: 100%;
     margin-top: 10px;
     padding: 5px 0px;
-    text-align: center;
 }
 
-.h4Escolher{
-    margin-top: 20px;
+.h4Escolher {
+    margin-top: 10px;
 }
 
-.h4Capitulo{
+.h4Capitulo {
     margin-bottom: 15px;
 }
 
@@ -264,24 +266,68 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     border: 1px dotted black;
 }
 
-.divPausa, .divDesempenho, .divCompartilha, .divMais {
+.pagina3 {
+    margin-top: 7px;
+}
+
+.pagina3>div>h3 {
+    margin-bottom: 10px;
+}
+
+details {
+    width: 96%;
+    background: burlywood;
+    margin-top: 10px;
+    padding: 7px 12px;
+}
+
+details div {
+    text-align: center;
+    margin-top: 15px;
+}
+
+details p,
+h2,
+h3,
+h4 {
+    font-family: 'Lato', sans-serif;
+}
+
+summary {
+    cursor: pointer;
+    padding-left: 10px;
+    color: darkred;
+}
+
+summary>* {
+    display: inline;
+}
+
+summary>h4 {
+    /*margin-bottom: 10px;*/
+}
+
+.divPausa,
+.divDesempenho,
+.divCompartilha,
+.divMais {
     display: flex;
     flex-flow: column;
     align-items: center;
     height: 84vh;
 }
 
-.h4Pausa{
+.h4Pausa {
     margin-bottom: 20px;
 }
 
-.divPausa > p{
-    font-size: 1.2em;
+.divPausa p {
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
 }
 
-.divPausa > input{
+.divPausa>input {
     margin: 20px auto;
     width: 50px;
     padding: 10px;
@@ -291,74 +337,97 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     color: rgb(92, 92, 92);
 }
 
-.divPausa > button{
-    background-color: chocolate;
-    margin: 40px;
+.divPausa>button {
+    background-color: khaki;
+    margin: 20px;
     width: 60%;
-    padding: 15px;
+    padding: 7px 12px;
     font-family: 'Lato', sans-serif;
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: bold;
 }
 
-.divCompartilha > .redes{
+.googleAgenda {
+    display: flex;
+    flex-flow: row;
+}
+
+.googleImagem{
+    display: flex;
+    justify-content: flex-end;
+    width: 30%;
+    height: 80px;
+}
+
+.googleTexto{
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    padding: 5px 15px;
+}
+
+#googleAgenda {
+  
+}
+
+
+
+.divCompartilha>.redes {
     width: 50%;
     margin-top: 25px;
     display: flex;
     flex-flow: column;
 }
 
-.divCompartilha > .redes > div{
+.divCompartilha>.redes>div {
     display: flex;
     flex-flow: row;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
-.icons{
+.icons {
     width: 40%;
     cursor: pointer;
 }
 
-.divDesempenho{
-}
+.divDesempenho {}
 
-.periodosOuvidos, .areaGraficoTotal{
-    width: 100vw;
-}
+
+.areaGraficoTotal {}
+
 
 #pizza1 {
-    width: 100%; 
+    width: 100%;
+    margin-top: -25px;
 }
 
-.cabecalhoPeriodo{
+.cabecalhoPeriodo {
     display: flex;
     flex-flow: row;
     justify-content: space-around;
+    margin-top: -5px;
 }
 
-.cabecalhoPeriodo div{
+.cabecalhoPeriodo div {
+    background: khaki;
     width: 33%;
     padding: 5px 0;
     font-weight: bold;
     border-style: groove;
 }
 
-#ult10Ouvido{
-    background: lightskyblue;
-}
-
-small{
-    display: none;
+#ult10Ouvido {
+    background: chocolate;
 }
 
 .fechaJanela {
     margin-top: 30px;
     padding-bottom: 30px;
-    width: 10%;
+    width: 7%;
 }
 
-.montserrat{
+.montserrat {
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -366,7 +435,7 @@ small{
     font-family: 'Lato', sans-serif;
 }
 
-.nunito{
+.nunito {
     font-family: 'Nunito Sans', sans-serif;
 }
 
@@ -375,16 +444,20 @@ small{
     text-shadow: 1px 1px 5px black;
 }
 
-.violeta{
+.violeta {
     color: #60172a;
 }
 
-.negrito{
+.negrito {
     font-weight: bold;
 }
 
-.negrito900{
+.negrito900 {
     font-weight: 900;
+}
+
+.centraliza {
+    text-align: center;
 }
 
 .oculta {

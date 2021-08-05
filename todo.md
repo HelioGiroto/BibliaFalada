@@ -14,6 +14,14 @@
 
 - Atalho para **RESETAR** a lista de capítulosOuvidos do localStorage (apagar histórico de cap. ouvidos) - Pedir confirmação no prompt.
 
+- Agendamento de lembrete no Google Calendar.
+	- Tz coloque um input para digitar hora ??
+
+https://developers.google.com/chart/interactive/docs/animation
+https://heliogiroto.github.io/Escatologia-em-Lucas/
+https://github.com/HelioGiroto/Google-Agenda-Generator/blob/main/index.html
+
+
 
 ### Opções do menú:
 

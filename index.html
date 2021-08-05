@@ -12,9 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="stylesMobile2.css">
-    <link rel="stylesheet" href="stylesTablet2.css">
-    <link rel="stylesheet" href="stylesDesktop2.css">
+    <link rel="stylesheet" href="stylesMobile4.css">
+    <link rel="stylesheet" href="stylesTablet4.css">
+    <link rel="stylesheet" href="stylesDesktop4.css">
 
     <title>A Bíblia Falada</title>
 
@@ -50,7 +50,7 @@
         <div id='nomeVersao' class="nomeVersao montserrat">Nova Versão Internacional</div>
     </div>
 
-    <h4 class="h4opcoes h4 lato">ESCOLHA UMA OPÇÃO:</h4>
+    <h3 class="h4opcoes h3 lato">ESCOLHA UMA OPÇÃO:</h3>
     <div class="menu">
         <img src="icon1.png" id="iconePausa" alt="">
         <img src="icon2.png" id="iconeDesempenho" alt="">
@@ -60,7 +60,7 @@
 
     <div class="pagina2">
         <div class="escolherVersao">
-            <h4 class="h4Escolher h4 lato">ESCOLHA A VERSÃO/TRADUÇÃO:</h4>
+            <h3 class="h4Escolher h3 lato">ESCOLHA A VERSÃO/TRADUÇÃO:</h4>
             <div class="versoes">
                 <span class="acf lato">ACF</span>
                 <input type="radio" id="acf" value="ACF" name="versao">
@@ -72,7 +72,7 @@
         </div>
 
         <div class="grades" id="grades">
-            <h4 class="h4Livro h4 lato">SELECIONE O LIVRO DA BÍBLIA:</h4>
+            <h3 class="h4Livro h3 lato">SELECIONE O LIVRO DA BÍBLIA:</h3>
 
             <div class="cabecalho lato _oculta"><strong id="cabecalhoAT">ANTIGO TESTAMENTO</strong></div>
             <div class="gradeLivros gradeAT _oculta">
@@ -84,7 +84,7 @@
                 <!-- <div class="quadriculaLivro">NT</div> -->
             </div>
 
-            <h4 class="h4Capitulo h4 lato oculta">ESCOLHA O CAPÍTULO:</h4>
+            <h3 class="h4Capitulo h3 lato oculta">ESCOLHA O CAPÍTULO:</h3>
             <!-- <div class="cabecalhoCapitulos lato oculta"><strong>CAPÍTULO</strong></div> -->
             <div class="gradeCapitulos oculta" id="gradeCapitulos">
                 <!-- <div class="quadriculaCapitulo">1</div> -->
@@ -96,102 +96,110 @@
     <div class="pagina3">
         <!-- dentro de cada div abaixo vai os details: https://heliogiroto.github.io/Escatologia-em-Lucas -->
         <div class="divPausa oculta">
-            <h4 class="h4Pausa h4 lato">PROGRAMAÇÃO DE PAUSA</h4>
-            <p>Pára de tocar em:</p>
+            <h3 class="h4Pausa h3 lato">PROGRAMAÇÃO DE PAUSA</h3>
+            <h2>Pára de tocar em:</h2>
             <input type="number" id="minutosPausa" class="minutosPausa" value="60">
-            <p>minutos.</p>
-            <button id="btProgramaPausa">PROGRAMAR</button>
+            <h2>minutos.</h2>
+            <button id="btProgramaPausa">PROGRAMAR PAUSA</button>
+            <br>
+            <h3 class="h4Pausa h3 lato">AGENDAR LEMBRETE</h3>
+
+            <div class="googleAgenda">
+                <div class="googleImagem"><img id='googleAgenda' src="googleCalendar.png" alt=""></div>
+                <div class="googleTexto">
+                    <p class="lato">Clique ao lado no ícone do Google Agenda para programar um lembrete diário no seu celular!*</p>
+                </div>
+            </div>
+        
+            <br>
+            <small class="lato centraliza">* Não se esqueça de marcar a opção:</small>
+            <small class="lato centraliza negrito">"SE REPETE: TODOS OS DIAS"</small>
             <img src="close.png" class="fechaJanela">
+
         </div>
 
         <div class="divDesempenho oculta">
-            <h4 class="h4Desempenho h4 lato">MEU DESEMPENHO</h4>
+            <h3 class="h4Desempenho h3 lato">MEU DESEMPENHO</h3>
 
-            <div class="totalOuvido">
-                <div class="jaOuviu">
-                    <br>
-                    <center>
-                        <h2 class="cabecalhoGrafico">TOTAL:</h2>
-                        <p>Até agora você já ouviu:</p>
-                        <h2><span id="totalCapitulos">200</span> capítulos</h2>
-                        <p>de toda a "Bíblia Falada"!</p>
-                        <br>
-                        <p>Num tempo total de:</p>
-                        <h2><span id="tempoOuvido">1</span>
-                        </h2>
-                    </center>
+            <details class="total">
+                <summary><h4 class="lato">DESEMPENHO TOTAL</h4></summary>
+
+                <div>
+                    <h4>Até agora você já ouviu:</h4>
+                    <h2><span id="totalCapitulos">200</span> capítulos</h2><br>
+                    <h4>Num tempo total de:</h4>
+                    <h2><span id="tempoOuvido">X</span></h2><br>
+                    <h4>Para completar toda a Bíblia, faltam:</h4>
+                    <h2><span id="faltaOuvirCapitulos">990</span> capítulos</h2>
+                    <p>ou</p>
+                    <h2><span id="tempoFalta">0</span></h2>
+                    <p>aproximadamente.</p>
                 </div>
+
                 <div class="areaGraficoTotal">
-                    <center>
-                        <p>Quantidade de tempo ouvido - em minutos</p>
-                        <!-- <img src="pie.png" alt=""> -->
-                        <div id="pizza1"></div>
-                    </center>
+                    <h3>Gráfico</h3>
+                    <small>(Quantidade de tempo ouvido - em minutos)</small>
+                    <div id="pizza1"></div><br>
                 </div>
-                <div class="faltaOuvir">
-                    <center>
-                        <p>Nos últimos 10 dias você mantém uma...</p>
-                        <h3>média de X minutos</h3>
-                        <p>cada vez que escuta a "Bíblia Falada".</p>
-                        <br>
-                        <br>
-                        <p>Para completar toda a Bíblia, faltam:</p>
-                        <h3><span id="faltaOuvirCapitulos">990</span> capítulos</h3>
-                        <p>ou</p>
-                        <h3>
-                            <span id="tempoFalta">0</span>
-                        </h3>
-                        <p>aproximadamente.</p>
-                        <br>
-                        <p>Você pode completar isso em:</p>
-                        <h2>Y dias</h2>
-                        <p>mantendo essa mesma média.</p>
-                    </center>
-                </div>
-            </div>
+            </details>
 
-            <br>
-            <hr><br>
-
-            <div class="hojeOuvido">
-                <center>
-                    <h2>HOJE:</h2>
-                    <p>Hoje você ouviu:</p>
-                    <h2> <span id="totalDiario">23</span> </h2>
+            <details class="media">
+                <summary><h4 class="lato">MÉDIA E ESTIMATIVAS</h4></summary>
+                <div>
+                    <p>O tempo médio dos últimos 10 dias</p>
+                    <p>que você ouviu a "Bíblia Falada" foi de:</p>
+                    <h2><span id="media">X</span> minutos.</h3>
                     <br>
-                    <p><strong><span class="mediaHoje">Z</span></strong> minutos atrás/à frente</p>
-                    <p>da média diária.</p>
-                </center>
-            </div>
 
-            <br>
-            <hr><br>
+                    <p>Se mantiver essa mesma média,</p>
+                    <p>você conseguirá ouvir toda a Bíblia em:</p>
+                    <h2><span id="faltaMedia">Y</span> dias!</h2>
+                    <br>
 
-            <div class="periodosOuvidos">
-                <center>
-                    <h2>OUTROS GRÁFICOS:</h2>
-                    <div class="cabecalhoPeriodo">
-                        <div id="semanasOuvido">SEMANAS</div>
-                        <div id="ult10Ouvido">ÚLT. 10 DIAS</div>
-                        <div id="mesesOuvido">MESES</div>
+                    <div class="abrirLembrete">
+                        <p><strong>A FÉ VEM PELO OUVIR A PALAVRA!</strong></p>
+                        <p>Se quiser, pode programar um aviso diário</p>
+                        <p>para lembrar você num horário que escolher!</p>
+                        <p>CLIQUE AQUI PARA AGENDAR</p>
                     </div>
-                    <div class="subtitulo"><small>Subtítulo sobre a opção acima.</small></div>
-                    <div class="areaGraficoPeriodo" id="barras10dias">
-                        <!--
-                            <img src="barDias.png" alt="" width="50%">
-                            <img src="bar.png" alt="" width="50%">
-                        -->
-                    </div>
-                </center>
-            </div>
+                    <br>
+                </div>
+            </details>
 
-            <br>
+            <details class="hoje">
+                <summary>
+                    <h4 class="lato">RESULTADOS DE HOJE</h4>
+                </summary>
+                <div>
+                    <p>Hoje você ouviu:</p>
+                    <h2><span id="totalDiario">23</span></h2>
+                    <p>...e está</p>
+                    <h2><span class="mediaHoje">Z</span> minutos</h2>
+                    <p><span id="frenteOuTras">[atrás] || [à frente]</span> da média diária.</p>
+                    <br>
+                </div>
+            </details>
+
+            <details class="maisGraficos">
+                <summary>
+                    <h4 class="lato">GRÁFICO MENSAL E SEMANAL</h4>
+                </summary>
+                <div class="cabecalhoPeriodo">
+                    <div id="semanasOuvido">SEMANAL</div>
+                    <div id="ult10Ouvido">ÚLT. 10 DIAS</div>
+                    <div id="mesesOuvido">MENSAL</div>
+                </div>
+                <div class="subtitulo oculta"><small>Subtítulo sobre a opção acima.</small></div>
+                <div class="areaGraficoPeriodo" id="barras10dias">
+                </div>
+                <br>
+            </details>
 
             <img src="close.png" class="fechaJanela">
         </div>
 
         <div class="divCompartilha oculta">
-            <h4 class="h4Compartilha h4 lato">COMPARTILHE A BÍBLIA FALADA:</h4>
+            <h3 class="h4Compartilha h3 lato">COMPARTILHE A BÍBLIA FALADA:</h4>
             <div class="redes">
                 <div>
                     <img class='icons' id='whatsapp' src="whatsapp.png" alt="whatsapp">
@@ -207,7 +215,7 @@
         </div>
 
         <div class="divMais oculta">
-            <h4 class="h4Mais h4 lato">EM BREVE: Outros recursos incríveis...</h4>
+            <h3 class="h4Mais h3 lato">EM BREVE: Outros recursos incríveis...</h3>
             <img src="close.png" class="fechaJanela">
         </div>
     </div>
@@ -215,8 +223,8 @@
     <script src="localStorage20.js"></script>
     <script src="BibliaOBJ26.js"></script>
     <script src="loader.js"></script>
-    <script src="graficos.js"></script>
-    <script src="script2.js"></script>
+    <script src="graficos4.js"></script>
+    <script src="script4.js"></script>
 
 </body>
 

@@ -152,14 +152,14 @@ function gravaTempoDiario() {
     // soma este tempo acima com o tempo de transmissäo da faixa recém-terminada:
     // let tempoAudicaoHoje = duracaoFaixaAtual + tempoDiaHoje
     let tempoAudicaoHoje = tempoFaixaAtual + tempoDiaHoje
-    
+
     // Salva na lista no nro de array (item) correspondente:
     listaAudicaoMes[`${diaHojeSemZero}`] = tempoAudicaoHoje
     // console.log('tempo Fx: ' + tempoFaixaAtual)
     // console.log('ja ouvido hj: ' + tempoDiaHoje)
     // console.log('tot: ' + tempoAudicaoHoje)
     // console.log(listaAudicaoMes)
-    
+
     // salva em localStorage:
     localStorage.setItem(`biblia_mes_${mesHoje}`, JSON.stringify(listaAudicaoMes))
 
@@ -519,7 +519,7 @@ function traduz() {
 
     if (versao === "RV") {
         nomeVersao.innerHTML = nomeVersoes[2]
-        h4opcoes.innerHTML = 'ESCOGE UNA OPCIÓN:'
+        h4opcoes.innerHTML = 'OPCIONES:'
         h4Escolher.innerHTML = "ELIGE LA VERSIÓN/TRADUCCIÓN:"
         h4Livro.innerHTML = "SELECCIONA EL LIBRO DE LA BIBLIA:"
         h4Capitulo.innerHTML = "ESCOGE EL CAPÍTULO:"
@@ -532,7 +532,7 @@ function traduz() {
                 nomeVersao.innerHTML = nomeVersoes[i]
             }
         })
-        h4opcoes.innerHTML = "ESCOLHA UMA OPÇÃO:"
+        h4opcoes.innerHTML = "OPÇÕES:"
         h4Escolher.innerHTML = "ESCOLHA A VERSÃO/TRADUÇÃO:"
         h4Capitulo.innerHTML = "ESCOLHA O CAPÍTULO:"
         h4Livro.innerHTML = "SELECIONE O LIVRO DA BÍBLIA:"
@@ -573,7 +573,7 @@ function rolaMenu() {
     });
 }
 
-function rolaTopo(){
+function rolaTopo() {
     document.querySelector('#topo').scrollIntoView({
         behavior: 'smooth'
     });
@@ -657,6 +657,30 @@ let iconeDesempenho = document.querySelector('#iconeDesempenho')
 let iconeMais = document.querySelector('#iconeMais')
 let iconeCompartilha = document.querySelector('#iconeCompartilha')
 
+
+// Dispara o evnto de abrir a janela do Google Agenda desde a janela do Meu Desempenho > Média e Estimativa
+document.querySelector('.abrirLembrete').addEventListener('click', () => {
+    document.querySelector('.media').open = false;
+    abreDivPausa()
+})
+
+document.querySelector('#googleAgenda').addEventListener('click', () => {
+    // abre google calendar...
+    let titulo = "Hora de ouvir a Bíblia Falada!!!"
+    let descricao = "A fé vem pelo ouvir a Palavra de Deus! Site: https://heliogiroto.github.io/BibliaFalada "
+    let link = `https://calendar.google.com/event?action=TEMPLATE&text=${titulo}&details=${descricao}`
+    /*
+    Corrigir: Fechar pagina3 com todas as duas sub-divs e rolar para o topo:
+    // mostra grid de livros:
+    pagina2.classList.remove('oculta')
+    // esconde janela da opção de menú aberta:
+    document.querySelector('.').classList.add('oculta')
+    // rola página ao topo do site:
+    rolaTopo() */ 
+    // abre em outra página o Google Calendar /:
+    window.open(link, '_blank')
+})
+
 iconePausa.addEventListener('click', abreDivPausa)
 iconeDesempenho.addEventListener('click', abreDivDesempenho)
 iconeMais.addEventListener('click', abreDivMais)
@@ -684,17 +708,17 @@ fechaJanela.forEach(a => {
 
 // funções de divCompartilha:
 // let instagram = document.querySelector('#instagram')
-let facebook  = document.querySelector('#facebook')
-let whatsapp  = document.querySelector('#whatsapp')
-let telegram  = document.querySelector('#telegram')
-let gmail     = document.querySelector('#gmail')
+let facebook = document.querySelector('#facebook')
+let whatsapp = document.querySelector('#whatsapp')
+let telegram = document.querySelector('#telegram')
+let gmail = document.querySelector('#gmail')
 
 let listaRedes = [whatsapp, telegram, facebook, gmail]
 
 let mensagemCompartilhar = "Ouça a Bíblia gratuitamente neste site: https://www.jesus24horas.com"
 let assuntoEmail = "A fé vem pelo ouvir!!"
 
-if(versao === "RV") {
+if (versao === "RV") {
     mensagemCompartilhar = "Oye la Biblia gratuitamente en este sitio: https://www.jesus24horas.com"
     assuntoEmail = "¡La fé viene por el oír!"
 }
@@ -702,15 +726,15 @@ if(versao === "RV") {
 let msgEncode = encodeURIComponent(mensagemCompartilhar)
 
 let linkRedes = [
-    `whatsapp://send?text=${msgEncode}`, 
-    `https://t.me/share/url?url=www.jesus24horas.com&text=${msgEncode}`, 
+    `whatsapp://send?text=${msgEncode}`,
+    `https://t.me/share/url?url=www.jesus24horas.com&text=${msgEncode}`,
     `https://www.facebook.com/sharer/sharer.php?u=heliogiroto.github.io/BibliaFalada`,
     `mailto:?subject=${assuntoEmail}&body=${mensagemCompartilhar}`
 ]
 
 // adicionando disparadores de eventos em cada icone:
-listaRedes.forEach((e,i)=>{
-    e.addEventListener('click', ()=>{
+listaRedes.forEach((e, i) => {
+    e.addEventListener('click', () => {
         window.open(linkRedes[i], '_blank')
     })
 })

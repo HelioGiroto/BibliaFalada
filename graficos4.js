@@ -109,15 +109,16 @@ function imprimeFatiado(lista) {
 
 function piechart() {
     google.charts.load("current", {
-        packages: ["corechart"]
+        packages: ["corechart"],
+        'language': 'pt-BR'
     });
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
         let data = google.visualization.arrayToDataTable([
             ['Dado', 'Valor'],
-            ['Falta ouvir', faltaOuvirTotal],
-            ['Já ouvido', totalTempo]
+            ['Falta ouvir (em minutos):', faltaOuvirTotal / 60],
+            ['Já ouvido (em minutos):', totalTempo / 60]
         ]);
 
         let options = {
@@ -161,7 +162,9 @@ function ult10dias() {
     // O formato de saida para appendar às listas acima (no caso: ${i}/${mesHoje} é para sair com a data formatada d/mm):
     listaMesAtual.map((e, i) => {
         if (e) {
-            let subLista = [`${i}/${mesHoje}`, Number((e/60).toFixed(2))]
+            let subLista = [`${i}/${mesHoje}`, Math.trunc(e / 60)]
+            // abaixo: descartado pq confundiria usuário ao ver: "19.79 minutos"
+            // let subLista = [`${i}/${mesHoje}`, Number((e/60).toFixed(2))]
             novaListaMesAtual.push(subLista)
         }
     })
@@ -169,7 +172,8 @@ function ult10dias() {
 
     listaMesAnterior.map((e, i) => {
         if (e) {
-            let subLista = [`${i}/${mesAnt}`, Number((e/60).toFixed(2))]
+            let subLista = [`${i}/${mesAnt}`, Math.trunc(e / 60)]
+            // let subLista = [`${i}/${mesAnt}`, Number((e/60).toFixed(2))]
             novaListaMesAnterior.push(subLista)
         }
     })
@@ -205,7 +209,7 @@ function ult10dias() {
     // usa reverse duas vezes para obter apenas os últimos 10 da lista e não os primeiros 10 da lista:
     let listaUlt10dias = listaUltDias.reverse().filter((e, i) => i < 10).reverse()
 
-    console.log(typeof(listaUlt10dias))
+    console.log(typeof (listaUlt10dias))
     console.log('lista 10 dias atrás: ', listaUlt10dias)
 
     // para ser aceito no Google Charts, é preciso esta linha como cabeçalho:
@@ -216,16 +220,19 @@ function ult10dias() {
     // listaMesAnterior.reverse().filter(a=>a)
 
     google.charts.load("current", {
-        packages: ["corechart"]
+        packages: ["corechart"],
+        'language': 'pt-BR'
     });
 
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
+        // abaixo: Passa os valores de X e Y do gráfico (neste caso, está no array listaUlt10dias):
         let data = google.visualization.arrayToDataTable(
             listaUlt10dias
         );
 
+        // abaixo: Estiliza o gráfico, título, legendas, cores, animações, etc..:
         let options = {
             title: 'ÚLTIMOS 10 DIAS - EM MINUTOS',
             legend: {
@@ -235,21 +242,31 @@ function ult10dias() {
             'width': '98%',
             'height': '50%',
             'chartArea': {
-                width: '90%',
+                width: '80%',
                 height: '80%'
+            },
+            animation:{
+                duration: 3000,
+                easing: 'out',
             },
         };
 
-        let chart = new google.visualization.ColumnChart(document.querySelector('#barras10dias'));
+        // define tipo gráfico e dispara na div escolhida:
+        // let chart = new google.visualization.ColumnChart(document.querySelector('#barras10dias'));
+        let chart = new google.visualization.BarChart(document.querySelector('#barras10dias'));
         chart.draw(data, options);
     }
 }
 
+
+
+
 // quando muda a orientação do celular, chama novamente a função ult10dias para ajustar ao tamanho responsivo o bar column plot:
 // https://stackoverflow.com/questions/4917664/detect-viewport-orientation-if-orientation-is-portrait-display-alert-message-ad
-window.addEventListener("orientationchange", ()=>{
+window.addEventListener("orientationchange", () => {
     abreDivDesempenho()
-    ult10dias()
+    // ult10dias()
+    // calculaMetricas()
     // ERRO - corrigir melhor.
 })
 

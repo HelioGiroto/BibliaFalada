@@ -75,7 +75,7 @@ function quantoOuviuHoje() {
 
     // imprime qto tempo em ('#totalDiario'):
     let impressao = imprimeFatiado(tempoFatiado)
-    if(qtoOuviuHoje == 0){
+    if (qtoOuviuHoje == 0) {
         document.querySelector('#totalDiario').innerHTML = `nenhum capítulo!`
     } else {
         document.querySelector('#totalDiario').innerHTML = `${impressao[0]}${impressao[1]}${impressao[2]}`
@@ -90,11 +90,14 @@ function totalCapitulosOuvidos() {
 }
 
 function imprimeFatiado(lista) {
-    // caso hora, min ou seg seja = 0, omite o 0:
+    // caso hora, min ou seg seja = 0, omite o 0, como tb faz lgumas modificações no texto:
+    //  lista[0] - hora
+    //  lista[1] - minuto
+    //  lista[2] - segundo
     if (lista[0] === 0) {
         lista[0] = ''
     } else {
-        lista[0] = `${lista[0]} hs, `
+        lista[0] = `${lista[0]} hs `
     }
     if (lista[1] === 0) {
         lista[1] = ''
@@ -104,7 +107,7 @@ function imprimeFatiado(lista) {
     if (lista[2] === 0) {
         lista[2] = ''
     } else {
-        lista[2] = `e ${lista[2]} seg`
+        lista[2] = `${lista[2]} seg`
     }
 
     let novaLista = [lista[0], lista[1], lista[2]]
@@ -224,6 +227,8 @@ function ult10dias() {
     // console.log(typeof (listaUlt10dias))
     // console.log('lista 10 dias atrás: ', listaUlt10dias)
 
+    ////////////////////////// CÁLCULOS DE MÉDIA /////////////////////////////
+
     // reseta média (é variável global):
     media = 0
 
@@ -231,13 +236,14 @@ function ult10dias() {
     let tempo10dias = []
 
     // pega da lista de dados listaUlt10dias somente o valor do tempo (sem data):
-    listaUlt10dias.map(a=>tempo10dias.push(a[1]))
+    listaUlt10dias.map(a => tempo10dias.push(a[1]))
     console.log(listaUlt10dias)
 
     // soma total do tempo da lista:
-    let total10dias = tempo10dias.reduce((total,cada)=>total + cada, 0)
-    console.log(total10dias)
+    let total10dias = tempo10dias.reduce((total, cada) => total + cada, 0)
+    // console.log(total10dias)
 
+    // calcula a média dos 10 dias:
     media = Math.round(total10dias / 10)
 
     // imprime em tela na details .media:
@@ -245,19 +251,24 @@ function ult10dias() {
 
 
     // hoje em relação com a média. Média está em minutos, qtoOuviuHoje está em segundos:
-    relacaoMedia = Math.round((qtoOuviuHoje/60) - media)
+    relacaoMedia = Math.round((qtoOuviuHoje / 60) - media)
 
     // imprime valor e frase:
-    if(relacaoMedia < 0){
+    if (relacaoMedia < 0) {
         document.querySelector('#frenteOuTras').style.color = 'red'
         document.querySelector('#frenteOuTras').innerHTML = "atrás"
         document.querySelector('#mediaHoje').innerHTML = relacaoMedia * -1
-    } else{
+    } else {
         document.querySelector('#frenteOuTras').style.color = 'green'
         document.querySelector('#frenteOuTras').innerHTML = "a frente"
         document.querySelector('#mediaHoje').innerHTML = relacaoMedia
     }
-    
+
+    let estimativaTempo = Math.round((faltaOuvirTotal / 60) / media)
+    document.querySelector('#faltaMedia').innerHTML = estimativaTempo
+
+    ////////////////////////// PREPARAÇÃO DOS GRÁFICOS /////////////////////////////
+
     // para ser aceito no Google Charts, é preciso esta linha como cabeçalho:
     listaUlt10dias.unshift(['Dia/Mês', 'Minutos'])
 
@@ -349,8 +360,6 @@ window.addEventListener("orientationchange", () => {
 // https://developers.google.com/chart/interactive/docs/gallery/piechart?hl=en#data-format
 // http://www.duncanstruthers.design/ddv/tutorials/google-charts/responsive-google-charts-api/
 // https://developers.google.com/chart/interactive/docs/gallery/columnchart?hl=en
-
-function bars() {}
 
 
 function calculaMetricas() {

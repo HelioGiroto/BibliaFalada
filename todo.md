@@ -28,6 +28,17 @@ https://github.com/HelioGiroto/Google-Agenda-Generator/blob/main/index.html
 - "Meu **desempenho**" (gráficos).
 
 	- Checkboxes dos capítulos **lidos**
+	- Calendário com dias marcados.
+
+
+### Desempenho do usuário (suas métricas):
+
+- Funções de **estatísticas** de audição:
+	- ALERTA: "Faz x dias/semanas/meses que vc não ouve..."; "Parabéns!!"; etc.
+	- Gráfico da semana atual... passada... etc.. Média:...
+	- Gráfico do mês atual... do mês passado... antepassado...
+	- Livros mais lidos (Em porcentagem) ? 
+
 
 - **Mais** recursos... (details tags):
 
@@ -42,26 +53,20 @@ https://github.com/HelioGiroto/Google-Agenda-Generator/blob/main/index.html
 	- Ver código fonte - Github tb 
 
 
-### Desempenho do usuário (suas métricas):
-
-- Funções de **estatísticas** de audição:
-	- ALERTA: "Faz x dias/semanas/meses que vc não ouve..."; "Parabéns!!"; etc.
-	+ ~Hoje você ouviu X cap e Y minutos.~
-	+ ~Faltam Y caps.~
-	+ ~Faltam Z Horas: Minutos para terminar...~
-		~**- Pizza**.~
-	- ~Gráfico dos últimos 10 dias. Média...~
-	- Gráfico da semana atual... passada... etc.. Média:...
-	- Gráfico do mês atual... do mês passado... antepassado...
-	- Livros mais lidos (Em porcentagem) ? 
-
-	- CDN Google Charts baixado: *loader.js*
-
-	- Ex.: https://developers.google.com/chart/interactive/docs/gallery/piechart 	
 
 ---
 
 ### DONE:
+
+~- Hoje você ouviu X cap e Y minutos.~
+
+~- Faltam Y caps.~
+
+~- Faltam Z Horas: Minutos para terminar...~
+
+~- Pizza~
+
+~- Gráfico dos últimos 10 dias. Média...~
 
 ~- **Compartilhar** esse site...~
 
@@ -82,6 +87,10 @@ https://github.com/HelioGiroto/Google-Agenda-Generator/blob/main/index.html
 - ~BASH: AUMENTAR O VOLUME DOS AUDIOS DE NVI (?)~
 
 - ~Div com o texto bíblico impresso tb (?)~
+
+- ~CDN Google Charts baixado: *loader.js*~
+
+- ~Ex.: https://developers.google.com/chart/interactive/docs/gallery/piechart~
 
 ---
 

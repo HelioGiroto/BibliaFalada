@@ -294,6 +294,10 @@ h4 {
     font-family: 'Lato', sans-serif;
 }
 
+details h4 {
+    font-weight: normal;
+}
+
 summary {
     cursor: pointer;
     padding-left: 10px;
@@ -305,7 +309,7 @@ summary>* {
 }
 
 summary>h4 {
-    /*margin-bottom: 10px;*/
+    font-weight: bold;
 }
 
 .divPausa,
@@ -477,6 +481,13 @@ summary>h4 {
 
 .violeta {
     color: #60172a;
+}
+
+.destaque{
+    color: black;
+    font-weight: bold;
+    background: yellow;
+    padding: 1px 10px;
 }
 
 .negrito {

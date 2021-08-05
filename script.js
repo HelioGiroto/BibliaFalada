@@ -705,6 +705,14 @@ fechaJanela.forEach(a => {
     })
 })
 
+document.querySelector('.media').addEventListener('click', ()=>{
+    console.log('media aberto')
+    setTimeout(()=> {
+        document.querySelector('#msgMotivacao').classList.remove('oculta')
+    }, 5000)
+}) 
+
+
 
 // funções de divCompartilha:
 // let instagram = document.querySelector('#instagram')

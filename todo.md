@@ -2,17 +2,13 @@
 
 ## URL: https://heliogiroto.github.io/BibliaFalada
 
-- Celular landscape - verificar CSS (responsividade).
+- Celular landscape - verificar CSS (responsividade) da pagina1.
 
 - Verificar **tradução** das janelas do **menú**.
 
 - Grade do nome do livro **colorida** num gradiente **conforme** ao percentual de audição.
 
 - Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos para tablets e desktop ou input para busca - ???
-
-- Função **EXPORTAR** localStorage de uma máquina para outra que abra o link personalizado (.com/?...&...)
-
-- Atalho para **RESETAR** a lista de capítulosOuvidos do localStorage (apagar histórico de cap. ouvidos) - Pedir confirmação no prompt.
 
 - Agendamento de lembrete no Google Calendar.
 	- Tz coloque um input para digitar hora ??
@@ -25,12 +21,6 @@ https://github.com/HelioGiroto/Google-Agenda-Generator/blob/main/index.html
 
 ### Opções do menú:
 
-- "Meu **desempenho**" (gráficos).
-
-	- Checkboxes dos capítulos **lidos**
-	- Calendário com dias marcados.
-
-
 ### Desempenho do usuário (suas métricas):
 
 - Funções de **estatísticas** de audição:
@@ -38,12 +28,18 @@ https://github.com/HelioGiroto/Google-Agenda-Generator/blob/main/index.html
 	- Gráfico da semana atual... passada... etc.. Média:...
 	- Gráfico do mês atual... do mês passado... antepassado...
 	- Livros mais lidos (Em porcentagem) ? 
+	- Calendário com dias que ouviu (porcentagem em gradiente).
 
 
 - **Mais** recursos... (details tags):
 
-	- **Exportar** histório de capítulos ouvidos
+	- **Exportar** histórico de capítulos ouvidos
+		- Função **EXPORTAR** localStorage de uma máquina para outra que abra o link personalizado (.com/?...&...)
+
+	- Atalho para **RESETAR** a lista de capítulosOuvidos do localStorage (apagar histórico de cap. ouvidos) - Pedir confirmação no prompt.
 	
+	- Checkboxes dos capítulos **lidos**
+
 	- Ouça a **Rádio J24h**!
 
 	- **Apoie!** esse trabalho.

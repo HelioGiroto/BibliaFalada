@@ -1,0 +1,92 @@
+/*
+CSS para estilizar no caso de desktops ou tablets:
+*/
+@media only screen and (min-width:900px) {
+
+    #imgDesktop {
+        display: block;
+    }
+
+    #imgMobile {
+        display: none;
+    }
+
+    #logo,
+    #infolivro,
+    #nomeVersao,
+    .btPlayPause,
+    .btsMuda {
+        cursor: pointer;
+    }
+
+    .imgLogo {
+        width: 10%;
+    }
+
+    #btPlay,
+    #btPause {
+        width: 30%;
+    }
+
+    .btsMuda {
+        width: 5%;
+    }
+
+    .infoLivro {
+        top: 19%;
+    }
+
+    .versoes>span {
+        font-size: 2em;
+        padding-right: 5px;
+    }
+
+    .versoes>input {
+        width: 20px;
+        height: 25px;
+    }
+
+    .nvi,
+    .rv {
+        padding-left: 70px;
+    }
+
+    #nomeLivro {
+        font-size: 6.5em;
+    }
+
+    .quadriculaLivro,
+    .quadriculaCapitulo {
+        font-size: 1.7em;
+    }
+
+    #nroCapitulo {
+        font-size: 8em;
+    }
+
+    .nomeVersao {
+        font-size: 2.5em;
+    }
+
+    .h3 {
+        font-size: 2em;
+        margin-top: 20px;
+    }
+
+    .icons {
+        width: 20%;
+    }
+
+    .cabecalho,
+    .cabecalhoCapitulos {
+        font-size: 1.5em;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+
+    .menu img {
+        width: 5%;
+    }
+
+}

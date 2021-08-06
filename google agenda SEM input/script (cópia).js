@@ -3,7 +3,7 @@
 // Data: 16/04/2021
 
 // principais variáveis globais:
-let versao, livro, abrev, nombreLibro, capitulo, nroLivro, qtdeCap, capituloFinal, faixaAtual, tempoFaixaAtual, duracaoFaixaAtual, tempoAudicao, dataHoje, diaHoje, mesHoje, anoHoje, horaHoje, minutoHoje, idElemento, nroObj
+let versao, livro, abrev, nombreLibro, capitulo, nroLivro, qtdeCap, capituloFinal, faixaAtual, tempoFaixaAtual, duracaoFaixaAtual, tempoAudicao, dataHoje, diaHoje, mesHoje, anoHoje, idElemento, nroObj
 // let testamento   // útil ???
 
 // lista global de todos os capítulos lidos:
@@ -84,8 +84,6 @@ function obtemDataHoje() {
     diaHoje = new Date().getDate()
     mesHoje = new Date().getMonth() + 1
     anoHoje = new Date().getFullYear()
-    horaHoje = new Date().getHours()
-    minutoHoje = new Date().getMinutes()
 
     if (mesHoje < 9) {
         mesHoje = `0${mesHoje}`
@@ -584,8 +582,6 @@ function rolaTopo() {
 
 function abreDivPausa() {
     rolaMenu()
-    obtemDataHoje()
-    document.querySelector('#horarioGoogle').value = `${horaHoje}:${minutoHoje}`
     divPausa.classList.remove('oculta')
     divDesempenho.classList.add('oculta')
     divMais.classList.add('oculta')
@@ -664,77 +660,26 @@ let iconeCompartilha = document.querySelector('#iconeCompartilha')
 
 // Dispara o evnto de abrir a janela do Google Agenda desde a janela do Meu Desempenho > Média e Estimativa
 document.querySelector('.abrirLembrete').addEventListener('click', () => {
-    // 'fecha' a janela da média...
     document.querySelector('.media').open = false;
-    // abre a janela da Pausa:
     abreDivPausa()
 })
 
-
-function agendaGoogle(){
-    let horarioInicio = document.querySelector('#horarioGoogle').value
-    horarioInicio = horarioInicio.replace(':', '')
-
-    let horarioFim = Number(horarioInicio) + 100
-
-    // A princípio os valores são iguais do dia atual
-    let diaFim = diaHoje
-    let mesFim = mesHoje
-    let anoFim = anoHoje
-
-    // Mas se o horário é maior ou igual a 24:00, se manipula strings para 0009 ou 0030 (como resultado final):
-    if (horarioFim >= 2400) {
-        horarioFim = horarioFim - 2400
-        if (horarioFim < 10) {
-            horarioFim = horarioFim.toString().replace(/.*/, "000$&")
-        } else {
-            horarioFim = horarioFim.toString().replace(/.*/, "00$&")
-        }
-        // se passa das 24:00 é pq tb é no dia seguinte!
-        // se acrescenta um dia a mais na data de hoje:
-        let hoje = new Date()
-        hoje.setDate(hoje.getDate() + 1)
-
-        diaFim = hoje.getDate()
-        mesFim = hoje.getMonth() + 1
-        anoFim = hoje.getFullYear()
-
-        // manipula as strings se for de 1 à 9: coloca um zero à esquerda:
-        if (diaFim < 10) {
-            diaFim = diaFim.toString().replace(/.*/, "0$&")
-        }
-        if (mesFim < 10) {
-            mesFim = mesFim.toString().replace(/.*/, "0$&")
-        }
-    }
-
-    // forma o conteúdo das propriedades que vão na url de google calendar:
-    let dataHora = `${anoHoje}${mesHoje}${diaHoje}T${horarioInicio}/${anoFim}${mesFim}${diaFim}T${horarioFim}`
+document.querySelector('#googleAgenda').addEventListener('click', () => {
+    // abre google calendar...
     let titulo = "Hora de ouvir a Bíblia Falada!!!"
-    let descricao = "A fé vem pelo ouvir a Palavra de Deus! Site: https://heliogiroto.github.io/BibliaFalada"
-
-    descricao = descricao.replace(/ /g, "+").replace(/&/g, '-')
-    titulo = titulo.replace(/ /g, "+").replace(/&/g, '-')
-
-    let link = `https://calendar.google.com/event?action=TEMPLATE&text=${titulo}&dates=${dataHora}&details=${descricao}`
-    // formato mais ideal:
-    // https://calendar.google.com/event?action=TEMPLATE&text=teste&dates=20210806T2210/20210806T2300
-    // https://calendar.google.com/calendar/u/0/r/eventedit?text=teste&dates=20210806T2210/20210806T2300
-    console.log(link)
- 
+    let descricao = "A fé vem pelo ouvir a Palavra de Deus! Site: https://heliogiroto.github.io/BibliaFalada "
+    let link = `https://calendar.google.com/event?action=TEMPLATE&text=${titulo}&details=${descricao}`
+    /*
+    Corrigir: Fechar pagina3 com todas as duas sub-divs e rolar para o topo:
     // mostra grid de livros:
     pagina2.classList.remove('oculta')
     // esconde janela da opção de menú aberta:
-    divPausa.classList.add('oculta')
+    document.querySelector('.').classList.add('oculta')
     // rola página ao topo do site:
-    rolaTopo()
+    rolaTopo() */ 
     // abre em outra página o Google Calendar /:
     window.open(link, '_blank')
-}
-
-// quando clica no logo do Google Calendar:
-document.querySelector('#googleAgenda').addEventListener('click', agendaGoogle)
-
+})
 
 iconePausa.addEventListener('click', abreDivPausa)
 iconeDesempenho.addEventListener('click', abreDivDesempenho)
@@ -760,12 +705,12 @@ fechaJanela.forEach(a => {
     })
 })
 
-document.querySelector('.media').addEventListener('click', () => {
+document.querySelector('.media').addEventListener('click', ()=>{
     console.log('media aberto')
-    setTimeout(() => {
+    setTimeout(()=> {
         document.querySelector('#msgMotivacao').classList.remove('oculta')
     }, 5000)
-})
+}) 
 
 
 

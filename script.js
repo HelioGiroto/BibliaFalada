@@ -601,7 +601,7 @@ function abreDivDesempenho() {
     pagina2.classList.add('oculta')
     divCompartilha.classList.add('oculta')
     // função de graficos.js:
-    calculaMetricas()
+    disparaGraficos()
 }
 
 function abreDivMais() {
@@ -761,7 +761,6 @@ fechaJanela.forEach(a => {
 })
 
 document.querySelector('.media').addEventListener('click', () => {
-    console.log('media aberto')
     setTimeout(() => {
         document.querySelector('#msgMotivacao').classList.remove('oculta')
     }, 5000)

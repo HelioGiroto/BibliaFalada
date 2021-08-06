@@ -5,7 +5,7 @@
 
 // Autor: Hélio Giroto
 
-let totalCapOuvidos, faltaOuvirTotal, totalTempo, qtoOuviuHoje, media, relacaoMedia
+let totalCapOuvidos, faltaOuvirTotal, totalTempo, qtoOuviuHoje, mesAnt, media, relacaoMedia
 
 function fatiaTempo(valor) {
     // obtem quantas horas completas o usuário ouviu a Bíblia:
@@ -37,7 +37,6 @@ function totalTempoOuvido(valor) {
     document.querySelector('#tempoOuvido').innerHTML = `${impressao[0]}${impressao[1]}${impressao[2]}`
 }
 
-
 function faltaOuvir(valor) {
     // quantos capítulos falta ouvir:
     let faltaOuvirCapitulos = 1190 - totalCapOuvidos
@@ -57,11 +56,10 @@ function faltaOuvir(valor) {
     document.querySelector('#tempoFalta').innerHTML = `${impressao[0]}${impressao[1]}${impressao[2]}`
 }
 
-
 function quantoOuviuHoje() {
     // obtem nro do mes e do dia:
     obtemDataHoje()
-    // mesHoje e diaHoje são variáveis globais atualizadas ao serem chamadas na função obtemDataHoje() - ver calculaMetricas()
+    // mesHoje e diaHoje são variáveis globais atualizadas ao serem chamadas na função obtemDataHoje() - ver disparaGraficos()
     let diaSemZero = diaHoje.replace(/^0/, '')
 
     // obtem da lista${mes}[dia]
@@ -81,7 +79,6 @@ function quantoOuviuHoje() {
         document.querySelector('#totalDiario').innerHTML = `${impressao[0]}${impressao[1]}${impressao[2]}`
     }
 }
-
 
 function totalCapitulosOuvidos() {
     let capitulosOuvidos = JSON.parse(localStorage.capitulosOuvidos)
@@ -153,7 +150,7 @@ function piechart() {
     }
 }
 
-// para ajustar:
+// para ajustar gráfico de pizza na tela:
 document.querySelector('#pizza1').addEventListener('click', () => {
     abreDivDesempenho()
     document.querySelector('#pizza1').scrollIntoView({
@@ -162,12 +159,16 @@ document.querySelector('#pizza1').addEventListener('click', () => {
     document.querySelector('#ajuste1').style.display = 'none'
 })
 
-function ult10dias() {
+/////// 3 funções de execução de gráficos: mensal, semanal e 10 dias ///////
+
+function graficoSemanal() {}
+
+function grafico10dias() {
     // obtem nro do mes:
     obtemDataHoje()
 
     // manipula string do nro do mês atual e anterior:
-    let mesAnt = Number(mesHoje) - 1
+    mesAnt = Number(mesHoje) - 1
     if (mesAnt < 10) mesAnt = `0${mesAnt}`
 
     // obtem dados da lista do mês atual:
@@ -337,6 +338,17 @@ function ult10dias() {
     }
 }
 
+function graficoMensal() {}
+
+let btSemanal = document.querySelector('#semanasOuvido')
+let bt10dias = document.querySelector('#ult10Ouvido')
+let btMensal = document.querySelector('#mesesOuvido')
+
+btSemanal.addEventListener('click', graficoSemanal)
+bt10dias.addEventListener('click', grafico10dias)
+btMensal.addEventListener('click', graficoMensal)
+
+
 // clica no gráfico para ajustar:
 document.querySelector('#barras10dias').addEventListener('click', () => {
     abreDivDesempenho()
@@ -347,12 +359,12 @@ document.querySelector('#barras10dias').addEventListener('click', () => {
 })
 
 /* 
-// quando muda a orientação do celular, chama novamente a função ult10dias para ajustar ao tamanho responsivo o bar column plot:
+// quando muda a orientação do celular, chama novamente a função grafico10dias para ajustar ao tamanho responsivo o bar column plot:
 // https://stackoverflow.com/questions/4917664/detect-viewport-orientation-if-orientation-is-portrait-display-alert-message-ad
 window.addEventListener("orientationchange", () => {
     piechart()
-    // ult10dias()
-    // calculaMetricas()
+    // grafico10dias()
+    // disparaGraficos()
     // ERRO - corrigir melhor.
 })
 
@@ -362,7 +374,7 @@ window.addEventListener("orientationchange", () => {
 // https://developers.google.com/chart/interactive/docs/gallery/columnchart?hl=en
 
 
-function calculaMetricas() {
+function disparaGraficos() {
     // obtem tempo de audicao do local Storage:
     tempoAudicao = Math.trunc(Number(localStorage.tempoAudicao))
 
@@ -379,5 +391,5 @@ function calculaMetricas() {
     faltaOuvir(totalTempo)
 
     piechart()
-    ult10dias()
+    grafico10dias()
 }

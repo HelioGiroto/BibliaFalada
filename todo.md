@@ -10,8 +10,6 @@
 
 - Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos para tablets e desktop ou input para busca - ???
 
-- Agendamento de lembrete no Google Calendar.
-	- Tz coloque um input para digitar hora ??
 
 https://developers.google.com/chart/interactive/docs/animation
 https://heliogiroto.github.io/Escatologia-em-Lucas/
@@ -53,6 +51,8 @@ https://github.com/HelioGiroto/Google-Agenda-Generator/blob/main/index.html
 ---
 
 ### DONE:
+
+~- Agendamento de lembrete no Google Calendar. Tz coloque um input para digitar hora ??~
 
 ~- Hoje você ouviu X cap e Y minutos.~
 

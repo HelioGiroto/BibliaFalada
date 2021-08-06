@@ -364,9 +364,14 @@ summary>h4 {
 
 #googleAgenda {
     width: 20%;
+    margin-top: 10px;
 }
 
-
+#horarioGoogle{
+    width: 30%;
+    padding: 10px;
+    font-size: 1.3em;
+}
 
 .divCompartilha>.redes {
     width: 50%;
@@ -488,6 +493,10 @@ summary>h4 {
 
 .negrito900 {
     font-weight: 900;
+}
+
+.normal{
+    font-weight: normal;
 }
 
 .peq{

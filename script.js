@@ -3,7 +3,7 @@
 // Data: 16/04/2021
 
 // principais variáveis globais:
-let versao, livro, abrev, nombreLibro, capitulo, nroLivro, qtdeCap, capituloFinal, faixaAtual, tempoFaixaAtual, duracaoFaixaAtual, tempoAudicao, dataHoje, diaHoje, mesHoje, anoHoje, horaHoje, minutoHoje, idElemento, nroObj
+let versao, livro, abrev, nombreLibro, capitulo, nroLivro, qtdeCap, capituloFinal, faixaAtual, tempoFaixaAtual, duracaoFaixaAtual, tempoAudicao, hoje, dataHoje, diaHoje, mesHoje, anoHoje, horaHoje, minutoHoje, idElemento, nroObj
 // let testamento   // útil ???
 
 // lista global de todos os capítulos lidos:
@@ -81,11 +81,12 @@ player.src = `audios/${versao}/${abrev} ${capitulo}.mp3`
 function obtemDataHoje() {
 
     // Obtem a data de hoje:
-    diaHoje = new Date().getDate()
-    mesHoje = new Date().getMonth() + 1
-    anoHoje = new Date().getFullYear()
-    horaHoje = new Date().getHours()
-    minutoHoje = new Date().getMinutes()
+    hoje = new Date()
+    diaHoje = hoje.getDate()
+    mesHoje = hoje.getMonth() + 1
+    anoHoje = hoje.getFullYear()
+    horaHoje = hoje.getHours()
+    minutoHoje = hoje.getMinutes()
 
     if (mesHoje < 9) {
         mesHoje = `0${mesHoje}`
@@ -760,10 +761,11 @@ fechaJanela.forEach(a => {
     })
 })
 
+// após 3 segundos faz aparecer a mensagem de motivação... na details da média e estimativas:
 document.querySelector('.media').addEventListener('click', () => {
     setTimeout(() => {
         document.querySelector('#msgMotivacao').classList.remove('oculta')
-    }, 5000)
+    }, 3000)
 })
 
 

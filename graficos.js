@@ -5,7 +5,7 @@
 
 // Autor: Hélio Giroto
 
-let totalCapOuvidos, faltaOuvirTotal, totalTempo, qtoOuviuHoje, mesAnt, listaUlt10dias, media, relacaoMedia
+let totalCapOuvidos, faltaOuvirTotal, totalTempo, qtoOuviuHoje, mesAnt, listaUlt10dias, listaMensal, listaSemana, domingoPassado, media, relacaoMedia
 
 function fatiaTempo(valor) {
     // obtem quantas horas completas o usuário ouviu a Bíblia:
@@ -149,6 +149,127 @@ function piechart() {
 }
 
 
+function obtemDados() {
+    // nro do mês atual e anterior:
+    mesAnt = Number(mesHoje) - 1
+    if (mesAnt < 10) mesAnt = `0${mesAnt}`
+    // mesHoje = '07'   // para testes
+    // mesAnt = '06'    // para testes
+
+    // lista do mês atual:
+    let listaMesAtual = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))
+    let listaMesAnterior = JSON.parse(localStorage.getItem(`biblia_mes_${mesAnt}`))
+
+    // cria/reseta listas para receber filtragem de dados:
+    let novaListaMensal = []
+    let novaListaMesAtualSemVazios = []
+    let novaListaMesAnteriorSemVazios = []
+
+    // ABAIXO (para formar lista de dados de últimos 10 dias QUE OUVIU):
+    // peneira os dias com valores vazios:
+    // if(e) significa se o espaço da lista tem algum conteúdo...
+    // O formato de saida para appendar às listas acima (no caso: ${i}/${mesHoje} é para sair com a data formatada d/mm):
+    listaMesAtual.map((e, i) => {
+        if (e) {
+            let subLista = [`${i}/${mesHoje}`, Math.trunc(e / 60)]
+            novaListaMesAtualSemVazios.push(subLista)
+            // abaixo: descartado pq confundiria usuário ao ver: "19.79 minutos"
+            // let subLista = [`${i}/${mesHoje}`, Number((e/60).toFixed(2))]
+        }
+    })
+
+    listaMesAnterior.map((e, i) => {
+        if (e) {
+            let subLista = [`${i}/${mesAnt}`, Math.trunc(e / 60)]
+            novaListaMesAnteriorSemVazios.push(subLista)
+            // let subLista = [`${i}/${mesAnt}`, Number((e/60).toFixed(2))]
+        }
+    })
+
+    // faz um merge das listas dos últimos dias do mês atual + mês anterior
+    let novasListas = [...novaListaMesAnteriorSemVazios, ...novaListaMesAtualSemVazios]
+
+    // Filtra de toda a lista acima, apenas os 10 itens (dias):
+    // usa reverse duas vezes para obter apenas os últimos 10 da lista e não os primeiros 10 da lista:
+    // esta array global abaixo será exportada/retornada para os gráficos10dias:
+    listaUlt10dias = novasListas.reverse().filter((e, i) => i < 10).reverse()
+    // "cabeçalho" da lista:
+    listaUlt10dias.unshift(['Dia/Mês', 'Minutos'])
+
+
+    // console.log(typeof (listaUlt10dias))
+    // console.log('lista 10 dias atrás: ', listaUlt10dias)
+
+    //////////////////////////////////////////////////////
+
+    // para gráfico semanal:
+
+    // obtem dia do mes (25) e dia da semana (0 - Domingo)
+    domingoPassado = hoje.getDate() - hoje.getDay()
+
+    // pega biblia_mes_[mesHoje][domingoPassado] até biblia_mes_[mesHoje][domingoPassado + 6]
+    // cria/reseta array global para ser exportada:
+    listaSemana = []
+
+    for (a = 0; a < 7; a++) {
+        let nroDia = domingoPassado + a
+        let qualDia = `${nroDia}/${mesHoje}`
+        let segundosDia = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))[nroDia]
+        let minutosDia = Math.trunc(segundosDia / 60)
+        let subLista = [qualDia, minutosDia]
+        listaSemana.push(subLista)
+    }
+
+    // "cabeçalho" da lista:
+    listaSemana.unshift(['Dia/Mês', 'Minutos'])
+
+    //////////////////////////////////////////////////////
+
+    // para gráfico mensal:
+
+    listaMesAtual.map((e, i) => {
+        let subLista = [`${i}/${mesHoje}`, Math.trunc(e / 60)]
+        novaListaMensal.push(subLista)
+    })
+
+    // remove item[0] da lista, pq é vazio:
+    novaListaMensal.shift()
+
+    // retorna qtos dias tem o mêsHoje (se 28, 30, 31?):
+    let qtosDiasTemMes = new Date(anoHoje, mesHoje, 0).getDate()
+
+    // abaixo: array global filtrado conforme nro de dias do mês:
+    // esse array será exportado:
+    listaMensal = novaListaMensal.filter((e, i) => i < qtosDiasTemMes)
+    // "cabeçalho" da lista:
+    listaMensal.unshift(['Dia/Mês', 'Minutos'])
+
+    /* 
+    
+                // formato antes do mesmo que está ACIMA:
+            
+            listaMesAnterior.map((e,i)=>{
+                if(e){
+                    let subLista = [`${i}`, mesAnt, e]
+                    novaListaMesAnterior.push(subLista)
+                }
+            })
+            
+            //  saida: ["26", "07", 20.842181]
+           
+            // ABAIXO: Não é necessário, senão o gráfico tb ficará ao revés.
+            // coloca em ordem inversa de dias: 31, 30, 29, 28.... 1.
+            // novaListaMesAtual = novaListaMesAtual.reverse()
+            // novaListaMesAnterior = novaListaMesAnterior.reverse()
+            // e o nro de index (do dia?)
+            // listaMesAtual.reverse().filter(a=>a)
+            // listaMesAnterior.reverse().filter(a=>a)
+        */
+
+    //
+
+}
+
 function calculaMedia() {
     ////////////////////////// CÁLCULOS DE MÉDIA /////////////////////////////
 
@@ -165,10 +286,10 @@ function calculaMedia() {
     tempo10dias.shift()
 
     // soma total do tempo da lista:
-    let total10dias = tempo10dias.reduce((total, cada) => total + cada, 0)
+    let acumulado10dias = tempo10dias.reduce((total, cada) => total + cada, 0)
 
     // calcula a média dos 10 dias:
-    media = Math.round(total10dias / 10)
+    media = Math.round(acumulado10dias / 10)
 
     // imprime em tela na details .media:
     document.querySelector('#media').innerHTML = media
@@ -198,25 +319,31 @@ function graficoSemanal() {
 
     // 3 - Graficos semanais:
     // 3.1 - fazer a função semanal que pega o Domingo da semana atual:
-        let hoje = new Date()
-        let domingoPassado = hoje.getDate() - hoje.getDay()
-        let mesHoje = hoje.getMonth() + 1
-        if (mesHoje < 10) {
-            mesHoje = mesHoje.toString().replace(/.*/, "0$&")
-        }
-        // mesHoje = '07'
+    // let hoje = new Date()
+    // let domingoPassado = hoje.getDate() - hoje.getDay()
+    // let mesHoje = hoje.getMonth() + 1
+    // if (mesHoje < 10) {
+    //     mesHoje = mesHoje.toString().replace(/.*/, "0$&")
+    //   }
+    // mesHoje = '07'
 
     // 3.2 - pega biblia_mes_[mesHoje][domingoPassado] até biblia_mes_[mesHoje][domingoPassado + 6]
-    let listaSemana = []
+    // let listaSemana = []
 
-    for(a=0; a<8; a++){
+    /*
+    for (a = 0; a < 7; a++) {
         let nroDia = domingoPassado + a
         let qualDia = `${nroDia}/${mesHoje}`
         let segundosDia = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))[nroDia]
-        let minutosDia = Math.trunc(segundosDia/60)
+        let minutosDia = Math.trunc(segundosDia / 60)
         let subLista = [qualDia, minutosDia]
         listaSemana.push(subLista)
     }
+
+    // "cabeçalho" da lista:
+    listaSemana.unshift(['Dia/Mês', 'Minutos'])
+    */
+    document.querySelector('.areaGraficoBarras').classList.remove('oculta')
 
     // problema: quando a semana vai de 28 do mes anterior até 4 do outro mes, p.ex.
 
@@ -235,70 +362,8 @@ function graficoSemanal() {
 function grafico10dias() {
     document.querySelector('.areaGraficoBarras').classList.remove('oculta')
 
-    // manipula string do nro do mês atual e anterior:
-    mesAnt = Number(mesHoje) - 1
-    if (mesAnt < 10) mesAnt = `0${mesAnt}`
-
-    // obtem dados da lista do mês atual:
-    let listaMesAtual = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))
-    let listaMesAnterior = JSON.parse(localStorage.getItem(`biblia_mes_${mesAnt}`))
-
-    // reseta listas:
-    let novaListaMesAtual = []
-    let novaListaMesAnterior = []
-
-    // ABAIXO:
-    // peneira os dias com valores vazios:
-    // if(e) significa se o espaço da lista tem algum conteúdo...
-    // O formato de saida para appendar às listas acima (no caso: ${i}/${mesHoje} é para sair com a data formatada d/mm):
-    listaMesAtual.map((e, i) => {
-        if (e) {
-            let subLista = [`${i}/${mesHoje}`, Math.trunc(e / 60)]
-            // abaixo: descartado pq confundiria usuário ao ver: "19.79 minutos"
-            // let subLista = [`${i}/${mesHoje}`, Number((e/60).toFixed(2))]
-            novaListaMesAtual.push(subLista)
-        }
-    })
-
-    listaMesAnterior.map((e, i) => {
-        if (e) {
-            let subLista = [`${i}/${mesAnt}`, Math.trunc(e / 60)]
-            // let subLista = [`${i}/${mesAnt}`, Number((e/60).toFixed(2))]
-            novaListaMesAnterior.push(subLista)
-        }
-    })
-
-    /* 
-
-            // formato antes do mesmo que está ACIMA:
-        
-        listaMesAnterior.map((e,i)=>{
-            if(e){
-                let subLista = [`${i}`, mesAnt, e]
-                novaListaMesAnterior.push(subLista)
-            }
-        })
-        
-        //  saida: ["26", "07", 20.842181]
-       
-        // ABAIXO: Não é necessário, senão o gráfico tb ficará ao revés.
-        // coloca em ordem inversa de dias: 31, 30, 29, 28.... 1.
-        // novaListaMesAtual = novaListaMesAtual.reverse()
-        // novaListaMesAnterior = novaListaMesAnterior.reverse()
-        // e o nro de index (do dia?)
-        // listaMesAtual.reverse().filter(a=>a)
-        // listaMesAnterior.reverse().filter(a=>a)
-    */
-
-    // faz um merge das listas dos últimos dias do mês atual + mês anterior
-    let listaUltDias = [...novaListaMesAnterior, ...novaListaMesAtual]
-
-    // Filtra de toda a lista acima, apenas os 10 itens (dias):
-    // usa reverse duas vezes para obter apenas os últimos 10 da lista e não os primeiros 10 da lista:
-    listaUlt10dias = listaUltDias.reverse().filter((e, i) => i < 10).reverse()
-
-    // console.log(typeof (listaUlt10dias))
-    // console.log('lista 10 dias atrás: ', listaUlt10dias)
+    // o array listaUlt_10dias é global e já recebeu valores de obtemDados():
+    console.log(listaUlt10dias)
 
     // chama o gráfico:
     let titulo = "ÚLTIMOS 10 DIAS - em minutos:"
@@ -314,24 +379,24 @@ function grafico10dias() {
 function graficoMensal() {
     document.querySelector('.areaGraficoBarras').classList.remove('oculta')
 
-    mesHoje = '07'
-    let listaMesAtual = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))
-    let novaListaMesAtual = []
-    listaMesAtual.map((e, i) => {
-        let subLista = [`${i}/${mesHoje}`, Math.trunc(e / 60)]
-        novaListaMesAtual.push(subLista)
-    })
-    // remove item[0] da lista:
-    novaListaMesAtual.shift()
+    // mesHoje = '07'
+    // let listaMesAtual = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))
+    // let novaListaMesAtual = []
+    // listaMesAtual.map((e, i) => {
+    //     let subLista = [`${i}/${mesHoje}`, Math.trunc(e / 60)]
+    //     novaListaMesAtual.push(subLista)
+    // })
+    // // remove item[0] da lista:
+    // novaListaMesAtual.shift()
 
-    // retorna qtos dias tem o mês 5:
-    let qtosDiasTemMes = new Date(anoHoje, mesHoje, 0).getDate()
-    let listaDados = novaListaMesAtual.filter((e, i) => i < qtosDiasTemMes)
+    // retorna qtos dias tem o mêsHoje (se 28, 30, 31?):
+    // let qtosDiasTemMes = new Date(anoHoje, mesHoje, 0).getDate()
+    // listaMensal = novaListaMesAtual.filter((e, i) => i < qtosDiasTemMes)
 
     // exporta para gráfico de barras:
-    console.log(listaDados)
+    console.log(listaMensal)
     let titulo = `AUDIÊNCIA DO MÊS ${mesHoje}`
-    geraGrafico(listaDados, titulo)
+    geraGrafico(listaMensal, titulo)
     // abreDivDesempenho()
     // disparaGraficos()
 
@@ -360,7 +425,7 @@ function geraGrafico(listaXY, tituloGrafico) {
         // para ser aceito no Google Charts, é preciso esta linha como cabeçalho:
         // IMPORTA :
         // listaUlt10dias.unshift(['Dia/Mês', 'Minutos'])
-        listaDados.unshift(['Dia/Mês', 'Minutos'])
+        // listaDados.unshift(['Dia/Mês', 'Minutos'])
 
         // abaixo: Passa os valores de X e Y do gráfico (neste caso, está no array listaUlt10dias):
         let data = google.visualization.arrayToDataTable(
@@ -422,10 +487,11 @@ function geraGrafico(listaXY, tituloGrafico) {
     }
 }
 
-
+// desnecessário:
+/* 
 // para ajustar clica no gráfico de pizza:
 document.querySelector('#pizza1').addEventListener('click', () => {
-    disparaGraficos() 
+    disparaGraficos()
     // abreDivDesempenho()
     document.querySelector('#pizza1').scrollIntoView({
         behavior: 'smooth'
@@ -436,7 +502,7 @@ document.querySelector('#pizza1').addEventListener('click', () => {
 
 // para ajustar clica no gráfico de barras:
 document.querySelector('#graficosBarras').addEventListener('click', () => {
-    disparaGraficos()   
+    disparaGraficos()
     // abreDivDesempenho()
     document.querySelector('#graficosBarras').scrollIntoView({
         behavior: 'smooth'
@@ -445,7 +511,9 @@ document.querySelector('#graficosBarras').addEventListener('click', () => {
     // document.querySelector('#ajuste2').style.display = 'none'
 })
 
+ */
 
+// quando o usuário clica num dos 3 botões de gráficos de barras, disparam os seguintes eventos:
 let btSemanal = document.querySelector('#semanasOuvido')
 let bt10dias = document.querySelector('#ult10Ouvido')
 let btMensal = document.querySelector('#mesesOuvido')
@@ -459,24 +527,23 @@ btMensal.addEventListener('click', graficoMensal)
 function disparaGraficos() {
     // obtem tempo de audicao do local Storage:
     tempoAudicao = Math.trunc(Number(localStorage.tempoAudicao))
-    
+
     // obtem o tempo corrente da fx que o usuário está ouvindo:
     tempoFaixaAtual = Math.trunc(player.currentTime)
-    
+
     // total com o tempo de duração da faixa atual que está sendo tocada:
     totalTempo = tempoAudicao + tempoFaixaAtual
-    
+
     // obtem todos os dados de tempo do momento atual:
     obtemDataHoje()
-    
+
     totalCapitulosOuvidos()
     quantoOuviuHoje()
-    
+
     totalTempoOuvido(totalTempo)
     faltaOuvir(totalTempo)
-    
-    piechart()
-    grafico10dias()
 
+    piechart()
+    obtemDados()
     calculaMedia()
 }

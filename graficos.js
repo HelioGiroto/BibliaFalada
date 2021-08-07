@@ -5,7 +5,7 @@
 
 // Autor: Hélio Giroto
 
-let totalCapOuvidos, faltaOuvirTotal, totalTempo, qtoOuviuHoje, mesAnt, media, relacaoMedia
+let totalCapOuvidos, faltaOuvirTotal, totalTempo, qtoOuviuHoje, mesAnt, listaUlt10dias, media, relacaoMedia
 
 function fatiaTempo(valor) {
     // obtem quantas horas completas o usuário ouviu a Bíblia:
@@ -57,9 +57,7 @@ function faltaOuvir(valor) {
 }
 
 function quantoOuviuHoje() {
-    // obtem nro do mes e do dia:
-    obtemDataHoje()
-    // mesHoje e diaHoje são variáveis globais atualizadas ao serem chamadas na função obtemDataHoje() - ver disparaGraficos()
+    // mesHoje e diaHoje são variáveis globais atualizadas da função obtem_DataHoje() - ver disparaGraficos()
     let diaSemZero = diaHoje.replace(/^0/, '')
 
     // obtem da lista${mes}[dia]
@@ -150,22 +148,92 @@ function piechart() {
     }
 }
 
-// para ajustar gráfico de pizza na tela:
-document.querySelector('#pizza1').addEventListener('click', () => {
-    abreDivDesempenho()
-    document.querySelector('#pizza1').scrollIntoView({
-        behavior: 'smooth'
-    });
-    document.querySelector('#ajuste1').style.display = 'none'
-})
+
+function calculaMedia() {
+    ////////////////////////// CÁLCULOS DE MÉDIA /////////////////////////////
+
+    // reseta média (é variável global):
+    media = 0
+
+    // Cria lista para obter dados do tempo dos 10 últimos dias: 
+    let tempo10dias = []
+
+    // Dos valores da listaUlt10dias obtem apenas os tempos (minutos):
+    console.log(listaUlt10dias)
+    listaUlt10dias.map(a => tempo10dias.push(a[1]))
+    // remove o primeiro item da lista (que é apenas um cabeçalho de nome da coluna):
+    tempo10dias.shift()
+
+    // soma total do tempo da lista:
+    let total10dias = tempo10dias.reduce((total, cada) => total + cada, 0)
+
+    // calcula a média dos 10 dias:
+    media = Math.round(total10dias / 10)
+
+    // imprime em tela na details .media:
+    document.querySelector('#media').innerHTML = media
+
+    // hoje em relação com a média. Média está em minutos, qtoOuviuHoje está em segundos:
+    relacaoMedia = Math.round((qtoOuviuHoje / 60) - media)
+
+    // imprime valor e frase:
+    if (relacaoMedia < 0) {
+        document.querySelector('#frenteOuTras').style.color = 'red'
+        document.querySelector('#frenteOuTras').innerHTML = "atrás"
+        document.querySelector('#mediaHoje').innerHTML = relacaoMedia * -1
+    } else {
+        document.querySelector('#frenteOuTras').style.color = 'green'
+        document.querySelector('#frenteOuTras').innerHTML = "a frente"
+        document.querySelector('#mediaHoje').innerHTML = relacaoMedia
+    }
+
+    let estimativaTempo = Math.round((faltaOuvirTotal / 60) / media)
+    document.querySelector('#faltaMedia').innerHTML = estimativaTempo
+}
 
 /////// 3 funções de execução de gráficos: mensal, semanal e 10 dias ///////
 
-function graficoSemanal() {}
+function graficoSemanal() {
+    document.querySelector('.areaGraficoBarras').classList.remove('oculta')
+
+    // 3 - Graficos semanais:
+    // 3.1 - fazer a função semanal que pega o Domingo da semana atual:
+        let hoje = new Date()
+        let domingoPassado = hoje.getDate() - hoje.getDay()
+        let mesHoje = hoje.getMonth() + 1
+        if (mesHoje < 10) {
+            mesHoje = mesHoje.toString().replace(/.*/, "0$&")
+        }
+        // mesHoje = '07'
+
+    // 3.2 - pega biblia_mes_[mesHoje][domingoPassado] até biblia_mes_[mesHoje][domingoPassado + 6]
+    let listaSemana = []
+
+    for(a=0; a<8; a++){
+        let nroDia = domingoPassado + a
+        let qualDia = `${nroDia}/${mesHoje}`
+        let segundosDia = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))[nroDia]
+        let minutosDia = Math.trunc(segundosDia/60)
+        let subLista = [qualDia, minutosDia]
+        listaSemana.push(subLista)
+    }
+
+    // problema: quando a semana vai de 28 do mes anterior até 4 do outro mes, p.ex.
+
+    // exporta para gráfico de barras:
+    console.log(listaSemana)
+    let titulo = `AUDIÊNCIA DA SEMANA: ${domingoPassado}/${mesHoje} (Domingo) à ${domingoPassado+6}/${mesHoje} (Sábado)`
+    geraGrafico(listaSemana, titulo)
+
+    // pinta botão correspondente:
+    document.querySelectorAll('.cabecalhoPeriodo > div').forEach(a => {
+        a.style.background = 'khaki'
+    })
+    document.querySelector('#semanasOuvido').style.background = 'chocolate'
+}
 
 function grafico10dias() {
-    // obtem nro do mes:
-    obtemDataHoje()
+    document.querySelector('.areaGraficoBarras').classList.remove('oculta')
 
     // manipula string do nro do mês atual e anterior:
     mesAnt = Number(mesHoje) - 1
@@ -180,6 +248,7 @@ function grafico10dias() {
     let novaListaMesAnterior = []
 
     // ABAIXO:
+    // peneira os dias com valores vazios:
     // if(e) significa se o espaço da lista tem algum conteúdo...
     // O formato de saida para appendar às listas acima (no caso: ${i}/${mesHoje} é para sair com a data formatada d/mm):
     listaMesAtual.map((e, i) => {
@@ -200,82 +269,85 @@ function grafico10dias() {
     })
 
     /* 
-    // formato antes do mesmo que está ACIMA:
-    
-    listaMesAnterior.map((e,i)=>{
-        if(e){
-            let subLista = [`${i}`, mesAnt, e]
-            novaListaMesAnterior.push(subLista)
-        }
-    })
-    
-    //  saida: ["26", "07", 20.842181]
+
+            // formato antes do mesmo que está ACIMA:
+        
+        listaMesAnterior.map((e,i)=>{
+            if(e){
+                let subLista = [`${i}`, mesAnt, e]
+                novaListaMesAnterior.push(subLista)
+            }
+        })
+        
+        //  saida: ["26", "07", 20.842181]
+       
+        // ABAIXO: Não é necessário, senão o gráfico tb ficará ao revés.
+        // coloca em ordem inversa de dias: 31, 30, 29, 28.... 1.
+        // novaListaMesAtual = novaListaMesAtual.reverse()
+        // novaListaMesAnterior = novaListaMesAnterior.reverse()
+        // e o nro de index (do dia?)
+        // listaMesAtual.reverse().filter(a=>a)
+        // listaMesAnterior.reverse().filter(a=>a)
     */
-
-    // ABAIXO: Não é necessário, senão o gráfico tb ficará ao revés.
-    // coloca em ordem inversa de dias: 31, 30, 29, 28.... 1.
-    // novaListaMesAtual = novaListaMesAtual.reverse()
-    // novaListaMesAnterior = novaListaMesAnterior.reverse()
-
 
     // faz um merge das listas dos últimos dias do mês atual + mês anterior
     let listaUltDias = [...novaListaMesAnterior, ...novaListaMesAtual]
 
-    // de toda a lista acima, pega apenas 10 itens (dias):
+    // Filtra de toda a lista acima, apenas os 10 itens (dias):
     // usa reverse duas vezes para obter apenas os últimos 10 da lista e não os primeiros 10 da lista:
-    let listaUlt10dias = listaUltDias.reverse().filter((e, i) => i < 10).reverse()
+    listaUlt10dias = listaUltDias.reverse().filter((e, i) => i < 10).reverse()
 
     // console.log(typeof (listaUlt10dias))
     // console.log('lista 10 dias atrás: ', listaUlt10dias)
 
-    ////////////////////////// CÁLCULOS DE MÉDIA /////////////////////////////
+    // chama o gráfico:
+    let titulo = "ÚLTIMOS 10 DIAS - em minutos:"
+    geraGrafico(listaUlt10dias, titulo)
 
-    // reseta média (é variável global):
-    media = 0
+    // pinta botão correspondente:
+    document.querySelectorAll('.cabecalhoPeriodo > div').forEach(a => {
+        a.style.background = 'khaki'
+    })
+    document.querySelector('#ult10Ouvido').style.background = 'chocolate'
+}
 
-    // Cria lista para obter dados do tempo dos 10 últimos dias: 
-    let tempo10dias = []
+function graficoMensal() {
+    document.querySelector('.areaGraficoBarras').classList.remove('oculta')
 
-    // pega da lista de dados listaUlt10dias somente o valor do tempo (sem data):
-    listaUlt10dias.map(a => tempo10dias.push(a[1]))
-    console.log(listaUlt10dias)
+    mesHoje = '07'
+    let listaMesAtual = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))
+    let novaListaMesAtual = []
+    listaMesAtual.map((e, i) => {
+        let subLista = [`${i}/${mesHoje}`, Math.trunc(e / 60)]
+        novaListaMesAtual.push(subLista)
+    })
+    // remove item[0] da lista:
+    novaListaMesAtual.shift()
 
-    // soma total do tempo da lista:
-    let total10dias = tempo10dias.reduce((total, cada) => total + cada, 0)
-    // console.log(total10dias)
+    // retorna qtos dias tem o mês 5:
+    let qtosDiasTemMes = new Date(anoHoje, mesHoje, 0).getDate()
+    let listaDados = novaListaMesAtual.filter((e, i) => i < qtosDiasTemMes)
 
-    // calcula a média dos 10 dias:
-    media = Math.round(total10dias / 10)
+    // exporta para gráfico de barras:
+    console.log(listaDados)
+    let titulo = `AUDIÊNCIA DO MÊS ${mesHoje}`
+    geraGrafico(listaDados, titulo)
+    // abreDivDesempenho()
+    // disparaGraficos()
 
-    // imprime em tela na details .media:
-    document.querySelector('#media').innerHTML = media
+    // pinta botão correspondente:
+    document.querySelectorAll('.cabecalhoPeriodo > div').forEach(a => {
+        a.style.background = 'khaki'
+    })
+    document.querySelector('#mesesOuvido').style.background = 'chocolate'
+}
 
+function geraGrafico(listaXY, tituloGrafico) {
 
-    // hoje em relação com a média. Média está em minutos, qtoOuviuHoje está em segundos:
-    relacaoMedia = Math.round((qtoOuviuHoje / 60) - media)
+    //////////////// PREPARAÇÃO DOS GRÁFICOS DE BARRAS 10 DIAS /////////////
 
-    // imprime valor e frase:
-    if (relacaoMedia < 0) {
-        document.querySelector('#frenteOuTras').style.color = 'red'
-        document.querySelector('#frenteOuTras').innerHTML = "atrás"
-        document.querySelector('#mediaHoje').innerHTML = relacaoMedia * -1
-    } else {
-        document.querySelector('#frenteOuTras').style.color = 'green'
-        document.querySelector('#frenteOuTras').innerHTML = "a frente"
-        document.querySelector('#mediaHoje').innerHTML = relacaoMedia
-    }
-
-    let estimativaTempo = Math.round((faltaOuvirTotal / 60) / media)
-    document.querySelector('#faltaMedia').innerHTML = estimativaTempo
-
-    ////////////////////////// PREPARAÇÃO DOS GRÁFICOS /////////////////////////////
-
-    // para ser aceito no Google Charts, é preciso esta linha como cabeçalho:
-    listaUlt10dias.unshift(['Dia/Mês', 'Minutos'])
-
-    // e o nro de index (do dia?)
-    // listaMesAtual.reverse().filter(a=>a)
-    // listaMesAnterior.reverse().filter(a=>a)
+    let listaDados = listaXY
+    let titulo = tituloGrafico
 
     google.charts.load("current", {
         packages: ["corechart"],
@@ -285,14 +357,22 @@ function grafico10dias() {
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
+        // para ser aceito no Google Charts, é preciso esta linha como cabeçalho:
+        // IMPORTA :
+        // listaUlt10dias.unshift(['Dia/Mês', 'Minutos'])
+        listaDados.unshift(['Dia/Mês', 'Minutos'])
+
         // abaixo: Passa os valores de X e Y do gráfico (neste caso, está no array listaUlt10dias):
         let data = google.visualization.arrayToDataTable(
-            listaUlt10dias
+            // listaUlt10dias
+            listaDados
         );
 
         // abaixo: Estiliza o gráfico, título, legendas, cores, animações, etc..:
+        // IMPORTA : title
         let options = {
-            title: 'ÚLTIMOS 10 DIAS - EM MINUTOS',
+            // title: 'ÚLTIMOS 10 DIAS - EM MINUTOS',
+            title: titulo,
             legend: {
                 position: 'none'
             },
@@ -309,20 +389,23 @@ function grafico10dias() {
             },
         };
 
-        // define tipo gráfico e dispara na div escolhida:
-        // let chart = new google.visualization.ColumnChart(document.querySelector('#barras10dias'));
-        // let chart = new google.visualization.BarChart(document.querySelector('#barras10dias'));
-        // chart.draw(data, options);
-
         let chart
+
+        // define tipo gráfico e dispara na div escolhida:
+        // let chart = new google.visualization.BarChart(document.querySelector('#graficosBarras'));
+        // document.querySelector('#barrasV').classList.add('oculta')
+        chart = new google.visualization.ColumnChart(document.querySelector('#graficosBarras'));
+        chart.draw(data, options);
+
 
         // muda para gráfico de colunas (barras verticais):
         document.querySelector('#barrasV').addEventListener('click', () => {
             document.querySelector('#barrasV').classList.add('oculta')
             document.querySelector('#barrasH').classList.remove('oculta')
             document.querySelector('#escolhaBarra').classList.add('oculta')
-            document.querySelector('#ajuste2').classList.remove('oculta')
-            chart = new google.visualization.ColumnChart(document.querySelector('#barras10dias'))
+            // document.querySelector('#ajuste2').classList.remove('oculta')
+            // abaixo muda o id
+            chart = new google.visualization.ColumnChart(document.querySelector('#graficosBarras'))
             chart.draw(data, options)
         })
 
@@ -331,14 +414,37 @@ function grafico10dias() {
             document.querySelector('#barrasH').classList.add('oculta')
             document.querySelector('#barrasV').classList.remove('oculta')
             document.querySelector('#escolhaBarra').classList.add('oculta')
-            document.querySelector('#ajuste2').classList.remove('oculta')
-            chart = new google.visualization.BarChart(document.querySelector('#barras10dias'))
+            // document.querySelector('#ajuste2').classList.remove('oculta')
+            // abaixo: muda o id:
+            chart = new google.visualization.BarChart(document.querySelector('#graficosBarras'))
             chart.draw(data, options)
         })
     }
 }
 
-function graficoMensal() {}
+
+// para ajustar clica no gráfico de pizza:
+document.querySelector('#pizza1').addEventListener('click', () => {
+    disparaGraficos() 
+    // abreDivDesempenho()
+    document.querySelector('#pizza1').scrollIntoView({
+        behavior: 'smooth'
+    });
+    document.querySelector('#ajuste1').style.display = 'none'
+})
+
+
+// para ajustar clica no gráfico de barras:
+document.querySelector('#graficosBarras').addEventListener('click', () => {
+    disparaGraficos()   
+    // abreDivDesempenho()
+    document.querySelector('#graficosBarras').scrollIntoView({
+        behavior: 'smooth'
+    });
+    // apaga frase: Clique para ajustar...
+    // document.querySelector('#ajuste2').style.display = 'none'
+})
+
 
 let btSemanal = document.querySelector('#semanasOuvido')
 let bt10dias = document.querySelector('#ult10Ouvido')
@@ -349,47 +455,28 @@ bt10dias.addEventListener('click', grafico10dias)
 btMensal.addEventListener('click', graficoMensal)
 
 
-// clica no gráfico para ajustar:
-document.querySelector('#barras10dias').addEventListener('click', () => {
-    abreDivDesempenho()
-    document.querySelector('#barras10dias').scrollIntoView({
-        behavior: 'smooth'
-    });
-    document.querySelector('#ajuste2').style.display = 'none'
-})
-
-/* 
-// quando muda a orientação do celular, chama novamente a função grafico10dias para ajustar ao tamanho responsivo o bar column plot:
-// https://stackoverflow.com/questions/4917664/detect-viewport-orientation-if-orientation-is-portrait-display-alert-message-ad
-window.addEventListener("orientationchange", () => {
-    piechart()
-    // grafico10dias()
-    // disparaGraficos()
-    // ERRO - corrigir melhor.
-})
-
- */
-// https://developers.google.com/chart/interactive/docs/gallery/piechart?hl=en#data-format
-// http://www.duncanstruthers.design/ddv/tutorials/google-charts/responsive-google-charts-api/
-// https://developers.google.com/chart/interactive/docs/gallery/columnchart?hl=en
-
 
 function disparaGraficos() {
     // obtem tempo de audicao do local Storage:
     tempoAudicao = Math.trunc(Number(localStorage.tempoAudicao))
-
+    
     // obtem o tempo corrente da fx que o usuário está ouvindo:
     tempoFaixaAtual = Math.trunc(player.currentTime)
-
+    
     // total com o tempo de duração da faixa atual que está sendo tocada:
     totalTempo = tempoAudicao + tempoFaixaAtual
-
+    
+    // obtem todos os dados de tempo do momento atual:
+    obtemDataHoje()
+    
     totalCapitulosOuvidos()
     quantoOuviuHoje()
-
+    
     totalTempoOuvido(totalTempo)
     faltaOuvir(totalTempo)
-
+    
     piechart()
     grafico10dias()
+
+    calculaMedia()
 }

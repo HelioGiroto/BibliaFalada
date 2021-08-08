@@ -396,11 +396,19 @@ summary>h4 {
 
 .areaGraficoPizza {}
 
+.areaGraficoBarras{
+    height: 360px;
+}
+
 
 #pizza1 {
     width: 90%;
     margin: 0 auto;
-    margin-top: -25px;
+    /*margin-top: -25px;*/
+}
+
+#escolhaPeriodo{
+    margin-top: 10px;
 }
 
 .cabecalhoPeriodo {
@@ -437,20 +445,21 @@ summary>h4 {
     color: brown;
 }
 
-#escolhaBarra{
+#escolheTipoGrafico{
     color: darkred;
     text-align: center;
+    margin-top: 17px;
 }
 
 .btsMudaBarra{
     display: flex;
     flex-flow: row;
-    justify-content: center;
+    justify-content: space-evenly;
+    margin: 15px auto;
 }
 
-.mudaBarra{
-    width: 20%;
-    margin: 20px auto;
+.iconTipoGrafico{
+    width: 15%;
 }
 
 .fechaJanela {
@@ -478,6 +487,10 @@ summary>h4 {
 
 .violeta {
     color: #60172a;
+}
+
+.vermelho{
+    color: darkred;
 }
 
 .destaque{

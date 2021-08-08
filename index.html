@@ -141,8 +141,8 @@
                 <div class="areaGraficoPizza">
                     <h3>Gráfico</h3>
                     <small>(Quantidade de tempo ouvido - em minutos)</small>
+                    <p id='ajuste1' class="peq lato negrito">(Clique no gráfico para ajustá-lo melhor à tela)</p>
                     <div id="pizza1"></div><br>
-                    <p id='ajuste1' class="peq lato negrito">(Clique no gráfico para ajustá-lo à tela)</p>
                 </div>
             </details>
 
@@ -195,17 +195,20 @@
                 <summary>
                     <h4 class="lato">GRÁFICO MENSAL E SEMANAL</h4>
                 </summary>
+                <h4 class="lato vermelho centraliza" id="escolhaPeriodo">Escolha o período de tempo:</h4>
                 <div class="cabecalhoPeriodo">
-                    <div id="semanasOuvido">SEMANAL</div>
-                    <div id="ult10Ouvido">ÚLT. 10 DIAS</div>
-                    <div id="mesesOuvido">MENSAL</div>
+                    <div class="lato" id="semanasOuvido">SEMANAL</div>
+                    <div class="lato" id="ult10Ouvido">ÚLT. 10 DIAS</div>
+                    <div class="lato" id="mesesOuvido">MENSAL</div>
                 </div>
                 <p id='ajuste2' class="peq lato negrito oculta">(Clique no gráfico se precisar ajustá-lo melhor à tela)</p>
-                <div class="areaGraficoBarras oculta" id="graficosBarras"></div>
-                <h4 class="lato oculta" id="escolhaBarra">Escolha o tipo de gráfico:</h4>
-                <div class="btsMudaBarra">
-                    <img class="mudaBarra oculta" id="barrasV" src="bar_vertical.png" alt="">
-                    <img class="mudaBarra oculta" id="barrasH" src="bar_horizontal.png" alt="">
+                <div class="areaGraficoBarras" id="graficosBarras"></div>
+                <div id="calendario"></div>
+                <h4 class="lato oculta" id="escolheTipoGrafico">Mude o tipo de gráfico:</h4>
+                <div class="btsMudaBarra oculta">
+                    <img class="iconTipoGrafico" id="barrasV" src="bar_vertical.png" alt="">
+                    <img class="iconTipoGrafico" id="barrasH" src="bar_horizontal.png" alt="">
+                    <img class="iconTipoGrafico" id="linhaChart" src="lineChart.png" alt="">
                 </div>
             </details>
 
@@ -239,7 +242,7 @@
     <script src="script.js"></script>
     <script src="loader.js"></script>
     <script src="graficos.js"></script>
-    <script src="history_7.js"></script>
+    <script src="history_8.js"></script>
 
 </body>
 

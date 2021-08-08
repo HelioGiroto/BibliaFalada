@@ -1,13 +1,14 @@
 // GRAFICOS.JS
 
 // Este script é para obter a quantidade de tempo e as faixas ouvidas pelo usuário e 
-// fazer os gráficos estatísticos de desempenho da leitura bíblica:
+// fazer os gráficos estatísticos de desempenho da audição bíblica:
 
 // Autor: Hélio Giroto
 
 let totalCapOuvidos, faltaOuvirTotal, totalTempo, qtoOuviuHoje, mesAnt, listaUlt10dias, listaMensal, listaSemana, domingoPassado, media, relacaoMedia
 
 function fatiaTempo(valor) {
+    // Função para fornecer dados a partir de uma data requerida para que se tenha uma mensagem de tempo sobre qto tempo já ouviu ou não:
     // obtem quantas horas completas o usuário ouviu a Bíblia:
     let fatiaHoras = Math.trunc(valor / 3600)
 
@@ -23,6 +24,7 @@ function fatiaTempo(valor) {
 }
 
 function porcentagem(valor, total) {
+    // função para calcular o percentual de cor gradiente que pintará a quadrícula do nome do livro.
     // Ex.: valor=25; total=100. resultado = 25%.
     let resultado = Number((valor / (total) * 100).toFixed(2))
     return resultado
@@ -72,7 +74,7 @@ function quantoOuviuHoje() {
     // imprime qto tempo em ('#totalDiario'):
     let impressao = imprimeFatiado(tempoFatiado)
     if (qtoOuviuHoje == 0) {
-        document.querySelector('#totalDiario').innerHTML = `nenhum capítulo!`
+        document.querySelector('#totalDiario').innerHTML = `nenhum capítulo...`
     } else {
         document.querySelector('#totalDiario').innerHTML = `${impressao[0]}${impressao[1]}${impressao[2]}`
     }
@@ -86,9 +88,7 @@ function totalCapitulosOuvidos() {
 
 function imprimeFatiado(lista) {
     // caso hora, min ou seg seja = 0, omite o 0, como tb faz lgumas modificações no texto:
-    //  lista[0] - hora
-    //  lista[1] - minuto
-    //  lista[2] - segundo
+    //  lista[0] - hora    //  lista[1] - minuto    //  lista[2] - segundo:
     if (lista[0] === 0) {
         lista[0] = ''
     } else {
@@ -109,7 +109,7 @@ function imprimeFatiado(lista) {
     return novaLista
 }
 
-function piechart() {
+function geraGraficoPizza() {
     google.charts.load("current", {
         packages: ["corechart"],
         'language': 'pt-BR'
@@ -123,19 +123,23 @@ function piechart() {
             ['Já ouvido', Math.trunc(totalTempo / 60)]
         ]);
 
+        // as opções abaixo comentadas, são para:
+        // ativar 3D - mas desativa o donnut
+        // slice - tira um pedaço para fora da pizza 0.X pixels
         let options = {
             // is3D: true,
             pieHole: 0.5,
             colors: ['#ff6666', '#668cff'],
             legend: 'bottom',
             width: window.innerWidth,
-            height: 320,
+            height: 380,
             chartArea: {
                 top: '7%',
                 left: 0,
                 width: '90%',
                 height: '80%'
             },
+            // slices: {1: {offset: 0.3}},
         };
 
         // if(window.innerWidth < 350){ options.width = 300 }
@@ -148,7 +152,7 @@ function piechart() {
     }
 }
 
-
+// prepara todas as listas de dados (X e Y) e faz os cálculos para fornecer às funções de graficar:
 function obtemDados() {
     // nro do mês atual e anterior:
     mesAnt = Number(mesHoje) - 1
@@ -197,31 +201,106 @@ function obtemDados() {
     listaUlt10dias.unshift(['Dia/Mês', 'Minutos'])
 
 
-    // console.log(typeof (listaUlt10dias))
-    // console.log('lista 10 dias atrás: ', listaUlt10dias)
-
     //////////////////////////////////////////////////////
 
     // para gráfico semanal:
+    /* 
+        // teste: 
+        // 1° de SET - 4a. 
+        // DomingoPassado = 29/ago!!
+        diaHoje = '01'
+        mesHoje = '09'
+        mesAnt = '08'
+        hoje = new Date(2021, 08, 1);
+    */
 
-    // obtem dia do mes (25) e dia da semana (0 - Domingo)
-    domingoPassado = hoje.getDate() - hoje.getDay()
-
-    // pega biblia_mes_[mesHoje][domingoPassado] até biblia_mes_[mesHoje][domingoPassado + 6]
     // cria/reseta array global para ser exportada:
     listaSemana = []
 
-    for (a = 0; a < 7; a++) {
-        let nroDia = domingoPassado + a
-        let qualDia = `${nroDia}/${mesHoje}`
-        let segundosDia = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))[nroDia]
-        let minutosDia = Math.trunc(segundosDia / 60)
-        let subLista = [qualDia, minutosDia]
-        listaSemana.push(subLista)
+    // problema: quando a semana vai de 28 do mes anterior até 4 do outro mes, p.ex.
+
+    // obtem dia do mes (25, p.ex.) e dia da semana (0 - Domingo)
+    domingoPassado = hoje.getDate() - hoje.getDay()
+
+
+    // se Domingo passado é antes do dia 1, o Domingo estará no mês passado!
+    if (domingoPassado < 1) {
+
+        // qtos dias tem o mêsPassado (se 28, 30, 31?):
+        let qtosDiasTemMesAnt = new Date(anoHoje, mesAnt, 0).getDate()
+
+        // forma lista de semana de dados:
+        let diaSemanaUltDiaMesAnt = new Date(anoHoje, Number(mesAnt - 1), qtosDiasTemMesAnt).getDay()
+
+        // console.log(`o ult dia do mes passado: ${mesAnt} foi ${qtosDiasTemMesAnt} e caiu numa ${diaSemanaUltDiaMesAnt}`)
+
+        // você está no mes passado:
+        // console.log('mesHoje ' + mesHoje)
+
+        // então se faz backup do mes Atual como mes original:
+        let mesHojeOriginal = mesHoje
+
+        // muda o atual para anterior e posteriormente muda o atual para o original
+        mesHoje = mesAnt
+
+        // console.log('mesHoje ' + mesHoje) 
+        // console.log('diaHoje =' + diaHoje)
+        // console.log('diaSemanaUltDiaMesAnt : ' + diaSemanaUltDiaMesAnt)
+
+        for (a = 0; a < 7; a++) {
+            // nroDia será algum nro de 1 a 31
+            let nroDia = domingoPassado + a + qtosDiasTemMesAnt
+            // se o dia atual passou o último dia do Mês passado, vira o mês!
+            if (nroDia > qtosDiasTemMesAnt) {
+                nroDia = a - diaSemanaUltDiaMesAnt // erro corrigido. antes era: nroDia = a
+                mesHoje = mesHojeOriginal
+            }
+            // para efeito de formatação coerente com o nome do array em localStorage:
+            if (Number(mesHoje) < 9) {
+                mesHoje = `0${Number(mesHoje)}`
+            }
+            // procura na array do localStorage no mesHoje e no nroDia o valor:
+            let segundosDia = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))[nroDia]
+            // converte para minutos:
+            let minutosDia = Math.trunc(segundosDia / 60)
+            // forma a data para a nova lista neste formato: 21/09 (p.ex.):
+            let qualDia = `${nroDia}/${mesHoje}`
+            // forma uma lista com os dois valores: data e minutos:
+            let subLista = [qualDia, minutosDia]
+            // appenda na array listaSemana:
+            listaSemana.push(subLista)
+        }
+
+        // domingoPassado não é 0, ou -1, ou -3... mas sim:
+        // esta atualização da variável abaixo é para ir no título do gráfico semanal:
+        domingoPassado = domingoPassado + qtosDiasTemMesAnt
+
+    } else {
+        // não estamos na primeira semana do mês nem que o Domingo foi < 1.
+        // forma um array de 7 items (dias) - de 0 (domingo) até 6 (sábado)...
+        // ... para receber os valores do localStorage ref. ao dia e mês da semana atual:
+        for (a = 0; a < 7; a++) {
+            // obtem nro do dia da semana do dia-da-semana[a] baseado no dia que era DomingoPassado:
+            let nroDia = domingoPassado + a
+            // procura na array do localStorage no mesHoje e no nroDia o valor:
+            let segundosDia = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))[nroDia]
+            // converte para minutos:
+            let minutosDia = Math.trunc(segundosDia / 60)
+            // forma a data para a nova lista neste formato: 21/09 (p.ex.):
+            let qualDia = `${nroDia}/${mesHoje}`
+            // forma uma lista com os dois valores: data e minutos:
+            let subLista = [qualDia, minutosDia]
+            // appenda na array listaSemana:
+            listaSemana.push(subLista)
+        }
     }
+
+    // pega biblia_mes_[mesAnt][domingoPassado] até biblia_mes_[mesHoje][domingoPassado + 6]
 
     // "cabeçalho" da lista:
     listaSemana.unshift(['Dia/Mês', 'Minutos'])
+
+
 
     //////////////////////////////////////////////////////
 
@@ -244,32 +323,9 @@ function obtemDados() {
     // "cabeçalho" da lista:
     listaMensal.unshift(['Dia/Mês', 'Minutos'])
 
-    /* 
-    
-                // formato antes do mesmo que está ACIMA:
-            
-            listaMesAnterior.map((e,i)=>{
-                if(e){
-                    let subLista = [`${i}`, mesAnt, e]
-                    novaListaMesAnterior.push(subLista)
-                }
-            })
-            
-            //  saida: ["26", "07", 20.842181]
-           
-            // ABAIXO: Não é necessário, senão o gráfico tb ficará ao revés.
-            // coloca em ordem inversa de dias: 31, 30, 29, 28.... 1.
-            // novaListaMesAtual = novaListaMesAtual.reverse()
-            // novaListaMesAnterior = novaListaMesAnterior.reverse()
-            // e o nro de index (do dia?)
-            // listaMesAtual.reverse().filter(a=>a)
-            // listaMesAnterior.reverse().filter(a=>a)
-        */
-
-    //
-
 }
 
+// faz cálculo de média baseado na array de 10 dias de audição do usuário:
 function calculaMedia() {
     ////////////////////////// CÁLCULOS DE MÉDIA /////////////////////////////
 
@@ -280,8 +336,9 @@ function calculaMedia() {
     let tempo10dias = []
 
     // Dos valores da listaUlt10dias obtem apenas os tempos (minutos):
-    console.log(listaUlt10dias)
+    // o array global abaixo vem da função obtemDados():
     listaUlt10dias.map(a => tempo10dias.push(a[1]))
+    // console.log(listaUlt10dias)
     // remove o primeiro item da lista (que é apenas um cabeçalho de nome da coluna):
     tempo10dias.shift()
 
@@ -315,42 +372,11 @@ function calculaMedia() {
 /////// 3 funções de execução de gráficos: mensal, semanal e 10 dias ///////
 
 function graficoSemanal() {
-    document.querySelector('.areaGraficoBarras').classList.remove('oculta')
-
-    // 3 - Graficos semanais:
-    // 3.1 - fazer a função semanal que pega o Domingo da semana atual:
-    // let hoje = new Date()
-    // let domingoPassado = hoje.getDate() - hoje.getDay()
-    // let mesHoje = hoje.getMonth() + 1
-    // if (mesHoje < 10) {
-    //     mesHoje = mesHoje.toString().replace(/.*/, "0$&")
-    //   }
-    // mesHoje = '07'
-
-    // 3.2 - pega biblia_mes_[mesHoje][domingoPassado] até biblia_mes_[mesHoje][domingoPassado + 6]
-    // let listaSemana = []
-
-    /*
-    for (a = 0; a < 7; a++) {
-        let nroDia = domingoPassado + a
-        let qualDia = `${nroDia}/${mesHoje}`
-        let segundosDia = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))[nroDia]
-        let minutosDia = Math.trunc(segundosDia / 60)
-        let subLista = [qualDia, minutosDia]
-        listaSemana.push(subLista)
-    }
-
-    // "cabeçalho" da lista:
-    listaSemana.unshift(['Dia/Mês', 'Minutos'])
-    */
-    document.querySelector('.areaGraficoBarras').classList.remove('oculta')
-
-    // problema: quando a semana vai de 28 do mes anterior até 4 do outro mes, p.ex.
 
     // exporta para gráfico de barras:
     console.log(listaSemana)
-    let titulo = `AUDIÊNCIA DA SEMANA: ${domingoPassado}/${mesHoje} (Domingo) à ${domingoPassado+6}/${mesHoje} (Sábado)`
-    geraGrafico(listaSemana, titulo)
+    let titulo = `AUDIÊNCIA DA SEMANA: ${domingoPassado}/${mesHoje} (Domingo) à ${listaSemana[7][0]} (Sábado)`
+    geraGraficoBarras(listaSemana, titulo)
 
     // pinta botão correspondente:
     document.querySelectorAll('.cabecalhoPeriodo > div').forEach(a => {
@@ -360,14 +386,13 @@ function graficoSemanal() {
 }
 
 function grafico10dias() {
-    document.querySelector('.areaGraficoBarras').classList.remove('oculta')
 
     // o array listaUlt_10dias é global e já recebeu valores de obtemDados():
     console.log(listaUlt10dias)
 
     // chama o gráfico:
     let titulo = "ÚLTIMOS 10 DIAS - em minutos:"
-    geraGrafico(listaUlt10dias, titulo)
+    geraGraficoBarras(listaUlt10dias, titulo)
 
     // pinta botão correspondente:
     document.querySelectorAll('.cabecalhoPeriodo > div').forEach(a => {
@@ -377,28 +402,11 @@ function grafico10dias() {
 }
 
 function graficoMensal() {
-    document.querySelector('.areaGraficoBarras').classList.remove('oculta')
-
-    // mesHoje = '07'
-    // let listaMesAtual = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))
-    // let novaListaMesAtual = []
-    // listaMesAtual.map((e, i) => {
-    //     let subLista = [`${i}/${mesHoje}`, Math.trunc(e / 60)]
-    //     novaListaMesAtual.push(subLista)
-    // })
-    // // remove item[0] da lista:
-    // novaListaMesAtual.shift()
-
-    // retorna qtos dias tem o mêsHoje (se 28, 30, 31?):
-    // let qtosDiasTemMes = new Date(anoHoje, mesHoje, 0).getDate()
-    // listaMensal = novaListaMesAtual.filter((e, i) => i < qtosDiasTemMes)
 
     // exporta para gráfico de barras:
     console.log(listaMensal)
     let titulo = `AUDIÊNCIA DO MÊS ${mesHoje}`
-    geraGrafico(listaMensal, titulo)
-    // abreDivDesempenho()
-    // disparaGraficos()
+    geraGraficoBarras(listaMensal, titulo)
 
     // pinta botão correspondente:
     document.querySelectorAll('.cabecalhoPeriodo > div').forEach(a => {
@@ -407,7 +415,7 @@ function graficoMensal() {
     document.querySelector('#mesesOuvido').style.background = 'chocolate'
 }
 
-function geraGrafico(listaXY, tituloGrafico) {
+function geraGraficoBarras(listaXY, tituloGrafico) {
 
     //////////////// PREPARAÇÃO DOS GRÁFICOS DE BARRAS 10 DIAS /////////////
 
@@ -441,12 +449,18 @@ function geraGrafico(listaXY, tituloGrafico) {
             legend: {
                 position: 'none'
             },
+            hAxis: {
+                title: 'Dia/Mês'
+            },
+            vAxis: {
+                title: 'Minutos'
+            },
             colors: ['#e7711c'],
             'width': window.innerWidth,
-            'height': '70%',
+            'height': '100%', // era 70%
             'chartArea': {
                 width: '80%',
-                height: '80%'
+                height: '70%'
             },
             animation: {
                 duration: 3000,
@@ -456,18 +470,24 @@ function geraGrafico(listaXY, tituloGrafico) {
 
         let chart
 
-        // define tipo gráfico e dispara na div escolhida:
+        // define tipo de gráfico inicialmente (na abertura):
         // let chart = new google.visualization.BarChart(document.querySelector('#graficosBarras'));
-        // document.querySelector('#barrasV').classList.add('oculta')
         chart = new google.visualization.ColumnChart(document.querySelector('#graficosBarras'));
         chart.draw(data, options);
+
+        // mostra os botões de escolher tipo de gráfico de barras (inicialmente):
+        document.querySelector('.btsMudaBarra').classList.remove('oculta')
+        document.querySelector('#escolheTipoGrafico').classList.remove('oculta')
+        document.querySelector('#barrasH').classList.remove('oculta')
+        document.querySelector('#linhaChart').classList.remove('oculta')
+        document.querySelector('#barrasV').classList.add('oculta')
 
 
         // muda para gráfico de colunas (barras verticais):
         document.querySelector('#barrasV').addEventListener('click', () => {
             document.querySelector('#barrasV').classList.add('oculta')
             document.querySelector('#barrasH').classList.remove('oculta')
-            document.querySelector('#escolhaBarra').classList.add('oculta')
+            document.querySelector('#linhaChart').classList.remove('oculta')
             // document.querySelector('#ajuste2').classList.remove('oculta')
             // abaixo muda o id
             chart = new google.visualization.ColumnChart(document.querySelector('#graficosBarras'))
@@ -478,40 +498,92 @@ function geraGrafico(listaXY, tituloGrafico) {
         document.querySelector('#barrasH').addEventListener('click', () => {
             document.querySelector('#barrasH').classList.add('oculta')
             document.querySelector('#barrasV').classList.remove('oculta')
-            document.querySelector('#escolhaBarra').classList.add('oculta')
+            document.querySelector('#linhaChart').classList.remove('oculta')
             // document.querySelector('#ajuste2').classList.remove('oculta')
             // abaixo: muda o id:
             chart = new google.visualization.BarChart(document.querySelector('#graficosBarras'))
             chart.draw(data, options)
         })
+
+        // muda para gráfico de barras horizontais:
+        document.querySelector('#linhaChart').addEventListener('click', () => {
+            document.querySelector('#barrasH').classList.remove('oculta')
+            document.querySelector('#barrasV').classList.remove('oculta')
+            document.querySelector('#linhaChart').classList.add('oculta')
+            // document.querySelector('#ajuste2').classList.remove('oculta')
+            // abaixo: muda o id:
+            chart = new google.visualization.LineChart(document.querySelector('#graficosBarras'))
+            chart.draw(data, options)
+        })
+
     }
 }
 
-// desnecessário:
-/* 
-// para ajustar clica no gráfico de pizza:
-document.querySelector('#pizza1').addEventListener('click', () => {
-    disparaGraficos()
-    // abreDivDesempenho()
-    document.querySelector('#pizza1').scrollIntoView({
-        behavior: 'smooth'
+// futuramente: 
+function geraGraficoCalendario() {
+    google.charts.load("current", {
+        packages: ["calendar"],
+        'language': 'pt-BR'
     });
-    document.querySelector('#ajuste1').style.display = 'none'
-})
+    google.charts.setOnLoadCallback(drawChart);
 
+    function drawChart() {
+        let dataTable = new google.visualization.DataTable();
+        dataTable.addColumn({
+            type: 'date',
+            id: 'Date'
+        });
+        dataTable.addColumn({
+            type: 'number',
+            id: 'Won/Loss'
+        });
+        dataTable.addRows([
+            [new Date(2012, 3, 13), 37032],
+            [new Date(2012, 3, 14), 38024],
+            [new Date(2012, 3, 15), 38024],
+            [new Date(2012, 3, 16), 38108],
+            [new Date(2012, 3, 17), 38229],
+        ]);
 
-// para ajustar clica no gráfico de barras:
-document.querySelector('#graficosBarras').addEventListener('click', () => {
-    disparaGraficos()
-    // abreDivDesempenho()
-    document.querySelector('#graficosBarras').scrollIntoView({
-        behavior: 'smooth'
-    });
-    // apaga frase: Clique para ajustar...
-    // document.querySelector('#ajuste2').style.display = 'none'
-})
+        let chart = new google.visualization.Calendar(document.querySelector('#calendario'));
 
- */
+        let options = {
+            title: "Título do calendário",
+            color: 'black',
+            calendar: {
+                cellSize: 12, // 16. Diminuindo, diminui tb o width do graf.
+                daysOfWeek: 'DSTQQSS',
+                underYearSpace: 10,
+                dayOfWeekLabel: {
+                    fontName: 'Times-Roman',
+                    fontSize: 12,
+                    color: 'grey',
+                    bold: true,
+                    italic: true,
+                },
+                monthLabel: {
+                    fontName: 'Times-Roman',
+                    fontSize: 12,
+                    color: 'darkred',
+                    bold: true,
+                    italic: true
+                },
+                yearLabel: {
+                    fontName: 'Times-Roman',
+                    fontSize: 30,
+                    color: 'darkblue',
+                    bold: true,
+                    italic: true
+                }
+            },
+            width: 640,
+            height: 350,
+        };
+
+        chart.draw(dataTable, options);
+    }
+}
+
 
 // quando o usuário clica num dos 3 botões de gráficos de barras, disparam os seguintes eventos:
 let btSemanal = document.querySelector('#semanasOuvido')
@@ -523,8 +595,21 @@ bt10dias.addEventListener('click', grafico10dias)
 btMensal.addEventListener('click', graficoMensal)
 
 
+// para ajustar clica no gráfico de pizza:
+document.querySelector('#pizza1').addEventListener('click', () => {
+    disparaGraficos()
+    // abreDivDesempenho()
+    document.querySelector('#pizza1').scrollIntoView({
+        behavior: 'smooth'
+    });
+    document.querySelector('#ajuste1').style.display = 'none'
+})
+
 
 function disparaGraficos() {
+    // aumenta a altura da area do gráfico de Barras:
+    // document.querySelector('#graficosBarras').style.height = window.innerWidth
+
     // obtem tempo de audicao do local Storage:
     tempoAudicao = Math.trunc(Number(localStorage.tempoAudicao))
 
@@ -543,7 +628,7 @@ function disparaGraficos() {
     totalTempoOuvido(totalTempo)
     faltaOuvir(totalTempo)
 
-    piechart()
+    geraGraficoPizza()
     obtemDados()
     calculaMedia()
 }

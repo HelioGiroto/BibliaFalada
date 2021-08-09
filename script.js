@@ -583,6 +583,10 @@ function rolaTopo() {
     });
 }
 
+function rolaBarras(){
+    document.querySelector('#topoGraficoBarras').scrollIntoView();
+}
+
 
 function abreDivPausa() {
     rolaMenu()

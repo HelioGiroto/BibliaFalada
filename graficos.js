@@ -486,6 +486,7 @@ function geraGraficoBarras(listaXY, tituloGrafico) {
         document.querySelector('#barrasH').classList.remove('oculta')
         document.querySelector('#linhaChart').classList.remove('oculta')
         document.querySelector('#barrasV').classList.add('oculta')
+        rolaBarras()
 
 
         // muda para gráfico de colunas (barras verticais):
@@ -499,6 +500,7 @@ function geraGraficoBarras(listaXY, tituloGrafico) {
             // abaixo muda o id
             chart = new google.visualization.ColumnChart(document.querySelector('#graficosBarras'))
             chart.draw(data, options)
+            rolaBarras()
         })
 
         // muda para gráfico de barras horizontais:
@@ -512,6 +514,7 @@ function geraGraficoBarras(listaXY, tituloGrafico) {
             // abaixo: muda o id:
             chart = new google.visualization.BarChart(document.querySelector('#graficosBarras'))
             chart.draw(data, options)
+            rolaBarras()
         })
 
         // muda para gráfico de linhas:
@@ -525,6 +528,7 @@ function geraGraficoBarras(listaXY, tituloGrafico) {
             // abaixo: muda o id:
             chart = new google.visualization.LineChart(document.querySelector('#graficosBarras'))
             chart.draw(data, options)
+            rolaBarras()
         })
 
     }

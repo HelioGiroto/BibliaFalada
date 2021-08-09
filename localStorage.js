@@ -27,10 +27,6 @@ if (localStorage.getItem("tempoAudicao") == null || !localStorage.tempoAudicao) 
     localStorage.setItem("tempoAudicao", "0")
 }
 
-
-
-
-
 /*
 
 // cria se não exista uma variável no local Storage que mostra o último dia que o usuário ouviu a Bíblia:
@@ -107,6 +103,31 @@ if (localStorage.getItem("biblia_mes_11") == null || !localStorage.biblia_mes_11
 if (localStorage.getItem("biblia_mes_12") == null || !localStorage.biblia_mes_12) {
     localStorage.setItem("biblia_mes_12", listaVazia)
 }
+
+// se o item[0] de cada array de localStorage relacionado com os meses estiver vazio, coloca o ano 2021:
+// ERRO : antes da virada do ano é preciso manipular que a cada novo mês se altera de 2021 para 2022:
+for (a = 1; a <= 12; a++) {
+    if (a < 10) {
+        a = `0${a}`
+    }
+    let lista = JSON.parse(localStorage.getItem(`biblia_mes_${a}`))
+    if (!lista[0]) {
+        lista[0] = '2021'
+        localStorage.setItem(`biblia_mes_${a}`, JSON.stringify(lista))
+    }
+    // console.log(`${a}: ` + lista)
+}
+
+/*
+        // obtem localStorage:
+        tempoAudicao = Number(JSON.parse(localStorage.getItem('tempoAudicao')))
+        // soma (acumulado de segundos):
+        tempoAudicao = tempoAudicao + duracaoFaixaAtual
+        // msg de console - tempo acumulado de audição:
+        console.log(tempoAudicao)
+        // grava no localStorage
+        localStorage.tempoAudicao = tempoAudicao
+*/
 
 
 

@@ -36,7 +36,8 @@ function totalTempoOuvido(valor) {
 
     // imprime qto tempo já ouviu hoje em ('#tempoOuvido'):
     let impressao = imprimeFatiado(tempoFatiado)
-    document.querySelector('#tempoOuvido').innerHTML = `${impressao[0]}${impressao[1]}${impressao[2]}`
+    // document.querySelector('#tempoOuvido').innerHTML = `${impressao[0]}${impressao[1]}${impressao[2]}`
+    document.querySelector('#tempoOuvido').innerHTML = `${impressao[0]}${impressao[1]}`
 }
 
 function faltaOuvir(valor) {
@@ -55,14 +56,13 @@ function faltaOuvir(valor) {
 
     // imprime qto tempo já ouvir hoje em ('#tempoFalta'):
     let impressao = imprimeFatiado(tempoFatiado)
-    document.querySelector('#tempoFalta').innerHTML = `${impressao[0]}${impressao[1]}${impressao[2]}`
+    // document.querySelector('#tempoFalta').innerHTML = `${impressao[0]}${impressao[1]}${impressao[2]}`
+    document.querySelector('#tempoFalta').innerHTML = `${impressao[0]}${impressao[1]}`
 }
 
 function quantoOuviuHoje() {
     // mesHoje e diaHoje são variáveis globais atualizadas da função obtem_DataHoje() - ver disparaGraficos()
-    // let diaSemZero = diaHoje.replace(/^0/, '')
-    let diaSemZero = diaHoje
-
+    let diaSemZero = diaHoje.toString().replace(/^0/, '')
 
     // obtem da lista${mes}[dia]
     qtoOuviuHoje = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))[diaSemZero]
@@ -79,6 +79,7 @@ function quantoOuviuHoje() {
         document.querySelector('#totalDiario').innerHTML = `nenhum capítulo...`
     } else {
         document.querySelector('#totalDiario').innerHTML = `${impressao[0]}${impressao[1]}${impressao[2]}`
+        // document.querySelector('#totalDiario').innerHTML = `${impressao[0]}${impressao[1]}`
     }
 }
 
@@ -452,7 +453,7 @@ function geraGraficoBarras(listaXY, tituloGrafico) {
                 position: 'none'
             },
             /* 
-            */
+             */
             hAxis: {
                 title: 'Dia/Mês'
             },

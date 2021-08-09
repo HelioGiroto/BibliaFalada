@@ -120,6 +120,7 @@ function gravaTempoTotal() {
     // console.log("cap Ouvidos lista " + capitulosOuvidos)
     // console.log("fx Atual " + faixaAtual)
 
+    // se a fx atual não está dentro da array capitulosOuvidos:
     if (!capitulosOuvidos.includes(faixaAtual)) {
         console.log("gravando tempo no TOTAL...")
         // obtem localStorage:
@@ -148,7 +149,7 @@ function gravaTempoDiario() {
     let listaAudicaoMes = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))
     // procura no array correspondente ao dia de hoje o tempo armazenado:
     // abaixo: quando o dia seja 01 até 09:
-    let diaHojeSemZero = diaHoje.replace(/^0/, '')
+    let diaHojeSemZero = diaHoje.toString().replace(/^0/, '')
     let tempoDiaHoje = Number(listaAudicaoMes[`${diaHojeSemZero}`])
     // if(tempoDiaHoje === '' || tempoDiaHoje === NaN) tempoDiaHoje = 0
 

@@ -10,6 +10,8 @@
 
 - Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos para tablets e desktop ou input para busca - ???
 
+- Em localStorage.js: Antes de Janero/2022 é preciso manipular que a cada novo mês se altera de 2021 para 2022.
+
 
 https://developers.google.com/chart/interactive/docs/animation
 https://heliogiroto.github.io/Escatologia-em-Lucas/
@@ -22,11 +24,12 @@ https://github.com/HelioGiroto/Google-Agenda-Generator/blob/main/index.html
 ### Desempenho do usuário (suas métricas):
 
 - Funções de **estatísticas** de audição:
-	- ALERTA: "Faz x dias/semanas/meses que vc não ouve..."; "Parabéns!!"; etc.
-	- Gráfico da semana atual... passada... etc.. Média:...
 	- Gráfico do mês atual... do mês passado... antepassado...
-	- Livros mais lidos (Em porcentagem) ? 
+	- Gráfico da semana atual... passada... etc.. Média:...
 	- Calendário com dias que ouviu (porcentagem em gradiente).
+
+	- ALERTA: "Faz x dias/semanas/meses que vc não ouve..."; "Parabéns!!"; etc.
+	- Livros mais lidos (Em porcentagem) ? 
 
 
 - **Mais** recursos... (details tags):

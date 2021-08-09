@@ -60,7 +60,9 @@ function faltaOuvir(valor) {
 
 function quantoOuviuHoje() {
     // mesHoje e diaHoje são variáveis globais atualizadas da função obtem_DataHoje() - ver disparaGraficos()
-    let diaSemZero = diaHoje.replace(/^0/, '')
+    // let diaSemZero = diaHoje.replace(/^0/, '')
+    let diaSemZero = diaHoje
+
 
     // obtem da lista${mes}[dia]
     qtoOuviuHoje = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))[diaSemZero]
@@ -449,6 +451,8 @@ function geraGraficoBarras(listaXY, tituloGrafico) {
             legend: {
                 position: 'none'
             },
+            /* 
+            */
             hAxis: {
                 title: 'Dia/Mês'
             },
@@ -489,6 +493,8 @@ function geraGraficoBarras(listaXY, tituloGrafico) {
             document.querySelector('#barrasH').classList.remove('oculta')
             document.querySelector('#linhaChart').classList.remove('oculta')
             // document.querySelector('#ajuste2').classList.remove('oculta')
+            options.hAxis.title = 'Dia/Mês'
+            options.vAxis.title = 'Minutos'
             // abaixo muda o id
             chart = new google.visualization.ColumnChart(document.querySelector('#graficosBarras'))
             chart.draw(data, options)
@@ -500,17 +506,21 @@ function geraGraficoBarras(listaXY, tituloGrafico) {
             document.querySelector('#barrasV').classList.remove('oculta')
             document.querySelector('#linhaChart').classList.remove('oculta')
             // document.querySelector('#ajuste2').classList.remove('oculta')
+            options.vAxis.title = 'Dia/Mês'
+            options.hAxis.title = 'Minutos'
             // abaixo: muda o id:
             chart = new google.visualization.BarChart(document.querySelector('#graficosBarras'))
             chart.draw(data, options)
         })
 
-        // muda para gráfico de barras horizontais:
+        // muda para gráfico de linhas:
         document.querySelector('#linhaChart').addEventListener('click', () => {
             document.querySelector('#barrasH').classList.remove('oculta')
             document.querySelector('#barrasV').classList.remove('oculta')
             document.querySelector('#linhaChart').classList.add('oculta')
             // document.querySelector('#ajuste2').classList.remove('oculta')
+            options.hAxis.title = 'Dia/Mês'
+            options.vAxis.title = 'Minutos'
             // abaixo: muda o id:
             chart = new google.visualization.LineChart(document.querySelector('#graficosBarras'))
             chart.draw(data, options)

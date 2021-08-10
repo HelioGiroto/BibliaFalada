@@ -167,6 +167,10 @@ function obtemDados() {
     let listaMesAtual = JSON.parse(localStorage.getItem(`biblia_mes_${mesHoje}`))
     let listaMesAnterior = JSON.parse(localStorage.getItem(`biblia_mes_${mesAnt}`))
 
+    // ERRO - corrigir isto abaixo. Pq o item 0 das duas listas abaixo é o ano de 2021.
+    listaMesAtual[0] = ''
+    listaMesAnterior[0] = ''
+
     // cria/reseta listas para receber filtragem de dados:
     let novaListaMensal = []
     let novaListaMesAtualSemVazios = []

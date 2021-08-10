@@ -91,6 +91,7 @@ function obtemDataHoje() {
     if (mesHoje < 9) {
         mesHoje = `0${mesHoje}`
     }
+    // ERRO: rever se é mesmo necessario abaixo:
     if (diaHoje < 9) {
         diaHoje = `0${diaHoje}`
     }

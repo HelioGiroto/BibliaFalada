@@ -10,6 +10,10 @@ CSS para estilizar no caso de tablets:
     #imgMobile{
         display: none;
     }
+
+    .pagina1{
+        height: 130%;
+    }
     
     #logo, #infolivro, #nomeVersao, .btPlayPause, .btsMuda {
         cursor: pointer;

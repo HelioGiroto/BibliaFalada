@@ -1,5 +1,5 @@
 /*
-CSS para estilizar no caso de desktops ou tablets:
+CSS para estilizar no caso de desktops:
 */
 @media only screen and (min-width:900px) {
 
@@ -26,6 +26,7 @@ CSS para estilizar no caso de desktops ou tablets:
     #btPlay,
     #btPause {
         width: 30%;
+        height: 30%;
     }
 
     .btsMuda {
@@ -72,11 +73,7 @@ CSS para estilizar no caso de desktops ou tablets:
         font-size: 2em;
         margin-top: 20px;
     }
-
-    .icons {
-        width: 20%;
-    }
-
+    
     .cabecalho,
     .cabecalhoCapitulos {
         font-size: 1.5em;
@@ -86,7 +83,8 @@ CSS para estilizar no caso de desktops ou tablets:
 @media only screen and (min-width: 1000px) {
 
     .menu img {
-        width: 5%;
+        width: 7%;
+        height: 7%;
     }
 
 }

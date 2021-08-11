@@ -1,7 +1,7 @@
 /*
 CSS para estilizar no caso de desktops:
 */
-@media only screen and (min-width:900px) {
+@media only screen and (min-width: 900px) {
 
     #imgDesktop {
         display: block;
@@ -25,8 +25,8 @@ CSS para estilizar no caso de desktops:
 
     #btPlay,
     #btPause {
-        width: 30%;
-        height: 30%;
+        width: 25%;
+        height: 25%;
     }
 
     .btsMuda {
@@ -34,7 +34,8 @@ CSS para estilizar no caso de desktops:
     }
 
     .infoLivro {
-        top: 19%;
+        display: block;
+        top: 9%;
     }
 
     .versoes>span {
@@ -53,7 +54,7 @@ CSS para estilizar no caso de desktops:
     }
 
     #nomeLivro {
-        font-size: 6.5em;
+        /*font-size: 6.5em;*/
     }
 
     .quadriculaLivro,
@@ -62,7 +63,9 @@ CSS para estilizar no caso de desktops:
     }
 
     #nroCapitulo {
-        font-size: 8em;
+        font-size: 7em;
+        margin: -30px auto;
+        padding: auto;
     }
 
     .nomeVersao {
@@ -78,6 +81,11 @@ CSS para estilizar no caso de desktops:
     .cabecalhoCapitulos {
         font-size: 1.5em;
     }
+
+    .icons {
+        width: 20%;
+    }
+
 }
 
 @media only screen and (min-width: 1000px) {

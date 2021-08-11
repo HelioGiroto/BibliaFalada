@@ -34,7 +34,7 @@ CSS para estilizar no caso de tablets:
     }
 
     .infoLivro {
-        /* top: 15%; */
+        top: 12%;
     }
 
     .menu {
@@ -133,3 +133,14 @@ CSS para estilizar no caso de tablets:
 
 
 }
+
+@media only screen and (min-width: 600px) and (orientation: landscape) {
+    .infoLivro{
+        display: flex;
+    }
+    #nroCapitulo{
+        font-size: 4.5em;
+        margin: auto;
+        padding-left: 20px;
+    }
+ }

@@ -1,7 +1,7 @@
 /*
 CSS para estilizar no caso de tablets:
 */
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 560px) {
 
     #imgDesktop{
         display: block;
@@ -134,7 +134,7 @@ CSS para estilizar no caso de tablets:
 
 }
 
-@media only screen and (min-width: 600px) and (orientation: landscape) {
+@media only screen and (min-width: 560px) and (orientation: landscape) {
     .infoLivro{
         display: flex;
     }
@@ -142,5 +142,9 @@ CSS para estilizar no caso de tablets:
         font-size: 3.6em;
         margin: auto;
         padding-left: 20px;
+    }
+
+    .nomeVersao{
+        bottom: 3%;
     }
  }

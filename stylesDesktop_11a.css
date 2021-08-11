@@ -38,14 +38,19 @@ CSS para estilizar no caso de desktops:
         top: 9%;
     }
 
-    .versoes>span {
-        font-size: 2em;
-        padding-right: 5px;
+    #nomeLivro {
+        font-size: 6em;
     }
 
-    .versoes>input {
-        width: 20px;
-        height: 25px;
+    #nroCapitulo {
+        font-size: 7em;
+        margin: -30px auto;
+        padding-left: 0;
+        font-size: 6em;
+    }
+
+    .nomeVersao {
+        font-size: 2.5em;
     }
 
     .nvi,
@@ -53,8 +58,9 @@ CSS para estilizar no caso de desktops:
         padding-left: 70px;
     }
 
-    #nomeLivro {
-        /*font-size: 6.5em;*/
+    .h3 {
+        font-size: 2em;
+        margin-top: 20px;
     }
 
     .quadriculaLivro,
@@ -62,21 +68,6 @@ CSS para estilizar no caso de desktops:
         font-size: 1.7em;
     }
 
-    #nroCapitulo {
-        font-size: 7em;
-        margin: -30px auto;
-        padding: auto;
-    }
-
-    .nomeVersao {
-        font-size: 2.5em;
-    }
-
-    .h3 {
-        font-size: 2em;
-        margin-top: 20px;
-    }
-    
     .cabecalho,
     .cabecalhoCapitulos {
         font-size: 1.5em;

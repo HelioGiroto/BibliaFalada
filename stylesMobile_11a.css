@@ -320,7 +320,8 @@ summary>h4 {
     display: flex;
     flex-flow: column;
     align-items: center;
-    height: 84vh;
+    /*height: 84vh;*/
+    height: 100vh;
 }
 
 .h4Pausa {

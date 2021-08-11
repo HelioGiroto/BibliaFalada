@@ -87,7 +87,7 @@ CSS para estilizar no caso de tablets:
     }
 
     #nomeLivro {
-        font-size: 4.5em;
+        font-size: 3.6em;
     }
 
     .quadriculaLivro,
@@ -139,7 +139,7 @@ CSS para estilizar no caso de tablets:
         display: flex;
     }
     #nroCapitulo{
-        font-size: 4.5em;
+        font-size: 3.6em;
         margin: auto;
         padding-left: 20px;
     }

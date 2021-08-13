@@ -113,6 +113,18 @@ CSS para estilizar no caso de tablets:
         height: 10%;
     }
 
+    .msgCompartilhe {
+        font-size: 1.8em;
+    }
+
+    .redes > div > p {
+        padding: 6% 20px;
+        font-weight: bold;
+        font-size: 1.4em;
+        /*background: #00b8e4;*/
+    }
+    
+/* 
     .divCompartilha > .redes {
         display: flex;
         flex-flow: row;
@@ -126,7 +138,7 @@ CSS para estilizar no caso de tablets:
         justify-content: space-around;
         margin-bottom: 20px;
     }
-
+  */
     .cabecalho, .cabecalhoCapitulos {
         font-size: 1.5em;
     }

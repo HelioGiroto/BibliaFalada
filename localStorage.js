@@ -104,6 +104,8 @@ if (localStorage.getItem("biblia_mes_12") == null || !localStorage.biblia_mes_12
     localStorage.setItem("biblia_mes_12", listaVazia)
 }
 
+// desnecessário:
+/* 
 // se o item[0] de cada array de localStorage relacionado com os meses estiver vazio, coloca o ano 2021:
 // ERRO : antes da virada do ano é preciso manipular que a cada novo mês se altera de 2021 para 2022:
 for (a = 1; a <= 12; a++) {
@@ -117,6 +119,17 @@ for (a = 1; a <= 12; a++) {
     }
     // console.log(`${a}: ` + lista)
 }
+ */
+
+for (a = 1; a <= 12; a++) {
+    if (a < 10) {
+        a = `0${a}`
+    }
+    let lista = JSON.parse(localStorage.getItem(`biblia_mes_${a}`))
+    lista[0] = ''
+    localStorage.setItem(`biblia_mes_${a}`, JSON.stringify(lista))
+}
+
 
 /*
         // obtem localStorage:

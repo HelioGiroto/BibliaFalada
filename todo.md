@@ -2,20 +2,13 @@
 
 ## URL: https://heliogiroto.github.io/BibliaFalada
 
-- Celular landscape - verificar CSS (responsividade) da pagina1.
-
-- Verificar **tradução** das janelas do **menú**.
+- Compartilhar o que está ouvindo na url...
 
 - Grade do nome do livro **colorida** num gradiente **conforme** ao percentual de audição.
 
+- Verificar **tradução** das janelas do **menú**.
+
 - Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos para tablets e desktop ou input para busca - ???
-
-- Em localStorage.js: Antes de Janero/2022 é preciso manipular que a cada novo mês se altera de 2021 para 2022.
-
-
-https://developers.google.com/chart/interactive/docs/animation
-https://heliogiroto.github.io/Escatologia-em-Lucas/
-https://github.com/HelioGiroto/Google-Agenda-Generator/blob/main/index.html
 
 
 
@@ -30,6 +23,9 @@ https://github.com/HelioGiroto/Google-Agenda-Generator/blob/main/index.html
 
 	- ALERTA: "Faz x dias/semanas/meses que vc não ouve..."; "Parabéns!!"; etc.
 	- Livros mais lidos (Em porcentagem) ? 
+
+- Óculos:
+	- leitura para acompanhar a audição...
 
 
 - **Mais** recursos... (details tags):
@@ -51,9 +47,17 @@ https://github.com/HelioGiroto/Google-Agenda-Generator/blob/main/index.html
 
 
 
+
+https://developers.google.com/chart/interactive/docs/animation
+https://heliogiroto.github.io/Escatologia-em-Lucas/
+https://github.com/HelioGiroto/Google-Agenda-Generator/blob/main/index.html
+https://www.flaticon.com/
+
 ---
 
 ### DONE:
+
+~- Celular landscape - verificar CSS (responsividade) da pagina1.~
 
 ~- Agendamento de lembrete no Google Calendar. Tz coloque um input para digitar hora ??~
 

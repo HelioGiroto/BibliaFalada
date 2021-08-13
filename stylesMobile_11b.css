@@ -375,22 +375,33 @@ summary>h4 {
     font-size: 1.3em;
 }
 
-.divCompartilha>.redes {
-    width: 50%;
-    margin-top: 25px;
-    display: flex;
-    flex-flow: column;
+.msgCompartilhe {
+    text-align: center;
+    font-size: 1.2em;
+    padding: 10px 10%;
 }
 
-.divCompartilha>.redes>div {
+
+.redes {
+    display: flex;
+    flex-flow: column;
+    padding: 15px 20%;
+}
+
+.redes > div {
     display: flex;
     flex-flow: row;
-    justify-content: space-between;
-    margin-bottom: 20px;
+}
+
+.redes > div > p {
+    padding: 6% 20px;
+    font-weight: bold;
+    /*background: #00b8e4;*/
 }
 
 .icons {
-    width: 40%;
+    width: 20%;
+    margin-bottom: 15px;
     cursor: pointer;
 }
 

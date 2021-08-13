@@ -33,15 +33,37 @@ let btPlay = document.querySelector('#btPlay')
 let btPause = document.querySelector('#btPause')
 
 
+// obtem dados do último capítulo, livro e versão ouvidos:
+// o padrão inicial é João cap. 1 // ver localStorage.js:
 let ultimaVersao = localStorage.getItem('ultimaVersao')
 let ultimoLivro = localStorage.getItem('ultimoLivro')
 let ultimoCapitulo = localStorage.getItem('ultimoCapitulo')
 
 
-// Abaixo, estas variáveis recebem os valores conforme localStorage em que o usuário parou de ouvir:
-versao = ultimaVersao
-nroLivro = ultimoLivro
-capitulo = ultimoCapitulo
+// ERRO - NÃO COLOCAR 3 PARAMETROS SENAO CONFLITA COM OUTROS PARAMETROS DAS REDES SOCIAIS NO COMPARTILHAMENTO..
+// Formato melhor: www../?biblia=ACF:Rm:10
+
+// obtem o parametro 'ind' da URL (se tiver):
+// let abrevURL = new URL(location.href).searchParams.get('abrev')
+// let nroLivroURL = new URL(location.href).searchParams.get('nroLivro')
+// let capituloURL = new URL(location.href).searchParams.get('capitulo')
+// let versaoURL = new URL(location.href).searchParams.get('versao')
+let bibliaURL = new URL(location.href).searchParams.get('bibliaFalada')
+
+// se não tiver estes parâmetros de URL:
+if (!bibliaURL) { 
+    // Abaixo, estas variáveis recebem os valores conforme localStorage em que o usuário parou de ouvir:
+    versao = ultimaVersao
+    nroLivro = ultimoLivro
+    capitulo = ultimoCapitulo
+} else {
+    let bibliaURLlista = bibliaURL.split(':')
+    versao = bibliaURLlista[0]
+    nroLivro = bibliaURLlista[1]
+    capitulo = bibliaURLlista[2]
+}
+
+
 
 // marcar o checkbox correspondente à última versão ouvida:
 if (versao === "NVI") {
@@ -76,6 +98,7 @@ console.log(`%c Faixa Abertura: ${abrev} ${capitulo} `, 'background: yellow; col
 
 // Engatilha o audio inicial:
 player.src = `audios/${versao}/${abrev} ${capitulo}.mp3`
+
 
 
 function obtemDataHoje() {
@@ -785,29 +808,36 @@ let gmail = document.querySelector('#gmail')
 
 let listaRedes = [whatsapp, telegram, facebook, gmail]
 
-let mensagemCompartilhar = "Ouça a Bíblia gratuitamente neste site: https://www.jesus24horas.com"
+// ERRO - Mudar abaixo:
+// let nossoSite = `https://www.jesus24horas.com/bibliafalada`
+let nossoSite = `https://www.heliogiroto.github.io/BibliaFalada`
+
+
+// let mensagemCompartilhar = "Ouça a Bíblia gratuitamente neste site: https://www.jesus24horas.com"
+let mensagemCompartilhar = `Desejo que esta palavra te abençoe também! Ouça em: ${nossoSite}/?bibliaFalada=${versao}:${nroLivro}:${capitulo}`
 let assuntoEmail = "A fé vem pelo ouvir!!"
 
 if (versao === "RV") {
-    mensagemCompartilhar = "Oye la Biblia gratuitamente en este sitio: https://www.jesus24horas.com"
+    mensagemCompartilhar = `Espero que esta palabra te bendiga también: ${nossoSite}/?bibliaFalada=${versao}:${nroLivro}:${capitulo}`
     assuntoEmail = "¡La fé viene por el oír!"
 }
 
 let msgEncode = encodeURIComponent(mensagemCompartilhar)
 
+// antes: 
+// `https://www.facebook.com/sharer/sharer.php?u=heliogiroto.github.io/BibliaFalada`,
+// `https://t.me/share/url?url=www.jesus24horas.com/bibliafalada&text=${msgEncode}`,
+// `https://www.facebook.com/sharer/sharer.php?u=jesus24horas.com/bibliafalada/?nroLivro=${nroLivro}&capitulo=${capitulo}&versao=${versao}/`,
+
+
 let linkRedes = [
     `whatsapp://send?text=${msgEncode}`,
-    `https://t.me/share/url?url=www.jesus24horas.com&text=${msgEncode}`,
-    `https://www.facebook.com/sharer/sharer.php?u=heliogiroto.github.io/BibliaFalada`,
+    `https://t.me/share/url?text=${msgEncode}`,
+    `https://www.facebook.com/sharer/sharer.php?u=heliogiroto.github.io/BibliaFalada/?bibliaFalada=${versao}:${nroLivro}:${capitulo}`,
+    // `https://www.facebook.com/sharer/sharer.php?u=heliogiroto.github.io/BibliaFalada`,
     `mailto:?subject=${assuntoEmail}&body=${mensagemCompartilhar}`
 ]
 
-// adicionando disparadores de eventos em cada icone:
-listaRedes.forEach((e, i) => {
-    e.addEventListener('click', () => {
-        window.open(linkRedes[i], '_blank')
-    })
-})
 
 // Se der erro (no Whatsapp), tentar:
 // https://wa.me/?text=${msgEncode}
@@ -818,6 +848,35 @@ listaRedes.forEach((e, i) => {
 // https://stackoverflow.com/questions/31356360/share-a-link-via-url-scheme-to-telegram
 // https://stackoverflow.com/questions/5045918/adding-a-share-by-email-link-to-website
 // https://stackoverflow.com/questions/4782068/can-i-set-subject-content-of-email-using-mailto
+
+
+
+/*  
+
+// formato da url:
+let linkURL = `${nossoSite}/?nroLivro=${nroLivro}&capitulo=${capitulo}&versao=${versao}`
+let linkURL = `${nossoSite}/?abrev=${abrev}&capitulo=${capitulo}&versao=${versao}`
+
+// obtem o parametro 'ind' da URL:
+let nroLivroURL = new URL(location.href).searchParams.get('nroLivro')
+let abrevURL = new URL(location.href).searchParams.get('abrev')
+let capituloURL = new URL(location.href).searchParams.get('capitulo')
+let versaoURL = new URL(location.href).searchParams.get('versao')
+
+if (!abrevURL) { abrevURL = // }
+
+// fonte: 
+// https://stackoverflow.com/questions/979975/how-to-get-the-value-from-the-get-parameters?rq=1
+
+*/
+
+
+// adicionando disparadores de eventos em cada icone:
+listaRedes.forEach((e, i) => {
+    e.addEventListener('click', () => {
+        window.open(linkRedes[i], '_blank')
+    })
+})
 
 
 logo.addEventListener('click', rolaMenu)

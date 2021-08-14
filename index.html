@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Helio Giroto">
-    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="shortcut icon" href="img/favicon.ico" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="stylesMobile_11b.css">
-    <link rel="stylesheet" href="stylesTablet_11b.css">
-    <link rel="stylesheet" href="stylesDesktop_11b.css">
+    <link rel="stylesheet" href="css/stylesMobile_11b.css">
+    <link rel="stylesheet" href="css/stylesTablet_11b.css">
+    <link rel="stylesheet" href="css/stylesDesktop_11b.css">
 
     <title>A Bíblia Falada</title>
 
@@ -27,25 +27,25 @@
             <!--
                 <img src="menuCirculo.svg" class="btMenu" alt="">
              -->
-            <img class='btsMuda' src="retrocede.png" id="btRetrocede">
+            <img class='btsMuda' src="img/retrocede.png" id="btRetrocede">
             <div class="capa">
-                <div class="logo"><img id='logo' class='imgLogo' src="logo.png" alt=""></div>
+                <div class="logo"><img id='logo' class='imgLogo' src="img/logo.png" alt=""></div>
                 <div class="infoLivro" id="infolivro">
                     <p class="nunito violeta" id="nomeLivro"></p>
                     <p class="nunito violeta" id="nroCapitulo"></p>
                 </div>
                 <!-- abaixo: localização incerta -->
-                <img id="imgMobile" class="imgPlayer" src="fundoMobile.jpg">
-                <img id="imgDesktop" class="imgPlayer" src="fundoDesktop.jpg">
+                <img id="imgMobile" class="imgPlayer" src="img/fundoMobile.jpg">
+                <img id="imgDesktop" class="imgPlayer" src="img/fundoDesktop.jpg">
             </div>
-            <img class="btsMuda" src="avanca.png" id="btAvanca">
+            <img class="btsMuda" src="img/avanca.png" id="btAvanca">
         </div>
 
         <audio id='player'></audio>
 
         <div class="btPlayPause">
-            <img src="playRED.png" id="btPlay" alt="">
-            <img src="pauseRED.png" id="btPause" alt="">
+            <img src="img/playRED.png" id="btPlay" alt="">
+            <img src="img/pauseRED.png" id="btPause" alt="">
         </div>
 
         <div id='nomeVersao' class="nomeVersao montserrat">Nova Versão Internacional</div>
@@ -53,10 +53,10 @@
 
     <h3 class="h4opcoes h3 lato">ESCOLHA UMA OPÇÃO:</h3>
     <div class="menu">
-        <img src="icon1.png" id="iconePausa" alt="">
-        <img src="icon2.png" id="iconeDesempenho" alt="">
-        <img src="icon4.png" id="iconeCompartilha" alt="">
-        <img src="icon3.png" id="iconeMais" alt="">
+        <img src="img/icon1.png" id="iconePausa" alt="">
+        <img src="img/icon2.png" id="iconeDesempenho" alt="">
+        <img src="img/icon4.png" id="iconeCompartilha" alt="">
+        <img src="img/icon3.png" id="iconeMais" alt="">
     </div>
 
     <div class="pagina2">
@@ -85,7 +85,24 @@
                 <!-- <div class="quadriculaLivro">NT</div> -->
             </div>
 
+            <small class="lato smallEscala">Escala de quanto você já ouviu:</small>
+            <div class="escala">
+                <p>0%</p>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <p>100%</p>
+            </div>
+
             <h3 class="h4Capitulo h3 lato oculta">ESCOLHA O CAPÍTULO:</h3>
+            <small class="lato vermelho oculta smallEmVermelho">Números em vermelho dos capítulos já ouvidos:</small>
             <!-- <div class="cabecalhoCapitulos lato oculta"><strong>CAPÍTULO</strong></div> -->
             <div class="gradeCapitulos oculta" id="gradeCapitulos">
                 <!-- <div class="quadriculaCapitulo">1</div> -->
@@ -110,13 +127,13 @@
                 <input type="time" id="horarioGoogle">
                 <br>
                 <h3>2. Em seguida, clique neste ícone:</h3>
-                <img id='googleAgenda' src="googleCalendar.png" alt="">
+                <img id='googleAgenda' src="img/googleCalendar.png" alt="">
             </div>
 
             <br>
             <small class="lato centraliza">* Não se esqueça de marcar na opção:</small>
             <p class="lato centraliza">REPETIR = TODOS OS DIAS</p>
-            <img src="close.png" class="fechaJanela">
+            <img src="img/close.png" class="fechaJanela">
         </div>
 
         <div class="divDesempenho oculta">
@@ -202,56 +219,58 @@
                     <div class="lato" id="ult10Ouvido">ÚLT. 10 DIAS</div>
                     <div class="lato" id="mesesOuvido">MENSAL</div>
                 </div>
-                <p id='ajuste2' class="peq lato negrito oculta">(Clique no gráfico se precisar ajustá-lo melhor à tela)</p>
+                <p id='ajuste2' class="peq lato negrito oculta">(Clique no gráfico se precisar ajustá-lo melhor à tela)
+                </p>
                 <div class="areaGraficoBarras" id="graficosBarras"></div>
                 <div id="calendario"></div>
                 <h4 class="lato oculta" id="escolheTipoGrafico">Mude o tipo de gráfico:</h4>
                 <div class="btsMudaBarra oculta">
-                    <img class="iconTipoGrafico" id="barrasV" src="bar_vertical.png" alt="">
-                    <img class="iconTipoGrafico" id="barrasH" src="bar_horizontal.png" alt="">
-                    <img class="iconTipoGrafico" id="linhaChart" src="lineChart.png" alt="">
+                    <img class="iconTipoGrafico" id="barrasV" src="img/bar_vertical.png" alt="">
+                    <img class="iconTipoGrafico" id="barrasH" src="img/bar_horizontal.png" alt="">
+                    <img class="iconTipoGrafico" id="linhaChart" src="img/lineChart.png" alt="">
                 </div>
             </details>
 
-            <img src="close.png" class="fechaJanela">
+            <img src="img/close.png" class="fechaJanela">
         </div>
 
         <div class="divCompartilha oculta">
             <h3 class="h4Compartilha h3 lato">COMPARTILHE A BÍBLIA FALADA:</h4>
-                <p class="msgCompartilhe lato">Compartilhe essa benção com seus familiares, amigos, pessoas que não conseguem ler, hospitalizadas, etc.:</p>
+                <p class="msgCompartilhe lato">Compartilhe essa benção com seus familiares, amigos, pessoas que não
+                    conseguem ler, hospitalizadas, etc.:</p>
                 <div class="redes">
-                        <div>
-                            <img class='icons' id='whatsapp' src="whatsapp.png" alt="whatsapp">
-                            <p class="lato">Whatsapp</p>
-                        </div>
-                        <div>
-                            <img class='icons' id='telegram' src="telegram.png" alt="telegram">
-                            <p class="lato">Telegram</p>
-                        </div>
-                        <div>
-                            <img class='icons' id='facebook' src="facebook.png" alt="facebook">
-                            <p class="lato">Facebook</p>
-                        </div>
-                        <div>
-                            <img class='icons' id='gmail' src="gmail.png" alt="gmail">
-                            <p class="lato">Email</p>
-                        </div>
+                    <div>
+                        <img class='icons' id='whatsapp' src="img/whatsapp.png" alt="whatsapp">
+                        <p class="lato">Whatsapp</p>
+                    </div>
+                    <div>
+                        <img class='icons' id='telegram' src="img/telegram.png" alt="telegram">
+                        <p class="lato">Telegram</p>
+                    </div>
+                    <div>
+                        <img class='icons' id='facebook' src="img/facebook.png" alt="facebook">
+                        <p class="lato">Facebook</p>
+                    </div>
+                    <div>
+                        <img class='icons' id='gmail' src="img/gmail.png" alt="gmail">
+                        <p class="lato">Email</p>
+                    </div>
                 </div>
-                <img src="close.png" class="fechaJanela">
+                <img src="img/close.png" class="fechaJanela">
         </div>
 
         <div class="divMais oculta">
             <h3 class="h4Mais h3 lato">EM BREVE: Outros recursos incríveis...</h3>
-            <img src="close.png" class="fechaJanela">
+            <img src="img/close.png" class="fechaJanela">
         </div>
     </div>
 
-    <script src="localStorage.js"></script>
-    <script src="BibliaOBJ.js"></script>
-    <script src="script.js"></script>
-    <script src="loader.js"></script>
-    <script src="graficos.js"></script>
-    <script src="history_13.js"></script>
+    <script src="js/localStorage.js"></script>
+    <script src="js/BibliaOBJ.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/graficos.js"></script>
+    <script src="js/history_14.js"></script>
 
 </body>
 

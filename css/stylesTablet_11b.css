@@ -1,0 +1,162 @@
+/*
+CSS para estilizar no caso de tablets:
+*/
+@media only screen and (min-width: 560px) {
+
+    #imgDesktop{
+        display: block;
+    }
+        
+    #imgMobile{
+        display: none;
+    }
+
+    .pagina1{
+        height: 130%;
+    }
+    
+    #logo, #infolivro, #nomeVersao, .btPlayPause, .btsMuda {
+        cursor: pointer;
+    }
+
+    .imgLogo {
+        width: 10%;
+    }
+
+    #btPlay,
+    #btPause {
+        width: 20%;
+        height: 20%;
+    }
+
+    .btsMuda {
+        width: 5%;
+    }
+
+    .infoLivro {
+        top: 12%;
+    }
+
+    .menu {
+        margin-bottom: 30px;
+    }
+
+    .menu img {
+        width: 10%;
+        height: 10%;
+        cursor: pointer;
+    }
+
+    .divPausa > p{
+        font-size: 2.2em;
+    }
+    
+    .divPausa > input{
+        margin: 20px auto;
+        width: 100px;
+        padding: 10px;
+        font-size: 3em;
+    }
+
+    .divPausa > button {
+        font-size: 1.5em;
+        width: 40%;
+    }
+
+    .fechaJanela {
+        width: 5%;
+    }
+
+    .divCompartilha > .fechaJanela {
+        margin-top: 10%;
+    }
+
+    .versoes>span {
+        font-size: 2em;
+        padding-right: 5px;
+    }
+
+    .versoes>input {
+        width: 20px;
+        height: 25px;
+    }
+
+    .nvi,
+    .rv {
+        padding-left: 70px;
+    }
+
+    #nomeLivro {
+        font-size: 3.6em;
+    }
+
+    .quadriculaLivro,
+    .quadriculaCapitulo {
+        font-size: 1.7em;
+    }
+
+    #nroCapitulo {
+        font-size: 6em;
+    }
+
+    .nomeVersao {
+        font-size: 1.5em;
+    }
+
+    .h3 {
+        font-size: 2em;
+        margin-top: 20px;
+    }
+
+    .iconTipoGrafico{
+        width: 10%;
+        height: 10%;
+    }
+
+    .msgCompartilhe {
+        font-size: 1.8em;
+    }
+
+    .redes > div > p {
+        padding: 6% 20px;
+        font-weight: bold;
+        font-size: 1.4em;
+        /*background: #00b8e4;*/
+    }
+    
+/* 
+    .divCompartilha > .redes {
+        display: flex;
+        flex-flow: row;
+        width: 80%;
+        margin-top: 5%;
+    }
+    
+    .divCompartilha > .redes > div {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-around;
+        margin-bottom: 20px;
+    }
+  */
+    .cabecalho, .cabecalhoCapitulos {
+        font-size: 1.5em;
+    }
+
+
+}
+
+@media only screen and (min-width: 560px) and (orientation: landscape) {
+    .infoLivro{
+        display: flex;
+    }
+    #nroCapitulo{
+        font-size: 3.6em;
+        margin: auto;
+        padding-left: 20px;
+    }
+
+    .nomeVersao{
+        bottom: 3%;
+    }
+ }

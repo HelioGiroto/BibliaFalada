@@ -2,14 +2,11 @@
 
 ## URL: https://heliogiroto.github.io/BibliaFalada
 
-- Compartilhar o que está ouvindo na url...
-
-- Grade do nome do livro **colorida** num gradiente **conforme** ao percentual de audição.
+- Acompanhar audição com **leitura**.
 
 - Verificar **tradução** das janelas do **menú**.
 
 - Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos para tablets e desktop ou input para busca - ???
-
 
 
 ### Opções do menú:
@@ -43,8 +40,6 @@
 	
 	- Reportar **erro** para o desenvolvedor
 
-	- Ver código fonte - Github tb 
-
 
 
 
@@ -56,6 +51,12 @@ https://www.flaticon.com/
 ---
 
 ### DONE:
+
+~- Grade do nome do livro **colorida** num gradiente **conforme** ao percentual de audição.~
+
+~- Ao dar pause retrocede 7 segundos.~
+
+~- Compartilhar o que está ouvindo na url...~
 
 ~- Celular landscape - verificar CSS (responsividade) da pagina1.~
 

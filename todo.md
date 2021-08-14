@@ -34,13 +34,6 @@
 	
 	- Checkboxes dos capítulos **lidos**
 
-	- Ouça a **Rádio J24h**!
-
-	- **Apoie!** esse trabalho.
-	
-	- Reportar **erro** para o desenvolvedor
-
-
 
 
 https://developers.google.com/chart/interactive/docs/animation
@@ -51,6 +44,12 @@ https://www.flaticon.com/
 ---
 
 ### DONE:
+
+~- Ouça a **Rádio J24h**!~
+ 
+~- **Apoie!** esse trabalho.~
+
+~- Reportar **erro** para o desenvolvedor~
 
 ~- Grade do nome do livro **colorida** num gradiente **conforme** ao percentual de audição.~
 

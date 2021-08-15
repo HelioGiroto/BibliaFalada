@@ -12,9 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/stylesMobile_11b.css">
-    <link rel="stylesheet" href="css/stylesTablet_11b.css">
-    <link rel="stylesheet" href="css/stylesDesktop_11b.css">
+    <link rel="stylesheet" href="css/stylesMobile.css">
+    <link rel="stylesheet" href="css/stylesTablet.css">
+    <link rel="stylesheet" href="css/stylesDesktop.css">
 
     <title>A Bíblia Falada</title>
 
@@ -51,10 +51,26 @@
         <div id='nomeVersao' class="nomeVersao montserrat">Nova Versão Internacional</div>
     </div>
 
+    <div class="reportarErros oculta">
+        <h3 class="centraliza lato">Por favor, precisamos saber dos erros de tradução que você encontrou!</h3>
+        <br>
+        <h4 class="centraliza vermelho lato">Erros encontrados em:</h4>
+        <h4 class="centraliza vermelho lato" id="listaErros"></h4>
+        <br>
+        <p class="centraliza negrito lato">Para nos enviar, basta clicar agora num dos botões abaixo:</p>
+        <br>
+        <div class="btsErros">
+            <button id="btErrosWt" class="">ENVIAR POR WHATSAPP</button>
+            <button id="btErrosEm" class="">ENVIAR POR EMAIL</button>
+        </div>
+    </div>
+
     <h3 class="h4opcoes h3 lato">ESCOLHA UMA OPÇÃO:</h3>
+
     <div class="menu">
         <img src="img/icon1.png" id="iconePausa" alt="">
         <img src="img/icon2.png" id="iconeDesempenho" alt="">
+        <img src="img/icon5.png" id="iconeLeitura" alt="">
         <img src="img/icon4.png" id="iconeCompartilha" alt="">
         <img src="img/icon3.png" id="iconeMais" alt="">
     </div>
@@ -113,6 +129,7 @@
     <!-- pagina das divs de menú: -->
     <div class="pagina3">
         <!-- dentro de cada div abaixo vai os details: https://heliogiroto.github.io/Escatologia-em-Lucas -->
+
         <div class="divPausa oculta">
             <h3 class="h4Pausa h3 lato">PROGRAMAÇÃO DE PAUSA</h3>
             <h2>Pára de tocar em:</h2>
@@ -234,9 +251,24 @@
             <img src="img/close.png" class="fechaJanela">
         </div>
 
+        <div class="divLeitura oculta" id="divLeitura">
+            <h3 class="h4Pausa h3 lato">LEITURA DO TEXTO:</h3>
+            <h4 class="centraliza">Tradução:</h4>
+            <h3 class="centraliza" id="nomeTraducao">ALMEIDA CORRIGIDA FIEL</h3>
+            <h4 class="centraliza negrito vermelho" id="livroCapitulo"></h4>
+            <small id='avisoFavoritos'>Clique no <strong class="">coração</strong> para adicionar o versículo aos Favoritos!</small>
+            <div class="textoBiblico">
+                <!-- Aqui vai o texto bíblico -->
+                <table id="tabela"></table>
+            </div>
+            <small id='avisoErro'><strong>*</strong> Se encontrar algum <strong>erro no texto</strong>, clique <strong>encima do número</strong> do versículo onde notou a falha, para uma futura correção.</small>
+            <img src="img/close.png" class="fechaJanela">
+        </div>
+
         <div class="divCompartilha oculta">
             <h3 class="h4Compartilha h3 lato">COMPARTILHE A BÍBLIA FALADA:</h4>
-                <p class="msgCompartilhe lato">Clique no ícone da sua rede social para compartilhar essa benção com seus familiares, amigos, pessoas que não
+                <p class="msgCompartilhe lato">Clique no ícone da sua rede social para compartilhar essa benção com seus
+                    familiares, amigos, pessoas que não
                     conseguem ler, hospitalizadas, etc.:</p>
                 <div class="redes">
                     <div>
@@ -265,11 +297,16 @@
 
         <div class="divMais oculta">
             <h3 class="h4Mais h3 lato tituloMais">MAIS RECURSOS</h3>
-            <button class='btMais' id='btExportar'><img class='iconBtMais' src="img/exportar.png" alt=""><span>EXPORTAR DADOS</span></button>
-            <button class='btMais' id='btRadio'>   <img class='iconBtMais' src="img/radio.png" alt=""><span>OUÇA A RÁDIO J24h</span></button>
-            <button class='btMais' id='btOracao'>  <img class='iconBtMais' src="img/oracao.png" alt=""><span>PEDIDO DE ORAÇÃO</span></button>
-            <button class='btMais' id='btProblema'><img class='iconBtMais' src="img/problema.png" alt=""><span>REPORTAR PROBLEMA</span></button>
-            <button class='btMais' id='btApoie'>   <img class='iconBtMais' src="img/apoie.png" alt=""><span>APOIE ESSE TRABALHO</span></button>
+            <button class='btMais' id='btExportar'><img class='iconBtMais' src="img/exportar.png" alt=""><span>EXPORTAR
+                    DADOS</span></button>
+            <button class='btMais' id='btRadio'> <img class='iconBtMais' src="img/radio.png" alt=""><span>OUÇA A RÁDIO
+                    J24h</span></button>
+            <button class='btMais' id='btOracao'> <img class='iconBtMais' src="img/oracao.png" alt=""><span>PEDIDO DE
+                    ORAÇÃO</span></button>
+            <button class='btMais' id='btProblema'><img class='iconBtMais' src="img/problema.png" alt=""><span>REPORTAR
+                    PROBLEMA</span></button>
+            <button class='btMais' id='btApoie'> <img class='iconBtMais' src="img/apoie.png" alt=""><span>APOIE ESSE
+                    TRABALHO</span></button>
             <img src="img/close.png" class="fechaJanela">
         </div>
     </div>
@@ -279,7 +316,9 @@
     <script src="js/script.js"></script>
     <script src="js/loader.js"></script>
     <script src="js/graficos.js"></script>
-    <script src="js/history_14a.js"></script>
+    <script src="acf.js"></script>
+    <script src="nvi.js"></script>
+    <script src="js/history_15.js"></script>
 
 </body>
 

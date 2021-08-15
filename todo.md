@@ -2,8 +2,6 @@
 
 ## URL: https://heliogiroto.github.io/BibliaFalada
 
-- Acompanhar audição com **leitura**.
-
 - Verificar **tradução** das janelas do **menú**.
 
 - Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos para tablets e desktop ou input para busca - ???
@@ -14,6 +12,7 @@
 ### Desempenho do usuário (suas métricas):
 
 - Funções de **estatísticas** de audição:
+	- DONUT
 	- Gráfico do mês atual... do mês passado... antepassado...
 	- Gráfico da semana atual... passada... etc.. Média:...
 	- Calendário com dias que ouviu (porcentagem em gradiente).
@@ -44,6 +43,10 @@ https://www.flaticon.com/
 ---
 
 ### DONE:
+
+~- Acompanhar audição com **leitura**.~
+
+~- Salvar em localStorage a **lista dos favoritos** e dos erros de tradução~
 
 ~- Ouça a **Rádio J24h**!~
  

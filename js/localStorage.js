@@ -27,6 +27,18 @@ if (localStorage.getItem("tempoAudicao") == null || !localStorage.tempoAudicao) 
     localStorage.setItem("tempoAudicao", "0")
 }
 
+// cria se não exista uma lista no local Storage dos erros de tradução no texto que usuário aponta:
+if (localStorage.getItem("errosTraducao") == null || !localStorage.errosTraducao) {
+    localStorage.setItem("errosTraducao", "[]")
+}
+
+// cria se não exista uma lista no local Storage dos versículos favoritados pelo usuário:
+if (localStorage.getItem("versiculosFavoritos") == null || !localStorage.versiculosFavoritos) {
+    localStorage.setItem("versiculosFavoritos", "[]")
+}
+
+
+
 /*
 
 // cria se não exista uma variável no local Storage que mostra o último dia que o usuário ouviu a Bíblia:

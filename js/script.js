@@ -199,19 +199,18 @@ function tocaCapitulo() {
     gradeCapitulos.classList.add('oculta')
     document.querySelector('.smallEmVermelho').classList.add('oculta')
 
-
     // oculta botão de pause:
     btPlay.style.display = 'none'
     btPause.style.display = 'block'
 
-    // altera a imagem de capa:
+    // altera o nome do livro:
     nomeLivro.innerHTML = livro
-    // altera o nome do livro em caso que esteja na versão em espanhol:
+    // se o nome do livro em caso que esteja na versão em espanhol:
     if (versao === "RV") {
         nombreLibro = BibliaOBJ[nroLivro].nombreLibro
         nomeLivro.innerHTML = nombreLibro
     }
-
+    // imprime o nro do capítulo corrente:
     nroCapitulo.innerHTML = capitulo
 
     // grava no localStorage os últimos capítulo, livro e versão ouvida
@@ -235,8 +234,9 @@ function tocaCapitulo() {
     // toca a faixa escolhida:
     player.play()
 
-    // rola página ao topo:
+    // rola página ao topo da página ou ao topo da div leitura se estiver aberta:
     rolaTopo()
+    leitura()
 }
 
 function pausaCapitulo() {
@@ -634,6 +634,18 @@ negritaLivro()
 
 function rolaMenu() {
     // mostraGradeLivros()
+
+    // trecho abaixo acrescentado de tocaCapitulo()
+    quadriculasColor()
+    // faz aparecer se estiver oculto a grade de livros:
+    pagina2.classList.remove('oculta')
+    // oculta se estiver visivel as grades de capítulos:
+    h4Capitulo.classList.add('oculta')
+    // cabecalhoCapitulos.classList.add('oculta')
+    gradeCapitulos.classList.add('oculta')
+    document.querySelector('.smallEmVermelho').classList.add('oculta')
+    // fim do trecho
+
     document.querySelector('.h4opcoes').scrollIntoView({
         behavior: 'smooth'
     });
@@ -655,21 +667,38 @@ function abreDivPausa() {
     obtemDataHoje()
     document.querySelector('#horarioGoogle').value = `${horaHoje}:${minutoHoje}`
     divPausa.classList.remove('oculta')
+    divLeitura.classList.add('oculta')
     divDesempenho.classList.add('oculta')
     divMais.classList.add('oculta')
-    pagina2.classList.add('oculta')
     divCompartilha.classList.add('oculta')
+    pagina2.classList.add('oculta')
 }
 
 function abreDivDesempenho() {
     rolaMenu()
     divDesempenho.classList.remove('oculta')
     divPausa.classList.add('oculta')
+    divLeitura.classList.add('oculta')
+    divCompartilha.classList.add('oculta')
     divMais.classList.add('oculta')
     pagina2.classList.add('oculta')
-    divCompartilha.classList.add('oculta')
     // função de graficos.js:
     disparaGraficos()
+}
+
+function abreDivLeitura() {
+    // alert('abriu leitura')
+    rolaMenu()
+    divLeitura.classList.remove('oculta')
+    divPausa.classList.add('oculta')
+    divDesempenho.classList.add('oculta')
+    divMais.classList.add('oculta')
+    divCompartilha.classList.add('oculta')
+    pagina2.classList.add('oculta')
+    // deixa aberto os checkbox de escolher versão:
+    // não funciona pq depende da pagina2...
+    // document.querySelector('.escolherVersao').classList.remove('oculta')
+    leitura()
 }
 
 function abreDivMais() {
@@ -677,16 +706,18 @@ function abreDivMais() {
     divMais.classList.remove('oculta')
     divPausa.classList.add('oculta')
     divDesempenho.classList.add('oculta')
-    pagina2.classList.add('oculta')
+    divLeitura.classList.add('oculta')
     divCompartilha.classList.add('oculta')
+    pagina2.classList.add('oculta')
 }
 
 function abreDivCompartilha() {
     rolaMenu()
     divCompartilha.classList.remove('oculta')
-    divMais.classList.add('oculta')
-    divPausa.classList.add('oculta')
     divDesempenho.classList.add('oculta')
+    divPausa.classList.add('oculta')
+    divLeitura.classList.add('oculta')
+    divMais.classList.add('oculta')
     pagina2.classList.add('oculta')
 }
 
@@ -721,11 +752,14 @@ minutosPausa.addEventListener('focus', () => {
 
 let divPausa = document.querySelector('.divPausa')
 let divDesempenho = document.querySelector('.divDesempenho')
+let divLeitura = document.querySelector('.divLeitura')
 let divMais = document.querySelector('.divMais')
 let divCompartilha = document.querySelector('.divCompartilha')
 
+
 let iconePausa = document.querySelector('#iconePausa')
 let iconeDesempenho = document.querySelector('#iconeDesempenho')
+let iconeLeitura = document.querySelector('#iconeLeitura')
 let iconeMais = document.querySelector('#iconeMais')
 let iconeCompartilha = document.querySelector('#iconeCompartilha')
 
@@ -806,6 +840,7 @@ document.querySelector('#googleAgenda').addEventListener('click', agendaGoogle)
 
 iconePausa.addEventListener('click', abreDivPausa)
 iconeDesempenho.addEventListener('click', abreDivDesempenho)
+iconeLeitura.addEventListener('click', abreDivLeitura)
 iconeMais.addEventListener('click', abreDivMais)
 iconeCompartilha.addEventListener('click', abreDivCompartilha)
 
@@ -834,9 +869,233 @@ document.querySelector('.media').addEventListener('click', () => {
     }, 3000)
 })
 
+//////////////////////////////////////////////
+
+function enviaErros() {
+    let listaStorage = JSON.parse(localStorage.getItem('errosTraducao'))
+    let listaUnique = [...new Set(listaStorage)]
+    let listaErros
+    
+    if (listaUnique.length > 0) {
+        listaErros = listaUnique.toString().replace(/,/g, '; ')
+        document.querySelector('#listaErros').innerHTML = listaErros
+        document.querySelector('.reportarErros').classList.remove('oculta')
+    } 
+
+    document.querySelector('#btErrosWt').addEventListener('click', () => {
+        let nroTelefone = '5511993050054'
+        let msgErro = `Erro na tradução da Bíblia Falada: ${listaErros}`
+        let msgErroEncode = window.encodeURIComponent(msgErro)
+        window.open(`https://wa.me/${nroTelefone}?text=${msgErroEncode}`, '_blank')
+        // apaga localStorage
+        localStorage.setItem("errosTraducao", "[]")
+        document.querySelector('.reportarErros').classList.add('oculta')
+        listaErros = ''
+    })
+
+    document.querySelector('#btErrosEm').addEventListener('click', () => {
+        let email = 'heliogiroto76@gmail.com'
+        let assunto = `Reportando erro de tradução na Biblia Falada`
+        let msgEmail = `Verifique um erro que encontrei no texto da tradução: ${listaErros}`
+        let assuntoEncode = window.encodeURIComponent(assunto)
+        let msgEmailEncode = window.encodeURIComponent(msgEmail)
+        window.open(`mailto:${email}?subject=${assuntoEncode}&body=${msgEmailEncode}`)
+        // apaga localStorage
+        localStorage.setItem("errosTraducao", "[]")
+        document.querySelector('.reportarErros').classList.add('oculta')
+        listaErros = ''
+    })
+}
+
+// ao iniciar a página, já verifica se há erros para enviar:
+enviaErros()
+
+
+
+function verificaFavoritos() {
+    // esta função varre todo o localStorage de versiculos favoritos e pinta o coração de vermelho...
+    let listaStorage = JSON.parse(localStorage.getItem('versiculosFavoritos'))
+    let livroAberto = `${abrev} ${capitulo}:`
+
+    // verifica se tem alguma referência do livro Aberto dentro do localStorage:
+    let referenciasDestaPagina = listaStorage.filter(a => a.includes(`${livroAberto}`))
+
+    // cria uma lista vazia para receber somente os nros de versículos das referencias Desta Pagina que estava dentro de localStorage:
+    let nrosVersiculos = []
+
+    // percorre referenciasDestaPagina e faz split para que na nova lista só tenha os nros de VERSICULOS!
+    referenciasDestaPagina.map(a => {
+        let nroVers = a.split(':')[1]
+        nrosVersiculos.push(nroVers)
+    })
+
+    // pinta de vermelho os corações cujos versículos estão na lista nroVersiculos: 
+    nrosVersiculos.map(a => {
+        document.querySelector(`#c_${a} > img`).src = "./img/coracaoRED.png"
+        document.querySelector(`#v_${a}`).style.color = 'darkgreen'
+        document.querySelector(`#t_${a}`).style.color = 'darkgreen'
+    })
+}
+
+// função do menú Leitura:
+function leitura() {
+    // rola até topo da divLeitura:
+    document.querySelector('#divLeitura').scrollIntoView()
+
+    let textoBiblico = []
+    // muda o nome da tradução conforme o que o usuário já estava escutando:
+    let nomeTraducao = document.querySelector('#nomeTraducao')
+    let listaTraducoes = ['ALMEIDA CORRIGIDA FIEL', 'NOVA VERSÃO INTERNACIONAL', 'REINA VALERA 1909']
+    let abrevTraducoes = ['ACF', 'NVI', 'RV']
+    // Título do nome do livro e capítulo corrente:
+    let livroCapitulo = document.querySelector('#livroCapitulo')
+    // texto bíblico inteiro dos arquivos acf.js e nvi.js:
+    let bibliaRV = ['Indisponible todavía.']
+    let textoTraducoes = ['bibliaACF', 'bibliaNVI', 'bibliaRV']
+    // percorre lista de abreviações das traduções procurando (find) qual index está a versão atual que está sendo ouvida,
+    // ... para colocar nome da versão correspondente e engatilhar o texto bíblico completo da mesma versão:
+    abrevTraducoes.find((e, i) => {
+        if (e == versao) {
+            nomeTraducao.innerHTML = listaTraducoes[i]
+            livroCapitulo.innerHTML = `${livro} ${capitulo}`
+            textoBiblico = eval(textoTraducoes[i])
+        }
+    })
+    // console.log(textoBiblico)
+
+    // extrai da bíblia toda somente os versículos do capítulo e livro corrente:
+    let textoDoCapitulo = []
+    textoBiblico.filter(e => {
+        if (e[0].includes(`${abrev} ${capitulo}:`)) {
+            textoDoCapitulo.push(e)
+        }
+    })
+
+    // para debugar se a Bíblia que abre é a que o usuário escolheu:
+    // console.log(textoDoCapitulo)
+
+    ////////////////////////////////////////////
+
+    // forma tabela:
+    // https://www.w3schools.com/jsref/met_table_insertrow.asp
+    let tabela = document.querySelector("#tabela")
+
+    // apaga tabela anterior - reseta:
+    // abaixo não pode ser apenas 'tr' pq confunde com as tr's que o Google Charts gera tb.
+    document.querySelectorAll('#tabela tr').forEach(a => tabela.deleteRow(0))
+
+
+    textoDoCapitulo.map((e, i) => {
+        // Insere nova linha no fim da tabela:
+        let novaLinha = tabela.insertRow(-1)
+        // novaLinha.id = `l_${i+1}`
+
+        // Insere nova célula no fim da nova linha:
+        // coluna nro. do vers.
+        let novaCelula1 = novaLinha.insertCell(-1)
+        novaCelula1.id = `v_${i+1}`
+        novaCelula1.classList.add('versiculoTabela')
+        // coluna texto do vers.
+        let novaCelula2 = novaLinha.insertCell(-1)
+        novaCelula2.id = `t_${i+1}`
+        // coluna do coração
+        let novaCelula3 = novaLinha.insertCell(-1)
+        novaCelula3.id = `c_${i+1}`
+        novaCelula3.classList.add('coracaoTabela')
+
+        // Insere texto nas celulas:
+        novaCelula1.innerHTML = e[0].split(':')[1]
+        novaCelula2.innerHTML = e[1]
+        novaCelula3.innerHTML = '<img src="img/coracao.png" class="iconeCoracao">'
+    })
+
+    ////////////////////////////////////////////
+
+    // se clica no nome da versão ou no livro que está sendo lido, rola até o menu das gradesLivros e capítulos:
+    nomeTraducao.addEventListener('click', rolaMenu)
+    livroCapitulo.addEventListener('click', rolaMenu)
+
+    // cria eventos para versículos com erro e favoritos (coração):
+
+    let listaVersiculosDaTabela = document.querySelectorAll('.versiculoTabela')
+    let listaCoracoesDaTabela = document.querySelectorAll('.coracaoTabela')
+
+    // ao dar click em algum nro do versículo da tabela:
+    listaVersiculosDaTabela.forEach((e, i) => {
+        e.addEventListener('click', () => {
+            // pega versao, capitulo, versiculo (id)
+            let esteVersiculo = e.id.replace('v_', '')
+            let referenciaErro = `${abrev} ${capitulo}:${esteVersiculo} (${versao})`
+            // console.log(referenciaErro)
+            // pinta de vermelho/preto o nro vs. e texto da linha:
+            if (document.querySelector(`#t_${i+1}`).style.color != 'darkred') {
+                document.querySelector(`#v_${i+1}`).style.color = 'darkred'
+                document.querySelector(`#t_${i+1}`).style.color = 'darkred'
+                // salva na lista de erros em localStorage
+                // nome: errosTraducao
+                let listaStorage = JSON.parse(localStorage.getItem('errosTraducao'))
+                listaStorage.push(referenciaErro)
+                localStorage.errosTraducao = JSON.stringify(listaStorage)
+            } else {
+                // pinta o texto e nro de versículo de novo de preto:
+                document.querySelector(`#v_${i+1}`).style.color = 'black'
+                document.querySelector(`#t_${i+1}`).style.color = 'black'
+                // e tira da listaStorage de erro:
+                let listaStorage = JSON.parse(localStorage.getItem('errosTraducao'))
+                let novaListaStorage = listaStorage.filter(a => a != referenciaErro)
+                localStorage.errosTraducao = JSON.stringify(novaListaStorage)
+            }
+        })
+    })
+
+    // ao clicar em algum coração da tabela - favoritar:
+    listaCoracoesDaTabela.forEach((e, i) => {
+        e.addEventListener('click', () => {
+            // pega versao, capitulo, versiculo (id)
+            let esteVersiculo = e.id.replace('c_', '')
+            let referenciaFavorito = `${abrev} ${capitulo}:${esteVersiculo}`
+            console.log(referenciaFavorito)
+
+            // se o texto não está verde:
+            if (document.querySelector(`#t_${i+1}`).style.color != 'darkgreen') {
+                // if (document.querySelector(`#${e.id} > img`).src != './img/coracaoRED.png') {
+                // coração fica vermelho e texto verde:
+                document.querySelector(`#${e.id} > img`).src = "./img/coracaoRED.png"
+                document.querySelector(`#v_${i+1}`).style.color = 'darkgreen'
+                document.querySelector(`#t_${i+1}`).style.color = 'darkgreen'
+                // salva na lista de favoritos em localStorage:
+                // nome da lista: versiculosFavoritos
+                let listaStorage = JSON.parse(localStorage.getItem('versiculosFavoritos'))
+                listaStorage.push(referenciaFavorito)
+                localStorage.versiculosFavoritos = JSON.stringify(listaStorage)
+                // Abaixo: LOGO BREVE :
+                // no rodapé da div, aparece o botão: VER VERSÍCULOS FAVORITOS!
+                // bt e função para abrir div de visualização da lista p/ compartilhar tb...
+            } else {
+                // pinta o coracao de preto-branco e texto de preto:
+                document.querySelector(`#${e.id} > img`).src = "./img/coracao.png"
+                document.querySelector(`#v_${i+1}`).style.color = 'black'
+                document.querySelector(`#t_${i+1}`).style.color = 'black'
+                // tira do localStorage:
+                let listaStorage = JSON.parse(localStorage.getItem('versiculosFavoritos'))
+                let novaListaStorage = listaStorage.filter(a => a != referenciaFavorito)
+                localStorage.versiculosFavoritos = JSON.stringify(novaListaStorage)
+            }
+        })
+    })
+
+    // chama FUNÇÃO: pinta versículos favoritos!!
+    // só depois de ter chamado antes toda a estrutura da div/menú leitura...
+    verificaFavoritos()
+
+}
+
+
+////////////////////////////////////////////// 
+
 // funções do menú Mais Recursos:
 function funcaoExportar() {
-
+    alert('Função indisponível no momento. Volte mais tarde!')
 }
 
 function funcaoRadio() {
@@ -847,15 +1106,16 @@ function funcaoPedido() {
     let nroTelefone = '5511993050054'
     let precisoOracao = "Olá! Estou precisando de ORAÇÃO...."
     let precisoOracaoEncode = window.encodeURIComponent(precisoOracao)
-	window.open(`https://wa.me/${nroTelefone}?text=${precisoOracaoEncode}`, '_blank')
+    window.open(`https://wa.me/${nroTelefone}?text=${precisoOracaoEncode}`, '_blank')
 }
 
 function funcaoProblema() {
-    window.open("mailto:heliogiroto76@gmail.com?subject='ERRO no site BibliaFalada'&body=Estou reportando um erro que encontrei no site: ...")
+    window.open("mailto:heliogiroto76@gmail.com?subject=ERRO no site BibliaFalada&body=Estou reportando um erro que encontrei no site: ...")
 }
 
 function funcaoApoie() {
-    window.open('https://www.jesus24horas.com/apoie', '_blank')
+    // window.open('https://www.jesus24horas.com/apoie', '_blank')
+    alert('Em breve...')
 }
 
 // pega cada bt:
@@ -907,7 +1167,7 @@ nomesRedes.forEach((e, i) => {
         linkRedes = [
             `whatsapp://send?text=${msgEncode}`,
             `https://t.me/share/url?text=${msgEncode}`,
-            `mailto:?subject='${assuntoEmail}'&body='${msgEncode}'`,
+            `mailto:?subject=${assuntoEmail}&body=${msgEncode}`,
             `https://www.facebook.com/sharer/sharer.php?u=${siteFBencode}`,
             `http://twitter.com/intent/tweet?text=${msgEncode}`,
         ]

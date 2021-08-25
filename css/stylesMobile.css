@@ -429,23 +429,24 @@ tr {
     border: .1px solid lightgrey;
     /* Apague abaixo e veja a diferença */
     border-collapse: collapse;
+    font-size: 1.1em;
 }
 
 /* Primeira coluna, ou primeira célula de cada linha (coluna do nro dos versículos) */
 td:nth-child(1) {
-    width: 10%;
+    width: 12%;
     text-align: center;
 }
 
 /* Segunda coluna, ou segunda célula de cada linha (coluna do texto dos versículos) */
 td:nth-child(2) {
-    width: 82%;
+    width: 76%;
     padding: 5px 10px;
 }
 
 /* Terceira coluna, ou terceira célula de cada linha (coluna do coração - favorito) */
 td:nth-child(3) {
-    width: 8%;
+    width: 12%;
     text-align: center;
 }
 
@@ -458,8 +459,8 @@ table tr:hover {
 }
 
 .iconeCoracao{
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
 }
 
 #msgMotivacao {

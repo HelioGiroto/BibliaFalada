@@ -6,10 +6,13 @@
 
 - Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos para tablets e desktop ou input para busca - ???
 
+- Responsividade das novas funções de leitura no Desktop e Tablet.
+ 
+- Reina Valera 1909 - Leitura
 
 ### Opções do menú:
 
-### Desempenho do usuário (suas métricas):
+#### Desempenho do usuário (suas métricas):
 
 - Funções de **estatísticas** de audição:
 	- DONUT
@@ -20,11 +23,10 @@
 	- ALERTA: "Faz x dias/semanas/meses que vc não ouve..."; "Parabéns!!"; etc.
 	- Livros mais lidos (Em porcentagem) ? 
 
-- Óculos:
-	- leitura para acompanhar a audição...
-
 
 - **Mais** recursos... (details tags):
+
+	- Melhorar botões.
 
 	- **Exportar** histórico de capítulos ouvidos
 		- Função **EXPORTAR** localStorage de uma máquina para outra que abra o link personalizado (.com/?...&...)
@@ -42,7 +44,26 @@ https://www.flaticon.com/
 
 ---
 
+
+### Sobre as variáveis de acumuladores de tempo de audição - Métricas:
+- O Tempo **Total** (localStorage.getItem('tempoAudicao'):
+	- Se refere ao total de tempo de faixas não repetidas ouvidas completamente.
+
+- O Tempo **Diário** (JSON.parse(localStorage.getItem('biblia-mes-07'))[22]):
+	- Se refere ao total de tempo DIÁRIO de faixas repetidas ou não que o usuário ouviu, mesmo sem ser completas.
+	- Portanto, essa variável é computada mesmo se o usuário avance ou retroceda antes de ouvir completamente uma faixa.
+
+
+### Link para ouvir uma faixa no github:
+	https://heliogiroto.github.io/BibliaFalada/audios/RV/Mt%204.mp3
+
+
+
 ### DONE:
+
+~- Óculos:~
+
+~- leitura para acompanhar a audição...~
 
 ~- Acompanhar audição com **leitura**.~
 
@@ -101,19 +122,6 @@ https://www.flaticon.com/
 ---
 
 ## Comandos usados e observações sobre o código:
-
-### Sobre as variáveis de acumuladores de tempo de audição - Métricas:
-- O Tempo **Total** (localStorage.getItem('tempoAudicao'):
-	- Se refere ao total de tempo de faixas não repetidas ouvidas completamente.
-
-- O Tempo **Diário** (JSON.parse(localStorage.getItem('biblia-mes-07'))[22]):
-	- Se refere ao total de tempo DIÁRIO de faixas repetidas ou não que o usuário ouviu, mesmo sem ser completas.
-	- Portanto, essa variável é computada mesmo se o usuário avance ou retroceda antes de ouvir completamente uma faixa.
-
-
-### Link para ouvir uma faixa no github:
-	https://heliogiroto.github.io/BibliaFalada/audios/RV/Mt%204.mp3
-
 
 ### Converter m4a para acc ou mp3. Teste de um só arq:
 ~~~bash

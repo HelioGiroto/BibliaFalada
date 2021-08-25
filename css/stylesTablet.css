@@ -3,19 +3,23 @@ CSS para estilizar no caso de tablets:
 */
 @media only screen and (min-width: 560px) {
 
-    #imgDesktop{
+    #imgDesktop {
         display: block;
     }
-        
-    #imgMobile{
+
+    #imgMobile {
         display: none;
     }
 
-    .pagina1{
+    .pagina1 {
         height: 130%;
     }
-    
-    #logo, #infolivro, #nomeVersao, .btPlayPause, .btsMuda {
+
+    #logo,
+    #infolivro,
+    #nomeVersao,
+    .btPlayPause,
+    .btsMuda {
         cursor: pointer;
     }
 
@@ -47,27 +51,33 @@ CSS para estilizar no caso de tablets:
         cursor: pointer;
     }
 
-    .divPausa > p{
+    .divPausa>p {
         font-size: 2.2em;
     }
-    
-    .divPausa > input{
+
+    .divPausa>input {
         margin: 20px auto;
         width: 100px;
         padding: 10px;
         font-size: 3em;
     }
 
-    .divPausa > button {
+    .divPausa>button {
         font-size: 1.5em;
         width: 40%;
     }
 
+    .divMais > button{
+        justify-content: space-evenly;
+        width: 60%;
+    }
+    
+    
     .fechaJanela {
         width: 5%;
     }
 
-    .divCompartilha > .fechaJanela {
+    .divCompartilha>.fechaJanela {
         margin-top: 10%;
     }
 
@@ -108,7 +118,7 @@ CSS para estilizar no caso de tablets:
         margin-top: 20px;
     }
 
-    .iconTipoGrafico{
+    .iconTipoGrafico {
         width: 10%;
         height: 10%;
     }
@@ -117,14 +127,29 @@ CSS para estilizar no caso de tablets:
         font-size: 1.8em;
     }
 
-    .redes > div > p {
+    .redes>div>p {
         padding: 6% 20px;
         font-weight: bold;
         font-size: 1.4em;
         /*background: #00b8e4;*/
     }
-    
-/* 
+
+    table,
+    td,
+    tr {
+        font-size: 1.2em;
+    }
+
+    .tamMedio {
+        font-size: 1.4em;
+    }
+
+    #avisoFavoritos,
+    #avisoErro {
+        font-size: 1em;
+    }
+
+    /* 
     .divCompartilha > .redes {
         display: flex;
         flex-flow: row;
@@ -139,7 +164,8 @@ CSS para estilizar no caso de tablets:
         margin-bottom: 20px;
     }
   */
-    .cabecalho, .cabecalhoCapitulos {
+    .cabecalho,
+    .cabecalhoCapitulos {
         font-size: 1.5em;
     }
 
@@ -147,16 +173,17 @@ CSS para estilizar no caso de tablets:
 }
 
 @media only screen and (min-width: 560px) and (orientation: landscape) {
-    .infoLivro{
+    .infoLivro {
         display: flex;
     }
-    #nroCapitulo{
+
+    #nroCapitulo {
         font-size: 3.6em;
         margin: auto;
         padding-left: 20px;
     }
 
-    .nomeVersao{
+    .nomeVersao {
         bottom: 3%;
     }
- }
+}

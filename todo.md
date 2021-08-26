@@ -5,9 +5,11 @@
 - **Exportar** histórico de capítulos ouvidos
 	- Função **EXPORTAR** localStorage de uma máquina para outra que abra o link personalizado (.com/?...&...)
 
+- Reina Valera 1909 - Leitura
+
 - Verificar **tradução** das janelas do **menú**.
 
-- Reina Valera 1909 - Leitura
+- Os arq js de leitura devem ter o async na tag script src... para não atrasar a abertura.
 
 - Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos para tablets e desktop ou input para busca - ???
 

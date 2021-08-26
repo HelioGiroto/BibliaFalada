@@ -568,20 +568,28 @@ table tr:hover {
     height: 15%;
 }
 
-.divMais>button {
+.btsMais{
     display: flex;
-    flex-flow: row;
-    justify-content: space-around;
-    width: 70%;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+.btMais {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 250px;
+    height: 100px;
     padding: 10px;
     font-size: 1em;
     font-family: 'Lato', sans-serif;
-    background: lightsteelblue;
+    background: darkred;
     margin-top: 10px;
 }
 
-.divMais>button>span {
-    padding-top: 7px;
+.btMais>span {
+    padding-top: 12px;
+    color: white;
 }
 
 .iconBtMais {

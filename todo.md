@@ -2,13 +2,16 @@
 
 ## URL: https://heliogiroto.github.io/BibliaFalada
 
+- **Exportar** histórico de capítulos ouvidos
+	- Função **EXPORTAR** localStorage de uma máquina para outra que abra o link personalizado (.com/?...&...)
+
 - Verificar **tradução** das janelas do **menú**.
+
+- Reina Valera 1909 - Leitura
 
 - Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos para tablets e desktop ou input para busca - ???
 
-- Responsividade das novas funções de leitura no Desktop e Tablet.
- 
-- Reina Valera 1909 - Leitura
+
 
 ### Opções do menú:
 
@@ -25,11 +28,6 @@
 
 
 - **Mais** recursos... (details tags):
-
-	- Melhorar botões.
-
-	- **Exportar** histórico de capítulos ouvidos
-		- Função **EXPORTAR** localStorage de uma máquina para outra que abra o link personalizado (.com/?...&...)
 
 	- Atalho para **RESETAR** a lista de capítulosOuvidos do localStorage (apagar histórico de cap. ouvidos) - Pedir confirmação no prompt.
 	
@@ -60,6 +58,10 @@ https://www.flaticon.com/
 
 
 ### DONE:
+
+~- Melhorar botões.~
+
+~- Responsividade das novas funções de leitura no Desktop e Tablet.~
 
 ~- Óculos:~
 

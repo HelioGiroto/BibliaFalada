@@ -77,11 +77,6 @@ CSS para estilizar no caso de desktops:
         width: 20%;
     }
     
-    .divMais > button{
-        justify-content: space-evenly;
-        width: 40%;
-    }
-    
 }
 
 @media only screen and (min-width: 1000px) {

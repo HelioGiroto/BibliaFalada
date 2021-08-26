@@ -66,12 +66,6 @@ CSS para estilizar no caso de tablets:
         font-size: 1.5em;
         width: 40%;
     }
-
-    .divMais > button{
-        justify-content: space-evenly;
-        width: 60%;
-    }
-    
     
     .fechaJanela {
         width: 5%;

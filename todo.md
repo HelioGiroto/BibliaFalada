@@ -2,7 +2,7 @@
 
 ## URL: https://heliogiroto.github.io/BibliaFalada
 
-- Ordem cronológica: ... 1,2 Sm; 1,2 Rs; Jn; Am; Os; Is; Mq; Jl; Sf; Na; Hc; Jr; Lm; Ob; Dn; Ez; Et; 1,2 Cr; Ed; Ne; Ag; Zc; Ml; Jó; Sl; Pv; Ec; Ct.
+- Ordem cronológica: ... 1,2 Sm; 1,2 Rs; Jn; Am; Os; Is; Mq; Jl; Sf; Na; Hc; Jr; Lm; Ob; Dn; Ez; Et; 1,2 Cr; Ed; Ne; Ag; Zc; Ml; Jó; Sl; Pv; Ec; Ct...
 
 - Botão/Função de **IMPORTAR** o conteúdo para o novo dispositivo.
 

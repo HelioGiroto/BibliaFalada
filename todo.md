@@ -2,17 +2,30 @@
 
 ## URL: https://heliogiroto.github.io/BibliaFalada
 
-- **Exportar** histórico de capítulos ouvidos
-	- Função **EXPORTAR** localStorage de uma máquina para outra que abra o link personalizado (.com/?...&...)
+- Ordem cronológica: ... 1,2 Sm; 1,2 Rs; Jn; Am; Os; Is; Mq; Jl; Sf; Na; Hc; Jr; Lm; Ob; Dn; Ez; Et; 1,2 Cr; Ed; Ne; Ag; Zc; Ml; Jó; Sl; Pv; Ec; Ct.
 
-- Os arq js de leitura devem ter o async na tag script src... para não atrasar a abertura.
+- Botão/Função de **IMPORTAR** o conteúdo para o novo dispositivo.
+
+- Botão de play/pause **flutuante** enquanto usuário lê o texto da Bíblia.
+
+- **Exportar** histórico de capítulos ouvidos por Whatsapp
+	- Melhorar função para que usuário escolha a que número enviar, de que forma (Email, etc). 
+
+	~- Função **EXPORTAR** localStorage de uma máquina para outra que abra o link personalizado (.com/?...&...)~
+
+- Opção para **resetar** todo o localStorage do dispositivo.
+
+- Versão em Francês (áudio + \[txt\])
 
 - Reina Valera 1909 - Leitura
+
+- Os arq js de leitura devem ter o async na tag script src... para não atrasar a abertura.
 
 - Verificar **tradução** das janelas do **menú**.
 
 - Melhorar a grade de **abreviaturas** dos nomes dos livros: Tb nomes completos para tablets e desktop ou input para busca - ???
 
+- Gráfico: De meses anteriores ao atual.
 
 
 ### Opções do menú:

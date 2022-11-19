@@ -149,6 +149,9 @@ function exportaTempoDiario() {
 
 
 function enviarDadosExportacao() {
+	// Melhorar função:
+	// Copiar para clipboard, escolher modo de envio: Telegram, etc...
+
 	forma = 'whatsapp'
 	// Coleta todos os dados disponíveis do dispositivo atual:
 	let paramTmpTot = Math.trunc(JSON.parse(localStorage.tempoAudicao))

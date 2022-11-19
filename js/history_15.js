@@ -1,8 +1,5 @@
 // falta:
 
-
-
-
 // DONE:
 
         // ERRO: quando troca barraH por barraV os eixos X e Y não se invertem - o dia/mes X minutos permanecem nos mesmos eixos

@@ -1,3 +1,4 @@
+// módulo para rodar os gráficos de Google:
 (function () {
     /*
 

@@ -10,27 +10,32 @@ let versao, livro, abrev, nombreLibro, capitulo, nroLivro, qtdeCap, capituloFina
 let capitulosOuvidos = JSON.parse(localStorage.getItem('capitulosOuvidos'))
 
 // seletores:
-let topo = document.querySelector('#topo')
-let logo = document.querySelector('#logo')
-let infolivro = document.querySelector('#infolivro')
-let nomeLivro = document.querySelector('#nomeLivro')
-let h4Capitulo = document.querySelector('.h4Capitulo')
-let nroCapitulo = document.querySelector('#nroCapitulo')
-let imgPlayer = document.querySelector('.imgPlayer')
-let player = document.querySelector('#player')
-let btAvanca = document.querySelector('#btAvanca')
-let btRetrocede = document.querySelector('#btRetrocede')
-let nomeVersao = document.querySelector('#nomeVersao')
-let cabecalhos = document.querySelectorAll('.cabecalho')
-let h4Escolher = document.querySelector('.h4Escolher')
-let h4opcoes = document.querySelector('.h4opcoes')
-let h4Livro = document.querySelector('.h4Livro')
-let gradeLivros = document.querySelectorAll('.gradeLivros')
-let quadriculaLivro = document.querySelectorAll('.quadriculaLivro')
+const topo = document.querySelector('#topo')
+const logo = document.querySelector('#logo')
+const infolivro = document.querySelector('#infolivro')
+const nomeLivro = document.querySelector('#nomeLivro')
+const h4Capitulo = document.querySelector('.h4Capitulo')
+const nroCapitulo = document.querySelector('#nroCapitulo')
+const imgPlayer = document.querySelector('.imgPlayer')
+const player = document.querySelector('#player')
+const btAvanca = document.querySelector('#btAvanca')
+const btRetrocede = document.querySelector('#btRetrocede')
+const nomeVersao = document.querySelector('#nomeVersao')
+const cabecalhos = document.querySelectorAll('.cabecalho')
+const h4Escolher = document.querySelector('.h4Escolher')
+const h4opcoes = document.querySelector('.h4opcoes')
+const h4Livro = document.querySelector('.h4Livro')
+const gradeLivros = document.querySelectorAll('.gradeLivros')
+const quadriculaLivro = document.querySelectorAll('.quadriculaLivro')
 // let cabecalhoCapitulos = document.querySelector('.cabecalhoCapitulos')
-let gradeCapitulos = document.querySelector('#gradeCapitulos')
-let btPlay = document.querySelector('#btPlay')
-let btPause = document.querySelector('#btPause')
+const gradeCapitulos = document.querySelector('#gradeCapitulos')
+const btPlay = document.querySelector('#btPlay')
+const btPause = document.querySelector('#btPause')
+
+// Nro de telefone para Whatsapp:
+const nroTelefone = '5511993050054'
+// Email para receber dados de exportação ou erros.
+const email = 'heliogiroto76@gmail.com'
 
 
 // obtem dados do último capítulo, livro e versão ouvidos:
@@ -883,7 +888,6 @@ function enviaErros() {
     } 
 
     document.querySelector('#btErrosWt').addEventListener('click', () => {
-        let nroTelefone = '5511993050054'
         let msgErro = `Erro na tradução da Bíblia Falada: ${listaErros}`
         let msgErroEncode = window.encodeURIComponent(msgErro)
         window.open(`https://wa.me/${nroTelefone}?text=${msgErroEncode}`, '_blank')
@@ -894,7 +898,6 @@ function enviaErros() {
     })
 
     document.querySelector('#btErrosEm').addEventListener('click', () => {
-        let email = 'heliogiroto76@gmail.com'
         let assunto = `Reportando erro de tradução na Biblia Falada`
         let msgEmail = `Verifique um erro que encontrei no texto da tradução: ${listaErros}`
         let assuntoEncode = window.encodeURIComponent(assunto)
@@ -1095,7 +1098,8 @@ function leitura() {
 
 // funções do menú Mais Recursos:
 function funcaoExportar() {
-    alert('Função indisponível no momento. Volte mais tarde!')
+    // Está sendo executado de exportar.js
+    // alert('Função indisponível no momento. Volte mais tarde!')
 }
 
 function funcaoRadio() {
@@ -1103,19 +1107,18 @@ function funcaoRadio() {
 }
 
 function funcaoPedido() {
-    let nroTelefone = '5511993050054'
-    let precisoOracao = "Olá! Estou precisando de ORAÇÃO...."
+    let precisoOracao = "Olá, estou escutando a Bíblia Falada e preciso de ORAÇÃO...."
     let precisoOracaoEncode = window.encodeURIComponent(precisoOracao)
     window.open(`https://wa.me/${nroTelefone}?text=${precisoOracaoEncode}`, '_blank')
 }
 
 function funcaoProblema() {
-    window.open("mailto:heliogiroto76@gmail.com?subject=ERRO no site BibliaFalada&body=Estou reportando um erro que encontrei no site: ...")
+    window.open(`mailto:${email}?subject=ERRO no site BibliaFalada&body=Estou reportando um erro que encontrei no site: ...`)
 }
 
 function funcaoApoie() {
-    // window.open('https://www.jesus24horas.com/apoie', '_blank')
-    alert('Em breve...')
+    window.open('https://jesus24horas.com/radio/apoie_1.html', '_blank')
+    // alert('Em breve...')
 }
 
 // pega cada bt:

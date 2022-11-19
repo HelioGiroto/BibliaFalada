@@ -5,11 +5,11 @@
 function importaPassagens(passagens) {
 	// AQUI FAZER UMA FUNÇÃO - que será tb usada para lista de favoritos:
 
-	// direto pelos parâmetros de url:
+	// direto pelos parâmetros de url (?):
 	// let separaPorLivros = passagens.split(';')
 
 	// para testes:
-	let separaPorLivros = passagegns.replace(/\+/g, ' ').split(';')
+	let separaPorLivros = passagens.replace(/\+/g, ' ').split(';')
 
 	// Abaixo: Apaga itens vazios do array: 
 	separaPorLivros = separaPorLivros.filter(a => a)
@@ -64,19 +64,20 @@ function extrairParametros() {
 	let importadoCap = importaPassagens(capImportado)
 	let importadoFav = importaPassagens(favImportado)
 	let importadoErr = errImportado.split(',')
-	
+
 	// agora APPENDA as listas acima atualizando o localStorage destino...
 	importaTemposDiarios(tmpDImportado)
 
 }
 
 // Aqui termina o processo de importação dos dados de parâmetros de URL ao chamar a função abaixo:
-extrairParametros()
+// extrairParametros()
 
 
 
 
-//////////////////// EXPORTANDO OS DADOS ////////////////////////////
+//////////////////// EXPORTANDO OS DADOS ////////////////////////
+
 
 // Função que executa a manipulação de listas de capítulos ouvidos...
 // abaixo, o parâmetro "lista" será o nome do localStorage correspondente:
@@ -107,40 +108,90 @@ function exportaPassagens(lista) {
 
 // Forma parâmetros que serão colocados em sufixo de link URL:
 // exportar (gerar parâmetro de link) passagens de localStorage: capitulosOuvidos e favoritos
-let paramCap = exportaPassagens("capitulosOuvidos")
-let paramFav = exportaPassagens("versiculosFavoritos")
-let paramTmp = Math.trunc(JSON.parse(localStorage.tempoAudicao))
-let paramErr = JSON.parse(localStorage.errosTraducao).toString().replace(/ /g, '+')
-// "Sl+23:2+(ACF),Sl+23:3+(ACF)"
+// let paramCap = exportaPassagens("capitulosOuvidos")
+// let paramFav = exportaPassagens("versiculosFavoritos")
+
+// Tempo total de audição em segundos:
+// let paramTmpTot = Math.trunc(JSON.parse(localStorage.tempoAudicao))
+// let paramErr = JSON.parse(localStorage.errosTraducao).toString().replace(/ /g, '+')
+
 
 // Obtem tempo diário nas listas mensais de localStorage:
-// cria lista vazia de dias ouvidos para exportar:
-let tempoDiario = []
+function exportaTempoDiario() {
+	// cria lista vazia de dias ouvidos para exportar:
+	let tempoDiario = []
 
-// percorre todas as listas de localStorage de nome: biblia_mes_${m}
-for (m = 1; m <= 12; m++) {
-	if (m < 10) m = `0${m}`
-	// pega o nro do item (que é o dia) e o valor deste item de array
-	let listaDiasMes = JSON.parse(localStorage.getItem(`biblia_mes_${m}`))
+	// percorre todas as listas de localStorage de nome: biblia_mes_${m}
+	for (m = 1; m <= 12; m++) {
+		if (m < 10) m = `0${m}`
+		// pega o nro do item (que é o dia) e o valor deste item de array
+		let listaDiasMes = JSON.parse(localStorage.getItem(`biblia_mes_${m}`))
+		// console.log(m, listaDiasMes)
+		listaDiasMes.map((e, i) => {
+			if (e) {
+				tempoDiario.push(`${m}-${i}:${Math.trunc(e)}`)
+			}
+		})
+	}
 
-	// console.log(m, listaDiasMes)
-
-	listaDiasMes.map((e, i) => {
-		if (e) {
-			tempoDiario.push(`${m}-${i}-${Math.trunc(e)}`)
-		}
-	})
+	let listaSaida = tempoDiario.toString()
+	return listaSaida
+	// formato: "mes-dia:segundos, ...""
+	// "01-31:1000,02-1:2000,07-1:600,07-14:400,07-18:700,07-20:1832,07-22:1564,07-26:20,07-29:901,07-30:130,07-31:2743,08-2:944,08-3:1000,08-4:120,08-5:25,08-6:360,08-9:1974,08-13:107,08-14:2793,08-15:4,11-18:125"
 }
 
-let paramTmpD = tempoDiario.toString()
-// ["01-31-1000", "02-1-2000", "07-1-300", "07-14-400", "07-18-700", "07-20-1832", "07-22-1564", "07-26-20", "07-29-901", "07-30-130", "07-31-2443", "08-2-944", "08-3-1000", "08-4-120", "08-5-25", "08-6-360", "08-9-1974", "08-13-107", "08-14-2793", "08-15-4"]
-// "01-31-1000,02-1-2000,07-1-300,07-14-400,07-18-700,07-20-1832,07-22-1564,07-26-20,07-29-901,07-30-130,07-31-2443,08-2-944,08-3-1000,08-4-120,08-5-25,08-6-360,08-9-1974,08-13-107,08-14-2793,08-15-4"
+// let paramTmpD = exportaTempoDiario()
 
 
-// forma parametros de link:
+// forma parametros de link (URL):
 // caracteres   aceitos:  - , ; : |
 // caracteres recusados:  + & = ?		// (no caso, o sinal + é convertido para espaço. & para separar parametros...)
 
+
+function enviarDadosExportacao() {
+	forma = 'whatsapp'
+	// Coleta todos os dados disponíveis do dispositivo atual:
+	let paramTmpTot = Math.trunc(JSON.parse(localStorage.tempoAudicao))
+
+	let paramTmpD = exportaTempoDiario()
+	// "01-31:1000,02-1:2000,07-1:600,07-14:400,07-18:700,07-20:1832,07-22:1564,07-26:20,07-29:901,07-30:130,07-31:2743,08-2:944,08-3:1000,08-4:120,08-5:25,08-6:360,08-9:1974,08-13:107,08-14:2793,08-15:4,11-18:125"	
+
+	let paramCap = exportaPassagens("capitulosOuvidos")
+	// "1Rs+4;3Jo+1;Ap+10,11,12,13,14,15,16,17,18,19,20,6,7,8,9;At+5,6;Cl+1;Dt+10,12,13,18,19;Ed+5,6,7;"
+
+	let paramFav = exportaPassagens("versiculosFavoritos")
+	// "Sl+23:4,23:1,23:6;Ap+12:1,12:6,3:10;Fp+2:2;"
+
+	let msg = `=== paramTmpTot = "${paramTmpTot}" | paramTmpD = "${paramTmpD}" | paramCap = "${paramCap}" | paramFav = "${paramFav}" ===`
+	// na importação, substituir: '=' por ' '; ...; '|' por ';' etc... 
+
+	// Prepara a forma em que vai enviá-los:
+
+	// Por whatsapp:
+	if(forma == 'whatsapp') {
+		let msgEncode = window.encodeURIComponent(msg)
+		// abaixo - mudar o nro de telefone de envio...
+		window.open(`https://wa.me/${nroTelefone}?text=${msgEncode}`, '_blank')
+		// https://api.whatsapp.com/send/?phone=551199.....
+		alert('Uma cópia dos capítulos ouvidos e favoritos foi enviada por Whatsapp! Agora no outro dispositivo que deseja receber esses dados: 1) Abra o Whatsapp e copie o que foi enviado; 2) Depois, abra o aplicativo da "Bíblia Falada" e clique em: "IMPORTAR DADOS".')
+	} else if(forma == 'email') {
+		let assunto = `Reportando erro de tradução na Biblia Falada`
+		let msgEmail = `Verifique um erro que encontrei no texto da tradução: ${listaErros}`
+		let assuntoEncode = window.encodeURIComponent(assunto)
+		let msgEmailEncode = window.encodeURIComponent(msgEmail)
+		window.open(`mailto:${email}?subject=${assuntoEncode}&body=${msgEmailEncode}`)
+	}
+
+
+}
+
+document.querySelector('#btExportar').addEventListener('click', enviarDadosExportacao)
+
+// dispara função conforme o tipo/forma de envio que o usuário escolher:
+// ver se funciona chamar função dentro de addEventListener com argumento ???
+// document.querySelector('#exportaPorWts').addEventListener('click', enviarDadosExportacao("whatsapp"))
+
+// document.querySelector('#exportaPorEmail').addEventListener('click', enviarDadosExportacao("email"))
 
 
 

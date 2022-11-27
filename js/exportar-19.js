@@ -106,6 +106,23 @@ function exportaPassagens(lista) {
 	return cap
 }
 
+// nova função para baixar um arquivo:
+
+function download(conteudo) {
+	let mimeType = "txt"
+	let filename = "BibliaFalada"
+	const a = document.createElement('a') // Create "a" element
+	const blob = new Blob([conteudo], {
+		type: mimeType
+	}) // Create a blob (file-like object)
+	const url = URL.createObjectURL(blob) // Create an object URL from blob
+	a.setAttribute('href', url) // Set "a" element link
+	a.setAttribute('download', filename) // Set download filename
+	a.click() // Start downloading
+}
+
+
+
 // Forma parâmetros que serão colocados em sufixo de link URL:
 // exportar (gerar parâmetro de link) passagens de localStorage: capitulosOuvidos e favoritos
 // let paramCap = exportaPassagens("capitulosOuvidos")
@@ -171,13 +188,13 @@ function enviarDadosExportacao() {
 	// Prepara a forma em que vai enviá-los:
 
 	// Por whatsapp:
-	if(forma == 'whatsapp') {
+	if (forma == 'whatsapp') {
 		let msgEncode = window.encodeURIComponent(msg)
 		// abaixo - mudar o nro de telefone de envio...
 		window.open(`https://wa.me/${nroTelefone}?text=${msgEncode}`, '_blank')
 		// https://api.whatsapp.com/send/?phone=551199.....
 		alert('Uma cópia dos capítulos ouvidos e favoritos foi enviada por Whatsapp! Agora no outro dispositivo que deseja receber esses dados: 1) Abra o Whatsapp e copie o que foi enviado; 2) Depois, abra o aplicativo da "Bíblia Falada" e clique em: "IMPORTAR DADOS".')
-	} else if(forma == 'email') {
+	} else if (forma == 'email') {
 		let assunto = `Reportando erro de tradução na Biblia Falada`
 		let msgEmail = `Verifique um erro que encontrei no texto da tradução: ${listaErros}`
 		let assuntoEncode = window.encodeURIComponent(assunto)
@@ -188,7 +205,41 @@ function enviarDadosExportacao() {
 
 }
 
-document.querySelector('#btExportar').addEventListener('click', enviarDadosExportacao)
+function enviarDadosExportacao2() {
+	// Melhorar função:
+	// Copiar para clipboard, escolher modo de envio: Telegram, etc...
+
+	forma = 'whatsapp'
+	// Coleta todos os dados disponíveis do dispositivo atual:
+	let paramTmpTot = Math.trunc(JSON.parse(localStorage.tempoAudicao))
+
+	let paramTmpD = exportaTempoDiario()
+	// "01-31:1000,02-1:2000,07-1:600,07-14:400,07-18:700,07-20:1832,07-22:1564,07-26:20,07-29:901,07-30:130,07-31:2743,08-2:944,08-3:1000,08-4:120,08-5:25,08-6:360,08-9:1974,08-13:107,08-14:2793,08-15:4,11-18:125"	
+
+	let paramCap = exportaPassagens("capitulosOuvidos")
+	// "1Rs+4;3Jo+1;Ap+10,11,12,13,14,15,16,17,18,19,20,6,7,8,9;At+5,6;Cl+1;Dt+10,12,13,18,19;Ed+5,6,7;"
+
+	let paramFav = exportaPassagens("versiculosFavoritos")
+	// "Sl+23:4,23:1,23:6;Ap+12:1,12:6,3:10;Fp+2:2;"
+
+	let msg = `=== paramTmpTot = "${paramTmpTot}" | paramTmpD = "${paramTmpD}" | paramCap = "${paramCap}" | paramFav = "${paramFav}" ===`
+	// na importação, substituir: '=' por ' '; ...; '|' por ';' etc... 
+
+	download(msg)
+
+	// Prepara a forma em que vai enviá-los:
+	// Por whatsapp:
+	// let msgEncode = window.encodeURIComponent(msg)
+	// abaixo - mudar o nro de telefone de envio...
+	// window.open(`https://wa.me/${nroTelefone}?text=${msgEncode}`, '_blank')
+	// https://api.whatsapp.com/send/?phone=551199.....
+	alert('Descarregada uma cópia dos capítulos ouvidos e favoritos! Agora no outro dispositivo que deseja receber esses dados: 1) Abra o Whatsapp e copie o que foi enviado; 2) Depois, abra o aplicativo da "Bíblia Falada" e clique em: "IMPORTAR DADOS".')
+	
+}
+
+// document.querySelector('#btExportar').addEventListener('click', enviarDadosExportacao)
+document.querySelector('#btExportar').addEventListener('click', enviarDadosExportacao2)
+
 
 // dispara função conforme o tipo/forma de envio que o usuário escolher:
 // ver se funciona chamar função dentro de addEventListener com argumento ???

@@ -1,10 +1,11 @@
-const BibliaOBJ =
-[
-    {
+// arquivo que contem os dados de cada um dos 66 livros da Bíblia
+
+const BibliaOBJ = [{
         "livro": "",
         "abrev": "",
         "qtdeCap": "",
         "testamento": "",
+        "cronologia": "",
         "abreviacion": "",
         "nombreLibro": ""
     },
@@ -13,6 +14,7 @@ const BibliaOBJ =
         "abrev": "Gn",
         "qtdeCap": "50",
         "testamento": "AT",
+        "cronologia": "1",
         "abreviacion": "Gn",
         "nombreLibro": "Génesis"
     },
@@ -21,6 +23,7 @@ const BibliaOBJ =
         "abrev": "Ex",
         "qtdeCap": "40",
         "testamento": "AT",
+        "cronologia": "2",
         "abreviacion": "Ex",
         "nombreLibro": "Éxodo"
     },
@@ -29,6 +32,7 @@ const BibliaOBJ =
         "abrev": "Lv",
         "qtdeCap": "27",
         "testamento": "AT",
+        "cronologia": "3",
         "abreviacion": "Lv",
         "nombreLibro": "Levítico"
     },
@@ -37,6 +41,7 @@ const BibliaOBJ =
         "abrev": "Nm",
         "qtdeCap": "36",
         "testamento": "AT",
+        "cronologia": "4",
         "abreviacion": "Nm",
         "nombreLibro": "Números"
     },
@@ -45,6 +50,7 @@ const BibliaOBJ =
         "abrev": "Dt",
         "qtdeCap": "34",
         "testamento": "AT",
+        "cronologia": "5",
         "abreviacion": "Dt",
         "nombreLibro": "Deuteronomio"
     },
@@ -53,6 +59,7 @@ const BibliaOBJ =
         "abrev": "Js",
         "qtdeCap": "24",
         "testamento": "AT",
+        "cronologia": "6",
         "abreviacion": "Jos",
         "nombreLibro": "Josué"
     },
@@ -61,6 +68,7 @@ const BibliaOBJ =
         "abrev": "Jz",
         "qtdeCap": "21",
         "testamento": "AT",
+        "cronologia": "7",
         "abreviacion": "Jue",
         "nombreLibro": "Jueces"
     },
@@ -69,6 +77,7 @@ const BibliaOBJ =
         "abrev": "Rt",
         "qtdeCap": "4",
         "testamento": "AT",
+        "cronologia": "8",
         "abreviacion": "Rt",
         "nombreLibro": "Rut"
     },
@@ -77,6 +86,7 @@ const BibliaOBJ =
         "abrev": "1Sm",
         "qtdeCap": "31",
         "testamento": "AT",
+        "cronologia": "9",
         "abreviacion": "1S",
         "nombreLibro": "1 Samuel"
     },
@@ -85,6 +95,7 @@ const BibliaOBJ =
         "abrev": "2Sm",
         "qtdeCap": "24",
         "testamento": "AT",
+        "cronologia": "10",
         "abreviacion": "2S",
         "nombreLibro": "2 Samuel"
     },
@@ -93,6 +104,7 @@ const BibliaOBJ =
         "abrev": "1Rs",
         "qtdeCap": "22",
         "testamento": "AT",
+        "cronologia": "11",
         "abreviacion": "1R",
         "nombreLibro": "1 Reyes"
     },
@@ -101,6 +113,7 @@ const BibliaOBJ =
         "abrev": "2Rs",
         "qtdeCap": "25",
         "testamento": "AT",
+        "cronologia": "12",
         "abreviacion": "2R",
         "nombreLibro": "2 Reyes"
     },
@@ -109,6 +122,7 @@ const BibliaOBJ =
         "abrev": "1Cr",
         "qtdeCap": "29",
         "testamento": "AT",
+        "cronologia": "28",
         "abreviacion": "1Cr",
         "nombreLibro": "1 Crónicas"
     },
@@ -117,6 +131,7 @@ const BibliaOBJ =
         "abrev": "2Cr",
         "qtdeCap": "36",
         "testamento": "AT",
+        "cronologia": "29",
         "abreviacion": "2Cr",
         "nombreLibro": "2 Crónicas"
     },
@@ -125,6 +140,7 @@ const BibliaOBJ =
         "abrev": "Ed",
         "qtdeCap": "10",
         "testamento": "AT",
+        "cronologia": "30",
         "abreviacion": "Esd",
         "nombreLibro": "Esdras"
     },
@@ -133,6 +149,7 @@ const BibliaOBJ =
         "abrev": "Ne",
         "qtdeCap": "13",
         "testamento": "AT",
+        "cronologia": "31",
         "abreviacion": "Neh",
         "nombreLibro": "Nehemías"
     },
@@ -141,6 +158,7 @@ const BibliaOBJ =
         "abrev": "Et",
         "qtdeCap": "10",
         "testamento": "AT",
+        "cronologia": "27",
         "abreviacion": "Est",
         "nombreLibro": "Ester"
     },
@@ -149,6 +167,7 @@ const BibliaOBJ =
         "abrev": "Jó",
         "qtdeCap": "42",
         "testamento": "AT",
+        "cronologia": "35",
         "abreviacion": "Job",
         "nombreLibro": "Job"
     },
@@ -157,6 +176,7 @@ const BibliaOBJ =
         "abrev": "Sl",
         "qtdeCap": "150",
         "testamento": "AT",
+        "cronologia": "36",
         "abreviacion": "Sal",
         "nombreLibro": "Salmos"
     },
@@ -165,6 +185,7 @@ const BibliaOBJ =
         "abrev": "Pv",
         "qtdeCap": "31",
         "testamento": "AT",
+        "cronologia": "37",
         "abreviacion": "Pr",
         "nombreLibro": "Proverbios"
     },
@@ -173,6 +194,7 @@ const BibliaOBJ =
         "abrev": "Ec",
         "qtdeCap": "12",
         "testamento": "AT",
+        "cronologia": "38",
         "abreviacion": "Ec",
         "nombreLibro": "Eclesiastés"
     },
@@ -181,6 +203,7 @@ const BibliaOBJ =
         "abrev": "Ct",
         "qtdeCap": "8",
         "testamento": "AT",
+        "cronologia": "39",
         "abreviacion": "Cnt",
         "nombreLibro": "Cantares"
     },
@@ -189,6 +212,7 @@ const BibliaOBJ =
         "abrev": "Is",
         "qtdeCap": "66",
         "testamento": "AT",
+        "cronologia": "16",
         "abreviacion": "Is",
         "nombreLibro": "Isaías"
     },
@@ -197,6 +221,7 @@ const BibliaOBJ =
         "abrev": "Jr",
         "qtdeCap": "52",
         "testamento": "AT",
+        "cronologia": "22",
         "abreviacion": "Jer",
         "nombreLibro": "Jeremías"
     },
@@ -205,6 +230,7 @@ const BibliaOBJ =
         "abrev": "Lm",
         "qtdeCap": "5",
         "testamento": "AT",
+        "cronologia": "23",
         "abreviacion": "Lm",
         "nombreLibro": "Lamentaciones"
     },
@@ -213,6 +239,7 @@ const BibliaOBJ =
         "abrev": "Ez",
         "qtdeCap": "48",
         "testamento": "AT",
+        "cronologia": "25",
         "abreviacion": "Ez",
         "nombreLibro": "Ezequiel"
     },
@@ -221,6 +248,7 @@ const BibliaOBJ =
         "abrev": "Dn",
         "qtdeCap": "12",
         "testamento": "AT",
+        "cronologia": "26",
         "abreviacion": "Dn",
         "nombreLibro": "Daniel"
     },
@@ -229,6 +257,7 @@ const BibliaOBJ =
         "abrev": "Os",
         "qtdeCap": "14",
         "testamento": "AT",
+        "cronologia": "15",
         "abreviacion": "Os",
         "nombreLibro": "Oseas"
     },
@@ -237,6 +266,7 @@ const BibliaOBJ =
         "abrev": "Jl",
         "qtdeCap": "3",
         "testamento": "AT",
+        "cronologia": "18",
         "abreviacion": "Jl",
         "nombreLibro": "Joel"
     },
@@ -245,6 +275,7 @@ const BibliaOBJ =
         "abrev": "Am",
         "qtdeCap": "9",
         "testamento": "AT",
+        "cronologia": "14",
         "abreviacion": "Am",
         "nombreLibro": "Amós"
     },
@@ -253,6 +284,7 @@ const BibliaOBJ =
         "abrev": "Ob",
         "qtdeCap": "1",
         "testamento": "AT",
+        "cronologia": "24",
         "abreviacion": "Ab",
         "nombreLibro": "Abdías"
     },
@@ -261,6 +293,7 @@ const BibliaOBJ =
         "abrev": "Jn",
         "qtdeCap": "4",
         "testamento": "AT",
+        "cronologia": "13",
         "abreviacion": "Jon",
         "nombreLibro": "Jonás"
     },
@@ -269,6 +302,7 @@ const BibliaOBJ =
         "abrev": "Mq",
         "qtdeCap": "7",
         "testamento": "AT",
+        "cronologia": "17",
         "abreviacion": "Mi",
         "nombreLibro": "Miqueas"
     },
@@ -277,6 +311,7 @@ const BibliaOBJ =
         "abrev": "Na",
         "qtdeCap": "3",
         "testamento": "AT",
+        "cronologia": "20",
         "abreviacion": "Nah",
         "nombreLibro": "Nahum"
     },
@@ -285,6 +320,7 @@ const BibliaOBJ =
         "abrev": "Hc",
         "qtdeCap": "3",
         "testamento": "AT",
+        "cronologia": "21",
         "abreviacion": "Hab",
         "nombreLibro": "Habacuc"
     },
@@ -293,6 +329,7 @@ const BibliaOBJ =
         "abrev": "Sf",
         "qtdeCap": "3",
         "testamento": "AT",
+        "cronologia": "19",
         "abreviacion": "Sof",
         "nombreLibro": "Sofonías"
     },
@@ -301,6 +338,7 @@ const BibliaOBJ =
         "abrev": "Ag",
         "qtdeCap": "2",
         "testamento": "AT",
+        "cronologia": "32",
         "abreviacion": "Hag",
         "nombreLibro": "Hageo"
     },
@@ -309,6 +347,7 @@ const BibliaOBJ =
         "abrev": "Zc",
         "qtdeCap": "14",
         "testamento": "AT",
+        "cronologia": "33",
         "abreviacion": "Zac",
         "nombreLibro": "Zacarías"
     },
@@ -317,6 +356,7 @@ const BibliaOBJ =
         "abrev": "Ml",
         "qtdeCap": "4",
         "testamento": "AT",
+        "cronologia": "34",
         "abreviacion": "Mal",
         "nombreLibro": "Malaquías"
     },
@@ -325,6 +365,7 @@ const BibliaOBJ =
         "abrev": "Mt",
         "qtdeCap": "28",
         "testamento": "NT",
+        "cronologia": "41",
         "abreviacion": "Mt",
         "nombreLibro": "Mateo"
     },
@@ -333,6 +374,7 @@ const BibliaOBJ =
         "abrev": "Mc",
         "qtdeCap": "16",
         "testamento": "NT",
+        "cronologia": "40",
         "abreviacion": "Mc",
         "nombreLibro": "Marcos"
     },
@@ -341,6 +383,7 @@ const BibliaOBJ =
         "abrev": "Lc",
         "qtdeCap": "24",
         "testamento": "NT",
+        "cronologia": "42",
         "abreviacion": "Lc",
         "nombreLibro": "Lucas"
     },
@@ -349,6 +392,7 @@ const BibliaOBJ =
         "abrev": "Jo",
         "qtdeCap": "21",
         "testamento": "NT",
+        "cronologia": "62",
         "abreviacion": "Jn",
         "nombreLibro": "Juan"
     },
@@ -357,6 +401,7 @@ const BibliaOBJ =
         "abrev": "At",
         "qtdeCap": "28",
         "testamento": "NT",
+        "cronologia": "43",
         "abreviacion": "Hch",
         "nombreLibro": "Hechos"
     },
@@ -365,6 +410,7 @@ const BibliaOBJ =
         "abrev": "Rm",
         "qtdeCap": "16",
         "testamento": "NT",
+        "cronologia": "49",
         "abreviacion": "Ro",
         "nombreLibro": "Romanos"
     },
@@ -373,6 +419,7 @@ const BibliaOBJ =
         "abrev": "1Co",
         "qtdeCap": "16",
         "testamento": "NT",
+        "cronologia": "47",
         "abreviacion": "1Co",
         "nombreLibro": "1 Corintios"
     },
@@ -381,6 +428,7 @@ const BibliaOBJ =
         "abrev": "2Co",
         "qtdeCap": "13",
         "testamento": "NT",
+        "cronologia": "48",
         "abreviacion": "2Co",
         "nombreLibro": "2 Corintios"
     },
@@ -389,6 +437,7 @@ const BibliaOBJ =
         "abrev": "Gl",
         "qtdeCap": "6",
         "testamento": "NT",
+        "cronologia": "44",
         "abreviacion": "Gl",
         "nombreLibro": "Gálatas"
     },
@@ -397,6 +446,7 @@ const BibliaOBJ =
         "abrev": "Ef",
         "qtdeCap": "6",
         "testamento": "NT",
+        "cronologia": "50",
         "abreviacion": "Ef",
         "nombreLibro": "Efesios"
     },
@@ -405,6 +455,7 @@ const BibliaOBJ =
         "abrev": "Fp",
         "qtdeCap": "4",
         "testamento": "NT",
+        "cronologia": "53",
         "abreviacion": "Fil",
         "nombreLibro": "Filipenses"
     },
@@ -413,6 +464,7 @@ const BibliaOBJ =
         "abrev": "Cl",
         "qtdeCap": "4",
         "testamento": "NT",
+        "cronologia": "51",
         "abreviacion": "Col",
         "nombreLibro": "Colosenses"
     },
@@ -421,6 +473,7 @@ const BibliaOBJ =
         "abrev": "1Ts",
         "qtdeCap": "5",
         "testamento": "NT",
+        "cronologia": "45",
         "abreviacion": "1Ts",
         "nombreLibro": "1 Tesalonicenses"
     },
@@ -429,6 +482,7 @@ const BibliaOBJ =
         "abrev": "2Ts",
         "qtdeCap": "3",
         "testamento": "NT",
+        "cronologia": "46",
         "abreviacion": "2Ts",
         "nombreLibro": "2 Tesalonicenses"
     },
@@ -437,6 +491,7 @@ const BibliaOBJ =
         "abrev": "1Tm",
         "qtdeCap": "6",
         "testamento": "NT",
+        "cronologia": "55",
         "abreviacion": "1Ti",
         "nombreLibro": "1 Timoteo"
     },
@@ -445,6 +500,7 @@ const BibliaOBJ =
         "abrev": "2Tm",
         "qtdeCap": "4",
         "testamento": "NT",
+        "cronologia": "56",
         "abreviacion": "2Ti",
         "nombreLibro": "2 Timoteo"
     },
@@ -453,6 +509,7 @@ const BibliaOBJ =
         "abrev": "Tt",
         "qtdeCap": "3",
         "testamento": "NT",
+        "cronologia": "54",
         "abreviacion": "Tit",
         "nombreLibro": "Tito"
     },
@@ -461,6 +518,7 @@ const BibliaOBJ =
         "abrev": "Fm",
         "qtdeCap": "1",
         "testamento": "NT",
+        "cronologia": "52",
         "abreviacion": "Flm",
         "nombreLibro": "Filemón"
     },
@@ -469,6 +527,7 @@ const BibliaOBJ =
         "abrev": "Hb",
         "qtdeCap": "13",
         "testamento": "NT",
+        "cronologia": "61",
         "abreviacion": "He",
         "nombreLibro": "Hebreos"
     },
@@ -477,6 +536,7 @@ const BibliaOBJ =
         "abrev": "Tg",
         "qtdeCap": "5",
         "testamento": "NT",
+        "cronologia": "57",
         "abreviacion": "Stg",
         "nombreLibro": "Santiago"
     },
@@ -485,6 +545,7 @@ const BibliaOBJ =
         "abrev": "1Pe",
         "qtdeCap": "5",
         "testamento": "NT",
+        "cronologia": "58",
         "abreviacion": "1P",
         "nombreLibro": "1 Pedro"
     },
@@ -493,6 +554,7 @@ const BibliaOBJ =
         "abrev": "2Pe",
         "qtdeCap": "3",
         "testamento": "NT",
+        "cronologia": "59",
         "abreviacion": "2P",
         "nombreLibro": "2 Pedro"
     },
@@ -501,6 +563,7 @@ const BibliaOBJ =
         "abrev": "1Jo",
         "qtdeCap": "5",
         "testamento": "NT",
+        "cronologia": "63",
         "abreviacion": "1Jn",
         "nombreLibro": "1 Juan"
     },
@@ -509,6 +572,7 @@ const BibliaOBJ =
         "abrev": "2Jo",
         "qtdeCap": "1",
         "testamento": "NT",
+        "cronologia": "64",
         "abreviacion": "2Jn",
         "nombreLibro": "2 Juan"
     },
@@ -517,6 +581,7 @@ const BibliaOBJ =
         "abrev": "3Jo",
         "qtdeCap": "1",
         "testamento": "NT",
+        "cronologia": "65",
         "abreviacion": "3Jn",
         "nombreLibro": "3 Juan"
     },
@@ -525,6 +590,7 @@ const BibliaOBJ =
         "abrev": "Jd",
         "qtdeCap": "1",
         "testamento": "NT",
+        "cronologia": "60",
         "abreviacion": "Jud",
         "nombreLibro": "Judas"
     },
@@ -533,6 +599,7 @@ const BibliaOBJ =
         "abrev": "Ap",
         "qtdeCap": "22",
         "testamento": "NT",
+        "cronologia": "66",
         "abreviacion": "Ap",
         "nombreLibro": "Apocalipsis"
     }

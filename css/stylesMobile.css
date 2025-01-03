@@ -169,27 +169,28 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     width: 15%;
 }
 
-.versoes {
+.itensEscolha {
     display: flex;
     flex-flow: row;
     justify-content: center;
     margin-top: 15px;
 }
 
-.versoes>input {
+.itensEscolha>input {
     height: 15px;
     width: 20px;
     margin-top: 4px;
     margin-left: 5px;
 }
 
-.versoes>span {
+.itensEscolha>span {
     font-size: 1.2em;
     font-weight: bold;
 }
 
 .nvi,
-.rv {
+.rv,
+.ordem {
     padding-left: 20px;
 }
 
@@ -216,11 +217,17 @@ FONTE: https://chromium.googlesource.com/chromium/blink/+/72fef91ac1ef679207f51d
     margin-top: 10px;
 }
 
+.h4Ordem{
+    margin-top: 20px;
+}
+
 .h4Capitulo {
     margin-bottom: 15px;
 }
 
-/* .h4Livro{} */
+.grades{
+    margin-bottom: 20px;
+}
 
 /* .cabecalho{} */
 

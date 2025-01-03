@@ -1,5 +1,6 @@
 // Script para ser executado no console do navegador
 // Adiciona novas propriedades ao objeto BibliaOBJ como nomes dos livros em outro idioma, etc.
+// para em seguida ser copiado e re-editado o arquivo BibliaOBJ.js
 
 // Autor: Hélio Giroto
 

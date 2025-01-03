@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Helio Giroto">
     
-    <meta http-equiv='cache-control' content='no-cache'>
-    <meta http-equiv='expires' content='0'>
-    <meta http-equiv='pragma' content='no-cache'>
+    <!--
+	    <meta http-equiv='cache-control' content='no-cache'>
+	    <meta http-equiv='expires' content='0'>
+	    <meta http-equiv='pragma' content='no-cache'>
+    -->
 
     <link rel="shortcut icon" href="img/favicon.ico" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@900&display=swap" rel="stylesheet">
@@ -21,7 +23,8 @@
     <link rel="stylesheet" href="css/stylesTablet.css">
     <link rel="stylesheet" href="css/stylesDesktop.css">
 
-    <title>A Bíblia Falada</title>
+    <title>Bíblia 24 Horas</title>
+
 
 </head>
 
@@ -82,14 +85,24 @@
 
     <div class="pagina2">
         <div class="escolherVersao">
-            <h3 class="h4Escolher h3 lato">ESCOLHA A VERSÃO/TRADUÇÃO:</h4>
-                <div class="versoes">
+            <h3 class="h4Escolher h3 lato">ESCOLHA A VERSÃO/TRADUÇÃO:</h3>
+                <div class="itensEscolha">
                     <span class="acf lato">ACF</span>
-                    <input type="radio" id="acf" value="ACF" name="versao">
+                    <input type="radio" class="radioVersao" id="acf" value="ACF" name="versao">
                     <span class="nvi lato">NVI</span>
-                    <input type="radio" id="nvi" value="NVI" name="versao">
+                    <input type="radio" class="radioVersao" id="nvi" value="NVI" name="versao">
                     <span class="rv lato">RV</span>
-                    <input type="radio" id="rv" value="RV" name="versao">
+                    <input type="radio" class="radioVersao" id="rv" value="RV" name="versao">
+                </div>
+        </div>
+
+        <div class="escolherOrdem">
+            <h3 class="h4Ordem h3 lato">ORDEM EM QUE OS LIVROS SERÃO OUVIDOS:</h3>
+                <div class="itensEscolha">
+                    <span class="ordem normal lato">Ordem Normal</span>
+                    <input type="radio" class="radioOrdem" id="impressa" value="0" name="ordem">
+                    <span class="ordem crono lato">Ordem Cronológica</span>
+                    <input type="radio" class="radioOrdem" id="cronologica" value="1" name="ordem">
                 </div>
         </div>
 
@@ -324,13 +337,13 @@
 
     <script src="js/localStorage.js"></script>
     <script src="js/BibliaOBJ.js"></script>
-    <script src="js/script-19.js"></script>
+    <script src="js/script.js"></script>
     <script src="js/loader.js"></script>
     <script src="js/graficos.js"></script>
-    <script src="js/exportar-19.js"></script>
-    <script src="acf.js"></script>
-    <script src="nvi.js"></script>
-    <script src="js/history_15.js"></script>
+    <script src="js/exportar.js"></script>
+    <script src="versoes/acf.js"></script>
+    <script src="versoes/nvi.js"></script>
+    <!--     <script src="js/history_15.js"></script> -->
 
 </body>
 

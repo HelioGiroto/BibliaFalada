@@ -32,7 +32,7 @@ function porcentagem(valor, total) {
 
 function quadriculasColor() {
     // pega todos os capítulos já ouvidos:
-    let capitulosOuvidos = JSON.parse(localStorage.getItem('capitulosOuvidos'))
+    let capitulosOuvidos = JSON.parse(localStorage.getItem('B24_capitulosOuvidos'))
     // obtem todos os elementos da quadricula livros:
     let elementosQuadriculaLivro = document.querySelectorAll('.quadriculaLivro')
 
@@ -118,7 +118,7 @@ function quantoOuviuHoje() {
 }
 
 function totalCapitulosOuvidos() {
-    let capitulosOuvidos = JSON.parse(localStorage.capitulosOuvidos)
+    let capitulosOuvidos = JSON.parse(localStorage.B24_capitulosOuvidos)
     totalCapOuvidos = capitulosOuvidos.length
     document.querySelector("#totalCapitulos").innerHTML = totalCapOuvidos
 }

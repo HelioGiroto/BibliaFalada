@@ -904,7 +904,7 @@ function agendaGoogle() {
     // forma o conteúdo das propriedades que vão na url de google calendar:
     let dataHora = `${anoHoje}${mesHoje}${diaHoje}T${horarioInicio}/${anoFim}${mesFim}${diaFim}T${horarioFim}`
     let titulo = "Hora de ouvir a Bíblia Falada!!!"
-    let descricao = "A fé vem pelo ouvir a Palavra de Deus! Site: https://heliogiroto.github.io/BibliaFalada"
+    let descricao = "A fé vem pelo ouvir a Palavra de Deus! Site: https://biblia24horas.com"
 
     descricao = descricao.replace(/ /g, "+").replace(/&/g, '-')
     titulo = titulo.replace(/ /g, "+").replace(/&/g, '-')
@@ -1062,6 +1062,11 @@ function leitura() {
     // let textoDoCapitulo = []
     textoDoCapitulo = []
     
+    	// itera todo o objeto BibliaOBJ.js à procura do que inicia com a referência do livro-capítulo atual:
+    	// startWith evita de sair tudo junto Jo 1: e 1Jo: e 2Jo1:
+	for (linha of textoBiblico){
+		if(linha[0].startsWith(`${abrev} ${capitulo}:`)) { textoDoCapitulo.push(linha) } 
+	}	
     
     // textoBiblico.map(e => {
     //    if (e[0].includes(`${abrev} ${capitulo}:`)) {
@@ -1083,9 +1088,10 @@ function leitura() {
 	//	}
 	// }
 	
-	for (linha of textoBiblico){
-		if(linha[0].includes(`${abrev} ${capitulo}:`)) { textoDoCapitulo.push(linha) } 
-	}	
+	// for (linha of textoBiblico){
+	//	if(linha[0].includes(`${abrev} ${capitulo}:`)) { textoDoCapitulo.push(linha) } 
+	// }	
+	
 	     
     // textoDoCapitulo = textoBiblico.filter(a=> a[0].includes(`${abrev} ${capitulo}:`))
      
@@ -1268,10 +1274,12 @@ let linkRedes = []
 nomesRedes.forEach((e, i) => {
     e.addEventListener('click', () => {
         // sites e sites encoded:
-        nossoSite = `https://heliogiroto.github.io/BibliaFalada/?nroLivro=${nroLivro}&capitulo=${capitulo}&versao=${versao}`
+        // nossoSite = `https://heliogiroto.github.io/BibliaFalada/?nroLivro=${nroLivro}&capitulo=${capitulo}&versao=${versao}`
+        nossoSite = `https://biblia24horas/?nroLivro=${nroLivro}&capitulo=${capitulo}&versao=${versao}`
         siteEncode = encodeURIComponent(nossoSite)
 
-        siteFB = `heliogiroto.github.io/BibliaFalada/?nroLivro=${nroLivro}&capitulo=${capitulo}&versao=${versao}`
+        // siteFB = `heliogiroto.github.io/BibliaFalada/?nroLivro=${nroLivro}&capitulo=${capitulo}&versao=${versao}`
+        siteFB = `biblia24horas/?nroLivro=${nroLivro}&capitulo=${capitulo}&versao=${versao}`
         siteFBencode = encodeURIComponent(siteFB)
 
         // mensagens encoded:

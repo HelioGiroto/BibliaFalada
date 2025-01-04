@@ -1275,11 +1275,11 @@ nomesRedes.forEach((e, i) => {
     e.addEventListener('click', () => {
         // sites e sites encoded:
         // nossoSite = `https://heliogiroto.github.io/BibliaFalada/?nroLivro=${nroLivro}&capitulo=${capitulo}&versao=${versao}`
-        nossoSite = `https://biblia24horas/?nroLivro=${nroLivro}&capitulo=${capitulo}&versao=${versao}`
+        nossoSite = `https://biblia24horas.com/?nroLivro=${nroLivro}&capitulo=${capitulo}&versao=${versao}`
         siteEncode = encodeURIComponent(nossoSite)
 
         // siteFB = `heliogiroto.github.io/BibliaFalada/?nroLivro=${nroLivro}&capitulo=${capitulo}&versao=${versao}`
-        siteFB = `biblia24horas/?nroLivro=${nroLivro}&capitulo=${capitulo}&versao=${versao}`
+        siteFB = `biblia24horas.com/?nroLivro=${nroLivro}&capitulo=${capitulo}&versao=${versao}`
         siteFBencode = encodeURIComponent(siteFB)
 
         // mensagens encoded:
